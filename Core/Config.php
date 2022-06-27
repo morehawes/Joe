@@ -5,7 +5,8 @@ class Joe_Config {
 	protected static $default = [];
 	protected static $data = [
 		'multi_value_seperator' => '__multi__',
-		'cache_prefix' => 'Joe_Cache_'		
+		'cache_prefix' => 'Joe_Cache_',
+		'settings_id' => 'Joe_Settings'
 	];
 
 	public static function set_item($key = null, $value) {
