@@ -170,7 +170,7 @@ class Joe_Input {
 						//Always use strings
 						$value = (string)$value;
 
-						//Waymark_Helper::debug($set_value);
+						//Joe_Helper::debug($set_value);
 					
 						$out .= '			<option value="' . $value . '"';
 									
@@ -302,7 +302,7 @@ class Joe_Input {
 		//Group
 		$fields = self::group_fields($fields, $groups);
 		
-// 		Waymark_Helper::debug($fields);
+// 		Joe_Helper::debug($fields);
 		
 		$out = '<!-- START Parameter Container -->' . "\n";
 		
@@ -322,7 +322,7 @@ class Joe_Input {
 				$fields_reorder[''] = $fields[''];		
 			}
 			foreach($groups as $group_id => $group) {
-// 				Waymark_Helper::debug($fields);
+// 				Joe_Helper::debug($fields);
 
 				if(isset($fields[$group_id])) {
 					$fields_reorder[$group_id] = $fields[$group_id];					
@@ -416,7 +416,7 @@ class Joe_Input {
 			foreach($processes as $process) {
 				//Values stored in array
 				if(is_array($param_value)) {
-					//Waymark_Helper::debug($param_value, false);
+					//Joe_Helper::debug($param_value, false);
 
 					//Single Value
 					if(sizeof($param_value) == 1) {
