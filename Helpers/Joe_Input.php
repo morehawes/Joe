@@ -1,6 +1,6 @@
 <?php
 
-class Waymark_Input {
+class Joe_Input {
 	
 	private static $username_bad = array('.', "\$", '!', '*');
 	private static $username_good = array('__dot__', '__dollar__', '__bang__', '__star__');
