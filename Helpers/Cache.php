@@ -1,11 +1,9 @@
 <?php
 
 class Joe_Cache {
-	private static $cache_prefix = 'Waymark_Cache_';
-	
 	static function set_item($cache_id, $cache_content, $cache_minutes = 0) {
 		$cache_seconds = $cache_minutes * 60;
-		
+
 		set_transient(self::$cache_prefix . $cache_id, $cache_content, $cache_seconds);						
 	}
 	

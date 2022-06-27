@@ -12,9 +12,9 @@ class Joe_Helper {
 // 			@ ob_end_clean();
 // 		}
 			
-		echo '<pre>';
+		echo '<textarea onclick="jQuery(this).hide()" style="position:absolute;width:100%;height:100%;padding:15px;z-index:+10000000"><pre>';
 		print_r($thing);
-		echo '</pre>';
+		echo '</pre></textarea>';
 		if($die) {
 			die;
 		}

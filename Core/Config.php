@@ -4,9 +4,10 @@ class Joe_Config {
 	//Set defaults
 	protected static $default = [];
 	protected static $data = [
-		'multi_value_seperator' => '__multi__'
+		'multi_value_seperator' => '__multi__',
+		'cache_prefix' => 'Joe_Cache_'		
 	];
-	
+
 	public static function set_item($key = null, $value) {
 		if(array_key_exists($key, static::$data)) {
 			static::$data[$key] = $value;
@@ -41,8 +42,8 @@ class Joe_Config {
 						}
 					}
 					
-					$values = Waymark_Helper::convert_values_to_single_value($values);
-					$values = Waymark_Helper::convert_single_value_to_array($values);				
+					$values = Joe_Helper::convert_values_to_single_value($values);
+					$values = Joe_Helper::convert_single_value_to_array($values);				
 			
 					return $values;
 				}
