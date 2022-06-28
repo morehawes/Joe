@@ -105,4 +105,8 @@ class Joe_Helper {
 
 		return false;	
 	}	
+
+	public static function css_prefix()	{
+		return Joe_Config::get_item('css_prefix');
+	}
 }

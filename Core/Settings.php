@@ -12,7 +12,7 @@ class Joe_Settings {
 // 		if(sizeof($_POST)) {
 // 			//Clear cache
 // 			if(isset($_POST[Joe_Config::get_item('settings_id')]['advanced']['performance']['clear_cache'])) {	
-// 				self::execute_action('clear_cache');			
+// 				static::execute_action('clear_cache');			
 // 			}
 // 		}
 		
@@ -80,55 +80,55 @@ class Joe_Settings {
 		if(isset($_GET['settings-updated'])) {
 			//Settings updates
 			if($_GET['settings-updated'] == 'true') {
-				echo '<div class="' . Joe_Config::get_item('css_prefix') . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Settings Updated', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
+				echo '<div class="' . Joe_Helper::css_prefix() . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Settings Updated', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
 			}
 
 //Action			
 // 			 elseif($_GET['settings-updated'] == 'joe_action') {
-// 				echo '<div class="' . Joe_Config::get_item('css_prefix') . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Action Complete', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
+// 				echo '<div class="' . Joe_Helper::css_prefix() . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Action Complete', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
 // 			}
 		}
 	}
 
 	public static function content_admin_page() {
-		echo '<div id="' . Joe_Config::get_item('css_prefix') . 'admin-container">' . "\n";
+		echo '<div id="' . Joe_Helper::css_prefix() . 'admin-container">' . "\n";
 
 		echo Joe_Helper::plugin_about();
 
 		echo '	<div class="card">' . "\n";	
-// 		echo '		<h1>' . esc_html__('Settings', 'waymark') . '</h1>' . "\n";
+// 		echo '		<h1>' . esc_html__('Settings', Joe_Config::get_item('plugin_text_domain')) . '</h1>' . "\n";
 
 		//Tabs
 		$active_content = (isset($_GET['content'])) ? $_GET['content'] : Joe_Config::get_item('settings_default_tab');
-		self::settings_nav($active_content);
+		static::settings_nav($active_content);
 
 		//Open form
 		echo '		<form action="' . admin_url('options.php') . '" method="post">' . "\n";
 		settings_fields(Joe_Config::get_item('settings_id'));
 
 		//For each tab		
-		foreach(self::$tabs as $tab_key => $tab_data) {
+		foreach(static::$tabs as $tab_key => $tab_data) {
 			$style = '';
 // 			if($active_tab != $tab_key) {
 // 				$style = ' style="display:none;"';
 // 			}
-			echo '	<div class="' . Joe_Config::get_item('css_prefix') . 'settings-tab ' . Joe_Config::get_item('css_prefix') . 'settings-tab-' . $tab_key . '"' . $style . '>' . "\n";
+			echo '	<div class="' . Joe_Helper::css_prefix() . 'settings-tab ' . Joe_Helper::css_prefix() . 'settings-tab-' . $tab_key . '"' . $style . '>' . "\n";
 
 			//Tab description?
 			if(array_key_exists('description', $tab_data)) {
-				echo '	<div class="' . Joe_Config::get_item('css_prefix') . 'settings-tab-description">' . $tab_data['description'] . '</div>' . "\n";
+				echo '	<div class="' . Joe_Helper::css_prefix() . 'settings-tab-description">' . $tab_data['description'] . '</div>' . "\n";
 			}
 
 			//For each section
 			foreach($tab_data['sections'] as $section_key => $section_data) {
 				$class = (isset($section_data['class'])) ? ' ' . $section_data['class'] : '';
-				echo '		<div class="' . Joe_Config::get_item('css_prefix') . 'settings-section ' . Joe_Config::get_item('css_prefix') . 'settings-section-' . $section_key . $class . '">' . "\n";
+				echo '		<div class="' . Joe_Helper::css_prefix() . 'settings-section ' . Joe_Helper::css_prefix() . 'settings-section-' . $section_key . $class . '">' . "\n";
 				
 				//Help
 				if(array_key_exists('help', $section_data) && isset($section_data['help']['url'])) {
 					$help_text = (isset($section_data['help']['text'])) ? $section_data['help']['text'] : 'View Help &raquo;';
 
-					echo '		<a class="' . Joe_Config::get_item('css_prefix') . 'docs-link button" href="' . $section_data['help']['url'] . '" target="_blank">' . $help_text . '</a>' . "\n";				
+					echo '		<a class="' . Joe_Helper::css_prefix() . 'docs-link button" href="' . $section_data['help']['url'] . '" target="_blank">' . $help_text . '</a>' . "\n";				
 				}
 				
 				//Title
@@ -138,12 +138,12 @@ class Joe_Settings {
 
 				//Description
 				if(array_key_exists('description', $section_data)) {
-					echo '		<div class="' . Joe_Config::get_item('css_prefix') . 'settings-section-description">' . $section_data['description'] . '</div>' . "\n";
+					echo '		<div class="' . Joe_Helper::css_prefix() . 'settings-section-description">' . $section_data['description'] . '</div>' . "\n";
 				}		
 				
 				//Repeatable?
 				if(array_key_exists('repeatable', $section_data) && $section_data['repeatable']) {
-					echo '<div class="' . Joe_Config::get_item('css_prefix') . 'repeatable" data-count="0">' . "\n";
+					echo '<div class="' . Joe_Helper::css_prefix() . 'repeatable" data-count="0">' . "\n";
 				}
 				
         echo '		<table class="form-table">' . "\n";
@@ -157,7 +157,7 @@ class Joe_Settings {
 
 				//Footer
 				if(array_key_exists('footer', $section_data)) {
-					echo '	<div class="' . Joe_Config::get_item('css_prefix') . 'settings-section-footer">' . $section_data['footer'] . '</div>' . "\n";
+					echo '	<div class="' . Joe_Helper::css_prefix() . 'settings-section-footer">' . $section_data['footer'] . '</div>' . "\n";
 				}
 				
 				echo '</div>' . "\n";
@@ -222,7 +222,7 @@ class Joe_Settings {
 	}	
 
 	public static function settings_nav($current = 'tiles') {
-		echo '<div id="' . Joe_Config::get_item('css_prefix') . 'settings-nav" data-init_tab_key="' . $current . '">' . "\n";
+		echo '<div id="' . Joe_Helper::css_prefix() . 'settings-nav" data-init_tab_key="' . $current . '">' . "\n";
 		echo '	<select>' . "\n";
 
 		foreach(static::$settings_nav as $content_id => $content_title) {
