@@ -44,13 +44,13 @@ class Joe_Input {
 		$add_class .= ' ' . $field['id'] . '-container';
 
 		//Container
-		$out .= '<div class="waymark-control-group waymark-control-type-' . $field['type'] . $add_class . '">' . "\n";
+		$out .= '<div class="' . Joe_Config::get_item('css_prefix') . 'control-group waymark-control-type-' . $field['type'] . $add_class . '">' . "\n";
 	
 		//Label
 		if($show_label && isset($field['title'])) {
-			$out .= '	<label class="waymark-control-label" for="' . $field['name'] . '">' . $field['title'] .  '</label>' . "\n";		
+			$out .= '	<label class="' . Joe_Config::get_item('css_prefix') . 'control-label" for="' . $field['name'] . '">' . $field['title'] .  '</label>' . "\n";		
 		}
-		$out .= '	<div class="waymark-controls">' . "\n";				
+		$out .= '	<div class="' . Joe_Config::get_item('css_prefix') . 'controls">' . "\n";				
 
 		//Prepend?		
 		if(array_key_exists('prepend', $field)) {
@@ -75,9 +75,9 @@ class Joe_Input {
 			
 			$out .= ' <a data-title="' . $field['tip'] . '';
 			if(array_key_exists('tip_link', $field)) {
-				$out .= ' ' . esc_attr__('Click here for more details.', 'waymark') . '" href="' . $field['tip_link'] . '" target="_blank" class="waymark-tooltip waymark-link"';					
+				$out .= ' ' . esc_attr__('Click here for more details.', 'waymark') . '" href="' . $field['tip_link'] . '" target="_blank" class="' . Joe_Config::get_item('css_prefix') . 'tooltip waymark-link"';					
 			} else {
-				$out .= '" href="#" onclick="return false;" class="waymark-tooltip"';
+				$out .= '" href="#" onclick="return false;" class="' . Joe_Config::get_item('css_prefix') . 'tooltip"';
 			}
 			$out .= '>?</a>';
 		}
@@ -128,7 +128,7 @@ class Joe_Input {
 					$set_value = $field['default'];
 				}
 							
-				$out .= '		<select data-multi-value="' . $set_value . '" class="waymark-input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '">' . "\n";
+				$out .= '		<select data-multi-value="' . $set_value . '" class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '">' . "\n";
 				if(isset($field['options'])) {
 					foreach($field['options'] as $value => $description) {
 						//Always use strings
@@ -162,7 +162,7 @@ class Joe_Input {
 					$set_value = explode(Waymark_Config::get_item('multi_value_seperator'), $field['default']);
 				}
 				
-				$out .= '		<select multiple="multiple" class="waymark-input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '[]" data-id="' . $field['id'] . '">' . "\n";
+				$out .= '		<select multiple="multiple" class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '[]" data-id="' . $field['id'] . '">' . "\n";
 				
 				//If we have options
 				if(isset($field['options'])) {
@@ -188,7 +188,7 @@ class Joe_Input {
 
 				break;					
 			case 'textarea' :
-				$out .= '		<textarea class="waymark-input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '">';
+				$out .= '		<textarea class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '">';
 				//Do we have a value for this post?
 				if($value = htmlspecialchars($set_value)) {
 					$out .= $value;
@@ -209,7 +209,7 @@ class Joe_Input {
 				
 				
 				//Markup
-				//$out .= '		<textarea class="waymark-input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '"></textarea>' . "\n";
+				//$out .= '		<textarea class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '"></textarea>' . "\n";
 				
 				//Setup rich editor			
 				ob_start();	
@@ -226,16 +226,16 @@ class Joe_Input {
 				break;				
 			case 'submit' :
 				$value = explode(' ', $field['title'])[0];
-				$out .= '		<input type="submit" name="' . $field['name'] . '" value="' . $value . '" data-id="' . $field['id'] . '" class="waymark-input waymark-input-' . $field['id'] . ' button-secondary" />' . "\n";
+				$out .= '		<input type="submit" name="' . $field['name'] . '" value="' . $value . '" data-id="' . $field['id'] . '" class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . ' button-secondary" />' . "\n";
 				
 				break;				
 			case 'file' :
-				$out .= '		<input class="waymark-input waymark-input-' . $field['id'] . '" type="file" name="' . $field['name'] . '" data-id="' . $field['id'] . '" />' . "\n";
+				$out .= '		<input class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" type="file" name="' . $field['name'] . '" data-id="' . $field['id'] . '" />' . "\n";
 				
 				break;
 			case 'text' :
 			default :
-				$out .= '		<input class="waymark-input waymark-input-' . $field['id'] . '" type="text" name="' . $field['name'] . '" data-id="' . $field['id'] . '"';
+				$out .= '		<input class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" type="text" name="' . $field['name'] . '" data-id="' . $field['id'] . '"';
 				//Do we have a value for this post?
 				if($set_value !== null) {
 					$out .= ' value="' . $set_value . '"';
@@ -282,7 +282,7 @@ class Joe_Input {
 		}		
 
 		$out = '<!-- START Repeatable Container -->' . "\n";
-		$out .= '<div class="waymark-repeatable-container" data-count="' . $count . '">' . "\n";
+		$out .= '<div class="' . Joe_Config::get_item('css_prefix') . 'repeatable-container" data-count="' . $count . '">' . "\n";
 		
 		$out .= $repeatable_parameter_groups;
 
@@ -309,7 +309,7 @@ class Joe_Input {
 		$id = ($id) ? ' id="' . $id . '"' : '';
 		$class_append = ($class_append) ? ' ' . $class_append : '';		
 		
-		$out .= '<div' . $id . ' class="waymark-parameters-container waymark-accordion-container' . $class_append . '">' . "\n";
+		$out .= '<div' . $id . ' class="' . Joe_Config::get_item('css_prefix') . 'parameters-container waymark-accordion-container' . $class_append . '">' . "\n";
 
 		//Are we doing groups?
 		$by_group = false;		
@@ -348,11 +348,11 @@ class Joe_Input {
 					$out .= '<!-- END Parameter Group -->' . "\n";										
 				}
 				$out .= '<!-- START Parameter Group -->' . "\n";										
-				$out .= '	<div class="waymark-parameter-group waymark-accordion-group waymark-parameter-group-' . $group_id . '" id="waymark-parameter-group-' . $group_id . '">' . "\n";					
+				$out .= '	<div class="' . Joe_Config::get_item('css_prefix') . 'parameter-group waymark-accordion-group waymark-parameter-group-' . $group_id . '" id="waymark-parameter-group-' . $group_id . '">' . "\n";					
 				$out .= '		<legend title="Click to expand">' . $group['group_title'] . '</legend>' . "\n";
-				$out .= '		<div class="waymark-accordion-group-content">' . "\n";
+				$out .= '		<div class="' . Joe_Config::get_item('css_prefix') . 'accordion-group-content">' . "\n";
 				if(array_key_exists('group_description', $group)) {			
-					$out .= '			<p class="waymark-parameter-group-description">' . $group['group_description'] . '</p>' . "\n";
+					$out .= '			<p class="' . Joe_Config::get_item('css_prefix') . 'parameter-group-description">' . $group['group_description'] . '</p>' . "\n";
 				}
 				$current_group = $group_id;
 			}
