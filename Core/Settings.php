@@ -15,10 +15,10 @@ class Joe_Settings {
 		if(isset($_GET['settings-updated'])) {
 			//Settings updates
 			if($_GET['settings-updated'] == 'true') {
-				echo '<div class="' . Joe_Config::get_item('css_prefix') . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Settings Updated', 'waymark') . '.</p></div>';				
+				echo '<div class="' . Joe_Config::get_item('css_prefix') . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Settings Updated', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
 			//Action	
 			} elseif($_GET['settings-updated'] == 'waymark_action') {
-				echo '<div class="' . Joe_Config::get_item('css_prefix') . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Action Complete', 'waymark') . '.</p></div>';				
+				echo '<div class="' . Joe_Config::get_item('css_prefix') . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Action Complete', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
 			}
 		}
 	}

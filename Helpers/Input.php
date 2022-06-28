@@ -25,16 +25,17 @@ class Joe_Input {
 
 		//Boolean
 		if($field['type'] == 'boolean') {
-			if(! array_key_exists('class', $field)) {
-				$field['class'] = 'waymark-short-input';
+			if(array_key_exists('class', $field)) {
+				$field['class'] .= ' ';
 			} else {
-				$field['class'] .= ' waymark-short-input';				
+				$field['class'] = '';		
 			}
+			$field['class'] .= Joe_Config::get_item('css_prefix') . 'short-input';
 					
 			if(! array_key_exists('options', $field) || ! is_array($field['options'])) {
 				$field['options'] = array(
-					'1' => esc_attr__('Yes', 'waymark'),
-					'0' => esc_attr__('No', 'waymark')
+					'1' => esc_attr__('Yes', Joe_Config::get_item('plugin_text_domain')),
+					'0' => esc_attr__('No', Joe_Config::get_item('plugin_text_domain'))
 				);
 			}
 		}		
@@ -44,7 +45,7 @@ class Joe_Input {
 		$add_class .= ' ' . $field['id'] . '-container';
 
 		//Container
-		$out .= '<div class="' . Joe_Config::get_item('css_prefix') . 'control-group waymark-control-type-' . $field['type'] . $add_class . '">' . "\n";
+		$out .= '<div class="' . Joe_Config::get_item('css_prefix') . 'control-group ' . Joe_Config::get_item('css_prefix') . 'control-type-' . $field['type'] . $add_class . '">' . "\n";
 	
 		//Label
 		if($show_label && isset($field['title'])) {
@@ -75,7 +76,7 @@ class Joe_Input {
 			
 			$out .= ' <a data-title="' . $field['tip'] . '';
 			if(array_key_exists('tip_link', $field)) {
-				$out .= ' ' . esc_attr__('Click here for more details.', 'waymark') . '" href="' . $field['tip_link'] . '" target="_blank" class="' . Joe_Config::get_item('css_prefix') . 'tooltip waymark-link"';					
+				$out .= ' ' . esc_attr__('Click here for more details.', Joe_Config::get_item('plugin_text_domain')) . '" href="' . $field['tip_link'] . '" target="_blank" class="' . Joe_Config::get_item('css_prefix') . 'tooltip ' . Joe_Config::get_item('css_prefix') . 'link"';					
 			} else {
 				$out .= '" href="#" onclick="return false;" class="' . Joe_Config::get_item('css_prefix') . 'tooltip"';
 			}
@@ -105,7 +106,7 @@ class Joe_Input {
 		//Default
 		if(array_key_exists('default', $field)) {
 			if(is_array($field['default'])) {
-				$field['default'] = implode(Waymark_Config::get_item('multi_value_seperator'), self::process_output($field, $field['default']));				
+				$field['default'] = implode(Joe_Config::get_item('multi_value_seperator'), self::process_output($field, $field['default']));				
 			} else {
 				$field['default'] = self::process_output($field, $field['default']);				
 			}
@@ -114,7 +115,7 @@ class Joe_Input {
 		//Process set value?
 		if($set_value !== null) {
 			if(is_array($set_value)) {
-				$set_value = implode(Waymark_Config::get_item('multi_value_seperator'), self::process_output($field, $set_value));				
+				$set_value = implode(Joe_Config::get_item('multi_value_seperator'), self::process_output($field, $set_value));				
 			} else {
 				$set_value = self::process_output($field, $set_value);			
 			}
@@ -128,7 +129,7 @@ class Joe_Input {
 					$set_value = $field['default'];
 				}
 							
-				$out .= '		<select data-multi-value="' . $set_value . '" class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '">' . "\n";
+				$out .= '		<select data-multi-value="' . $set_value . '" class="' . Joe_Config::get_item('css_prefix') . 'input ' . Joe_Config::get_item('css_prefix') . 'input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '">' . "\n";
 				if(isset($field['options'])) {
 					foreach($field['options'] as $value => $description) {
 						//Always use strings
@@ -158,11 +159,11 @@ class Joe_Input {
 				//Is multi?
 				if(is_string($set_value) && strpos($set_value, ',')) {
 					$set_value = explode(',', $field['default']);
-				} elseif(is_string($set_value) && strpos($set_value, Waymark_Config::get_item('multi_value_seperator'))) {
-					$set_value = explode(Waymark_Config::get_item('multi_value_seperator'), $field['default']);
+				} elseif(is_string($set_value) && strpos($set_value, Joe_Config::get_item('multi_value_seperator'))) {
+					$set_value = explode(Joe_Config::get_item('multi_value_seperator'), $field['default']);
 				}
 				
-				$out .= '		<select multiple="multiple" class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '[]" data-id="' . $field['id'] . '">' . "\n";
+				$out .= '		<select multiple="multiple" class="' . Joe_Config::get_item('css_prefix') . 'input ' . Joe_Config::get_item('css_prefix') . 'input-' . $field['id'] . '" name="' . $field['name'] . '[]" data-id="' . $field['id'] . '">' . "\n";
 				
 				//If we have options
 				if(isset($field['options'])) {
@@ -188,7 +189,7 @@ class Joe_Input {
 
 				break;					
 			case 'textarea' :
-				$out .= '		<textarea class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '">';
+				$out .= '		<textarea class="' . Joe_Config::get_item('css_prefix') . 'input ' . Joe_Config::get_item('css_prefix') . 'input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '">';
 				//Do we have a value for this post?
 				if($value = htmlspecialchars($set_value)) {
 					$out .= $value;
@@ -209,7 +210,7 @@ class Joe_Input {
 				
 				
 				//Markup
-				//$out .= '		<textarea class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '"></textarea>' . "\n";
+				//$out .= '		<textarea class="' . Joe_Config::get_item('css_prefix') . 'input ' . Joe_Config::get_item('css_prefix') . 'input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '"></textarea>' . "\n";
 				
 				//Setup rich editor			
 				ob_start();	
@@ -226,16 +227,16 @@ class Joe_Input {
 				break;				
 			case 'submit' :
 				$value = explode(' ', $field['title'])[0];
-				$out .= '		<input type="submit" name="' . $field['name'] . '" value="' . $value . '" data-id="' . $field['id'] . '" class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . ' button-secondary" />' . "\n";
+				$out .= '		<input type="submit" name="' . $field['name'] . '" value="' . $value . '" data-id="' . $field['id'] . '" class="' . Joe_Config::get_item('css_prefix') . 'input ' . Joe_Config::get_item('css_prefix') . 'input-' . $field['id'] . ' button-secondary" />' . "\n";
 				
 				break;				
 			case 'file' :
-				$out .= '		<input class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" type="file" name="' . $field['name'] . '" data-id="' . $field['id'] . '" />' . "\n";
+				$out .= '		<input class="' . Joe_Config::get_item('css_prefix') . 'input ' . Joe_Config::get_item('css_prefix') . 'input-' . $field['id'] . '" type="file" name="' . $field['name'] . '" data-id="' . $field['id'] . '" />' . "\n";
 				
 				break;
 			case 'text' :
 			default :
-				$out .= '		<input class="' . Joe_Config::get_item('css_prefix') . 'input waymark-input-' . $field['id'] . '" type="text" name="' . $field['name'] . '" data-id="' . $field['id'] . '"';
+				$out .= '		<input class="' . Joe_Config::get_item('css_prefix') . 'input ' . Joe_Config::get_item('css_prefix') . 'input-' . $field['id'] . '" type="text" name="' . $field['name'] . '" data-id="' . $field['id'] . '"';
 				//Do we have a value for this post?
 				if($set_value !== null) {
 					$out .= ' value="' . $set_value . '"';
@@ -287,9 +288,9 @@ class Joe_Input {
 		$out .= $repeatable_parameter_groups;
 
 		//Template
-		$out .= self::create_parameter_groups($fields, $groups, [], $name . '[__count__][%s]', '', 'waymark-repeatable-template');			
+		$out .= self::create_parameter_groups($fields, $groups, [], $name . '[__count__][%s]', '', Joe_Config::get_item('css_prefix') . 'repeatable-template');			
 
-		$out .= '<button class="button waymark-repeatable-add" title="' . __('Add Query', 'waymark') . '"><i class="ion ion-plus"></i></button>';
+		$out .= '<button class="button ' . Joe_Config::get_item('css_prefix') . 'repeatable-add" title="' . __('Add Query', Joe_Config::get_item('plugin_text_domain')) . '"><i class="ion ion-plus"></i></button>';
 
 		$out .= '</div>' . "\n";
 		$out .= '<!-- END Repeatable Container -->' . "\n";
@@ -309,7 +310,7 @@ class Joe_Input {
 		$id = ($id) ? ' id="' . $id . '"' : '';
 		$class_append = ($class_append) ? ' ' . $class_append : '';		
 		
-		$out .= '<div' . $id . ' class="' . Joe_Config::get_item('css_prefix') . 'parameters-container waymark-accordion-container' . $class_append . '">' . "\n";
+		$out .= '<div' . $id . ' class="' . Joe_Config::get_item('css_prefix') . 'parameters-container ' . Joe_Config::get_item('css_prefix') . 'accordion-container' . $class_append . '">' . "\n";
 
 		//Are we doing groups?
 		$by_group = false;		
@@ -348,7 +349,7 @@ class Joe_Input {
 					$out .= '<!-- END Parameter Group -->' . "\n";										
 				}
 				$out .= '<!-- START Parameter Group -->' . "\n";										
-				$out .= '	<div class="' . Joe_Config::get_item('css_prefix') . 'parameter-group waymark-accordion-group waymark-parameter-group-' . $group_id . '" id="waymark-parameter-group-' . $group_id . '">' . "\n";					
+				$out .= '	<div class="' . Joe_Config::get_item('css_prefix') . 'parameter-group ' . Joe_Config::get_item('css_prefix') . 'accordion-group ' . Joe_Config::get_item('css_prefix') . 'parameter-group-' . $group_id . '" id="' . Joe_Config::get_item('css_prefix') . 'parameter-group-' . $group_id . '">' . "\n";					
 				$out .= '		<legend title="Click to expand">' . $group['group_title'] . '</legend>' . "\n";
 				$out .= '		<div class="' . Joe_Config::get_item('css_prefix') . 'accordion-group-content">' . "\n";
 				if(array_key_exists('group_description', $group)) {			
@@ -468,13 +469,13 @@ class Joe_Input {
 // 	
 // 	    if(isset($upload['error']) && $upload['error'] != 0) {
 // 	    	//!!! - Better error handling
-// 	    	wp_die(esc_html__('File upload error.', 'waymark') . ' (' . $upload['error'] . ')');
+// 	    	wp_die(esc_html__('File upload error.', Joe_Config::get_item('plugin_text_domain')) . ' (' . $upload['error'] . ')');
 // 	    } else {
 //         return $upload;     
 // 	    }
 // 		} else {
 // 			//!!! - Better error handling
-// 			wp_die(esc_html__('The file type uploaded is not supported.', 'waymark'));
+// 			wp_die(esc_html__('The file type uploaded is not supported.', Joe_Config::get_item('plugin_text_domain')));
 // 		}
 // 	}
 
@@ -490,7 +491,7 @@ class Joe_Input {
 			$file_mime = mime_content_type($file['tmp_name']);
 			
 			//Is allowed file
-			if(Waymark_Helper::allowable_file($file_ext, $file_mime)) {
+			if(Joe_Helper::allowable_file($file_ext, $file_mime)) {
 				$response = array_merge($response, array(
 					'file_type' => $file_ext,
 					'file_mime' => $file_mime,
@@ -499,7 +500,7 @@ class Joe_Input {
 				));		
 			//Not allowable file
 			} else {
-				$response['error'] = esc_html__('The file extension uploaded is not supported.', 'waymark');		
+				$response['error'] = esc_html__('The file extension uploaded is not supported.', Joe_Config::get_item('plugin_text_domain'));		
 				$response['file_ext'] = $file_ext;
 				$response['file_mime'] = $file_mime;					
 			}						

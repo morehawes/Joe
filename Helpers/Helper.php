@@ -65,4 +65,26 @@ class Joe_Helper {
 			return explode(Joe_Config::get_item('multi_value_seperator'), $value_in);			
 		}
 	}		
+
+	protected static function allowable_file($ext = '', $mime = '', $file_image = 'file') {
+		$allowable_mimes = Joe_Config::get_item('mimes', $file_image);
+		
+		//Valid extension
+		if(array_key_exists($ext, $allowable_mimes)) {
+			if($mime === false) {
+				return true;
+			}
+			
+			//Check MIME
+			//Single
+			if(is_string($allowable_mimes[$ext])) {
+				return $mime == $allowable_mimes[$ext];
+			//Multiple
+			} elseif(is_array($allowable_mimes[$ext])) {
+				return in_array($mime, $allowable_mimes[$ext]);
+			}
+		}
+		
+		return false;
+	}
 }
