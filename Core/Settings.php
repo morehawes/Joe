@@ -19,6 +19,10 @@ class Joe_Settings {
     add_action( 'admin_notices', [ 'Joe_Settings', 'admin_notices' ] );	
 	}
 
+	public static function get_settings() {
+		return static::$current_settings;
+	}
+
 	public static function admin_notices() {	
 		if(isset($_GET['settings-updated'])) {
 			//Settings updates
