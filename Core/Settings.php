@@ -8,6 +8,14 @@ class Joe_Settings {
 
 
 	public static function init() {
+		//Execute action?
+// 		if(sizeof($_POST)) {
+// 			//Clear cache
+// 			if(isset($_POST[Waymark_Config::get_item('settings_id')]['advanced']['performance']['clear_cache'])) {	
+// 				self::execute_action('clear_cache');			
+// 			}
+// 		}
+		
     add_action( 'admin_notices', [ 'Joe_Settings', 'admin_notices' ] );	
 	}
 
@@ -86,4 +94,18 @@ class Joe_Settings {
 		echo '	</select>' . "\n";
 		echo '</div>' . "\n";
 	}
+
+// 	public static function execute_action($action) {
+// 		switch($action) {
+// 			//Clear cache
+// 			case 'clear_cache' :
+// 				Joe_Cache::flush();
+// 				
+// 				break;
+// 		}
+// 		
+// 		wp_redirect(admin_url('admin.php?page=waymark-settings&tab=advanced&settings-updated=waymark_action'));
+// 
+// 		die;
+// 	}	
 }
