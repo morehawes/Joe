@@ -508,4 +508,22 @@ class Joe_Input {
 		
 		return $response;
 	}	
+
+//		add_filter('wp_check_filetype_and_ext', array($this, 'wp_check_filetype_and_ext'), 10, 4);				
+// 	function wp_check_filetype_and_ext( $check, $file, $filename, $mimes ) {
+// 		//Check file type
+// 		$filetype = wp_check_filetype($filename, Waymark_Config::get_item('mimes', 'file'));
+// 
+// 		//File type we are interested in
+// 		if(array_key_exists('type', $filetype) && $filetype['type']) {
+// 			//Allow
+// 			return array(
+// 				'ext' => $filetype['ext'],
+// 				'type' => $filetype['type'],
+// 				'proper_filename' => $filename
+// 			);
+// 		}
+// 	
+// 		return $check;
+// 	}	
 }
