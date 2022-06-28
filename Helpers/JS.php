@@ -16,15 +16,7 @@ class Joe_JS {
 		add_action( 'admin_footer', [ get_called_class(), 'footer' ] );					
 		add_action( 'admin_enqueue_scripts', [ get_called_class(), 'admin_enqueue_scripts'] );										
 	}
-	
-	//Front
-	
-	static function wp_enqueue_scripts() {}	
-	
-	//Admin
-	
-	static function admin_enqueue_scripts() {}
-	
+
 	static function add_chunk($chunk) {	
 		if((! in_array($chunk[strlen($chunk)-1], array(';', "\n")) && (strpos($chunk, '//') === false))) {
 			$chunk .= ';';
@@ -57,4 +49,12 @@ class Joe_JS {
 		echo '</script>' . "\n";
 		echo '<!-- END ' . Joe_Config::get_name(true, true) . ' Footer JS -->' . "\n\n";			
 	}	
+	
+	//Front
+	
+	static function wp_enqueue_scripts() {}	
+	
+	//Admin
+	
+	static function admin_enqueue_scripts() {}
 }
