@@ -9,7 +9,7 @@ class Joe_Settings {
 
 	public static function init() {
 		//Get current settings from DB
-		$current_settings = get_option(Waymark_Config::get_item('settings_id'));
+		$current_settings = get_option(Joe_Config::get_item('settings_id'));
 		if(is_array($current_settings) && sizeof($current_settings)) {
 			static::$current_settings = $current_settings;
 		}	

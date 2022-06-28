@@ -3,7 +3,7 @@
 class Joe_Helper {
 
 	static public function plugin_about() {
-		$out = '	<div id="waymark-about">' . "\n";		
+		$out = '	<div id="' . Joe_Helper::css_prefix('about') . '">' . "\n";		
 		$out .= Joe_Config::get_item('plugin_about');
 		$out .= '	</div>' . "\n";		
 		
@@ -106,7 +106,7 @@ class Joe_Helper {
 		return false;	
 	}	
 
-	public static function css_prefix()	{
-		return Joe_Config::get_item('css_prefix');
+	public static function css_prefix($text = '')	{
+		return Joe_Config::get_item('css_prefix') . $text;
 	}
 }

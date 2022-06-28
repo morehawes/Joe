@@ -9,7 +9,7 @@ class Joe_Config {
 		'settings_id' => 'Joe_Settings',
 		'css_prefix' => 'joe-',
 		'plugin_text_domain' => 'joe',
-		'plugin_about' => '<img alt="Joe\'s mug" src="//www.josephhawes.co.uk/assets/images/Joe1BW.jpg" /><p class="waymark-first"><b>Joe</b></p>'
+		'plugin_about' => '<img alt="Joe\'s mug" src="//www.josephhawes.co.uk/assets/images/Joe1BW.jpg" /><p class="joe-first"><b>Joe</b></p>'
 	];
 
 	public static function set_item($key = null, $value) {
