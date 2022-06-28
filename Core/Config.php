@@ -7,7 +7,8 @@ class Joe_Config {
 		'multi_value_seperator' => '__multi__',
 		'cache_prefix' => 'Joe_Cache_',
 		'settings_id' => 'Joe_Settings',
-		'css_prefix' => 'joe-'
+		'css_prefix' => 'joe-',
+		'plugin_text_domain' => 'joe'
 	];
 
 	public static function set_item($key = null, $value) {
