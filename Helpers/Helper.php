@@ -2,6 +2,14 @@
 
 class Joe_Helper {
 
+	static public function plugin_about() {
+		$out = '	<div id="waymark-about">' . "\n";		
+		$out .= Joe_Config::get_item('plugin_about');
+		$out .= '	</div>' . "\n";		
+		
+		return $out;
+	}	
+
 	static public function debug($thing, $die = true) {
 // 		if(! self::is_debug()) {
 // 			return;	

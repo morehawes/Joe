@@ -84,11 +84,94 @@ class Joe_Settings {
 			}
 
 //Action			
-// 			 elseif($_GET['settings-updated'] == 'waymark_action') {
+// 			 elseif($_GET['settings-updated'] == 'joe_action') {
 // 				echo '<div class="' . Joe_Config::get_item('css_prefix') . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Action Complete', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
 // 			}
 		}
 	}
+
+	public static function content_admin_page() {
+		echo '<div id="' . Joe_Config::get_item('css_prefix') . 'admin-container">' . "\n";
+
+		echo Joe_Helper::plugin_about();
+
+		echo '	<div class="card">' . "\n";	
+// 		echo '		<h1>' . esc_html__('Settings', 'waymark') . '</h1>' . "\n";
+
+		//Tabs
+		$active_content = (isset($_GET['content'])) ? $_GET['content'] : Joe_Config::get_item('settings_default_tab');
+		self::settings_nav($active_content);
+
+		//Open form
+		echo '		<form action="' . admin_url('options.php') . '" method="post">' . "\n";
+		settings_fields(Joe_Config::get_item('settings_id'));
+
+		//For each tab		
+		foreach(self::$tabs as $tab_key => $tab_data) {
+			$style = '';
+// 			if($active_tab != $tab_key) {
+// 				$style = ' style="display:none;"';
+// 			}
+			echo '	<div class="' . Joe_Config::get_item('css_prefix') . 'settings-tab ' . Joe_Config::get_item('css_prefix') . 'settings-tab-' . $tab_key . '"' . $style . '>' . "\n";
+
+			//Tab description?
+			if(array_key_exists('description', $tab_data)) {
+				echo '	<div class="' . Joe_Config::get_item('css_prefix') . 'settings-tab-description">' . $tab_data['description'] . '</div>' . "\n";
+			}
+
+			//For each section
+			foreach($tab_data['sections'] as $section_key => $section_data) {
+				$class = (isset($section_data['class'])) ? ' ' . $section_data['class'] : '';
+				echo '		<div class="' . Joe_Config::get_item('css_prefix') . 'settings-section ' . Joe_Config::get_item('css_prefix') . 'settings-section-' . $section_key . $class . '">' . "\n";
+				
+				//Help
+				if(array_key_exists('help', $section_data) && isset($section_data['help']['url'])) {
+					$help_text = (isset($section_data['help']['text'])) ? $section_data['help']['text'] : 'View Help &raquo;';
+
+					echo '		<a class="' . Joe_Config::get_item('css_prefix') . 'docs-link button" href="' . $section_data['help']['url'] . '" target="_blank">' . $help_text . '</a>' . "\n";				
+				}
+				
+				//Title
+				if(isset($section_data['title'])) {
+					echo '		<h2>' . $section_data['title'] . '</h2>' . "\n";
+				}
+
+				//Description
+				if(array_key_exists('description', $section_data)) {
+					echo '		<div class="' . Joe_Config::get_item('css_prefix') . 'settings-section-description">' . $section_data['description'] . '</div>' . "\n";
+				}		
+				
+				//Repeatable?
+				if(array_key_exists('repeatable', $section_data) && $section_data['repeatable']) {
+					echo '<div class="' . Joe_Config::get_item('css_prefix') . 'repeatable" data-count="0">' . "\n";
+				}
+				
+        echo '		<table class="form-table">' . "\n";
+        do_settings_fields(Joe_Config::get_item('settings_id'), $section_key);					
+        echo '		</table>' . "\n";        
+
+				//Repeatable?
+				if(array_key_exists('repeatable', $section_data) && $section_data['repeatable']) {
+					echo '</div>' . "\n";
+				}
+
+				//Footer
+				if(array_key_exists('footer', $section_data)) {
+					echo '	<div class="' . Joe_Config::get_item('css_prefix') . 'settings-section-footer">' . $section_data['footer'] . '</div>' . "\n";
+				}
+				
+				echo '</div>' . "\n";
+			}
+			
+			echo '	</div>' . "\n";			
+		}
+
+		submit_button(null, 'primary large');
+		echo '		</form>' . "\n";
+		
+		echo '	</div>' . "\n";
+		echo '</div>' . "\n";
+	}	
 
 	public static function create_input($field) {
 		//Set value
@@ -163,7 +246,7 @@ class Joe_Settings {
 // 				break;
 // 		}
 // 		
-// 		wp_redirect(admin_url('admin.php?page=waymark-settings&tab=advanced&settings-updated=waymark_action'));
+// 		wp_redirect(admin_url('admin.php?page=joe-settings&tab=advanced&settings-updated=joe_action'));
 // 
 // 		die;
 // 	}	
