@@ -8,6 +8,11 @@ class Joe_Settings {
 
 
 	public static function init() {
+		//Get current settings from DB
+		$current_settings = get_option(Waymark_Config::get_item('settings_id'));
+		if(is_array($current_settings) && sizeof($current_settings)) {
+			self::$current_settings = $current_settings;
+		}	
 		//Execute action?
 // 		if(sizeof($_POST)) {
 // 			//Clear cache
@@ -16,8 +21,8 @@ class Joe_Settings {
 // 			}
 // 		}
 		
-		add_action( 'admin_init', [ 'Joe_Settings', 'register_settings'] );				
-    add_action( 'admin_notices', [ 'Joe_Settings', 'admin_notices' ] );	
+		add_action( 'admin_init', [ get_called_class(), 'register_settings'] );				
+    add_action( 'admin_notices', [ get_called_class(), 'admin_notices' ] );	
 	}
 
 	public static function get_settings() {
