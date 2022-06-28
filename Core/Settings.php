@@ -6,6 +6,23 @@ class Joe_Settings {
 	public static $tabs = [];	
 	public static $settings_nav = [];
 
+
+	public static function init() {
+    add_action( 'admin_notices', [ 'Joe_Settings', 'admin_notices' ] );	
+	}
+
+	public static function admin_notices() {	
+		if(isset($_GET['settings-updated'])) {
+			//Settings updates
+			if($_GET['settings-updated'] == 'true') {
+				echo '<div class="' . Joe_Config::get_item('css_prefix') . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Settings Updated', 'waymark') . '.</p></div>';				
+			//Action	
+			} elseif($_GET['settings-updated'] == 'waymark_action') {
+				echo '<div class="' . Joe_Config::get_item('css_prefix') . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Action Complete', 'waymark') . '.</p></div>';				
+			}
+		}
+	}
+
 	public static function create_input($field) {
 		//Set value
 		if(array_key_exists('set_value', $field)) {
