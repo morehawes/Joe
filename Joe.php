@@ -10,6 +10,7 @@ require_once('Helpers/CSS.php');
 //Core
 require_once('Core/Config.php');
 require_once('Core/Settings.php');
+require_once('Core/Shortcode.php');
 
 add_action('admin_head', function($data) {
 	Joe_Helper::debug(Joe_Config::get_data(), false);
