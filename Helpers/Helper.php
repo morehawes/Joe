@@ -66,7 +66,7 @@ class Joe_Helper {
 		}
 	}		
 
-	protected static function allowable_file($ext = '', $mime = '', $file_image = 'file') {
+	public static function allowable_file($ext = '', $mime = '', $file_image = 'file') {
 		$allowable_mimes = Joe_Config::get_item('mimes', $file_image);
 		
 		//Valid extension
@@ -87,4 +87,14 @@ class Joe_Helper {
 		
 		return false;
 	}
+
+	static public function get_section_repeatable_count($section_data) {
+		$first_field = $section_data['fields'][array_keys($section_data['fields'])[0]];
+		
+		if(is_array($first_field['default'])) {
+			return sizeof($first_field['default']);
+		}
+
+		return false;	
+	}	
 }
