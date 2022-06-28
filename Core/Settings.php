@@ -70,4 +70,20 @@ class Joe_Settings {
 		
 		return $input_data;
 	}	
+
+	public static function settings_nav($current = 'tiles') {
+		echo '<div id="waymark-settings-nav" data-init_tab_key="' . $current . '">' . "\n";
+		echo '	<select>' . "\n";
+
+		foreach(self::$settings_nav as $content_id => $content_title) {
+			if(strpos($content_id, 'label') === 0) {
+				echo '	<option disabled="disabled">' . $content_title . '</option>' . "\n";				
+			} else {
+				echo '	<option value="' . $content_id . '"' . (($current == $content_id) ? ' selected="selected"' : '') . '>' . $content_title . '</option>' . "\n";				
+			}
+		}
+
+		echo '	</select>' . "\n";
+		echo '</div>' . "\n";
+	}
 }
