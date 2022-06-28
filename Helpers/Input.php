@@ -59,7 +59,7 @@ class Joe_Input {
 		}
 	
 		//Create input
-		$out .= self::create_input($field, $set_value);
+		$out .= static::create_input($field, $set_value);
 
 		//Append?		
 		if(array_key_exists('append', $field)) {
@@ -106,18 +106,18 @@ class Joe_Input {
 		//Default
 		if(array_key_exists('default', $field)) {
 			if(is_array($field['default'])) {
-				$field['default'] = implode(Joe_Config::get_item('multi_value_seperator'), self::process_output($field, $field['default']));				
+				$field['default'] = implode(Joe_Config::get_item('multi_value_seperator'), static::process_output($field, $field['default']));				
 			} else {
-				$field['default'] = self::process_output($field, $field['default']);				
+				$field['default'] = static::process_output($field, $field['default']);				
 			}
 		}
 		
 		//Process set value?
 		if($set_value !== null) {
 			if(is_array($set_value)) {
-				$set_value = implode(Joe_Config::get_item('multi_value_seperator'), self::process_output($field, $set_value));				
+				$set_value = implode(Joe_Config::get_item('multi_value_seperator'), static::process_output($field, $set_value));				
 			} else {
-				$set_value = self::process_output($field, $set_value);			
+				$set_value = static::process_output($field, $set_value);			
 			}
 		}
 		
@@ -276,7 +276,7 @@ class Joe_Input {
 		$repeatable_parameter_groups = '';
 		if(sizeof($repeatable_data)) {
 			foreach($repeatable_data as $data) {
-				$repeatable_parameter_groups .= self::create_parameter_groups($fields, $groups, $data, $name . '[' . $count . '][%s]');			
+				$repeatable_parameter_groups .= static::create_parameter_groups($fields, $groups, $data, $name . '[' . $count . '][%s]');			
 				
 				$count++;
 			}		
@@ -288,7 +288,7 @@ class Joe_Input {
 		$out .= $repeatable_parameter_groups;
 
 		//Template
-		$out .= self::create_parameter_groups($fields, $groups, [], $name . '[__count__][%s]', '', Joe_Helper::css_prefix() . 'repeatable-template');			
+		$out .= static::create_parameter_groups($fields, $groups, [], $name . '[__count__][%s]', '', Joe_Helper::css_prefix() . 'repeatable-template');			
 
 		$out .= '<button class="button ' . Joe_Helper::css_prefix() . 'repeatable-add" title="' . __('Add Query', Joe_Config::get_item('plugin_text_domain')) . '"><i class="ion ion-plus"></i></button>';
 
@@ -301,7 +301,7 @@ class Joe_Input {
 	
 	static function create_parameter_groups($fields, $groups = array(), $data = array(), $input_name_format = null, $id = '', $class_append = '') {				
 		//Group
-		$fields = self::group_fields($fields, $groups);
+		$fields = static::group_fields($fields, $groups);
 		
 // 		Joe_Helper::debug($fields);
 		
@@ -377,7 +377,7 @@ class Joe_Input {
 				}					
 
 				//Create input
-				$out .= self::create_field($field, $set_value);			
+				$out .= static::create_field($field, $set_value);			
 			}
 		}
 		
@@ -397,7 +397,7 @@ class Joe_Input {
 	static function process_input($param_def, $param_value) {
 		//Do processing
 		if(array_key_exists('input_processing', $param_def)) {
-			$param_value = self::eval_processes_on_param_value($param_def['input_processing'], $param_value);
+			$param_value = static::eval_processes_on_param_value($param_def['input_processing'], $param_value);
 		}		
 		
 		return $param_value;
@@ -406,7 +406,7 @@ class Joe_Input {
 	static function process_output($param_def, $param_value) {
 		//Do processing
 		if(array_key_exists('output_processing', $param_def)) {
-			$param_value = self::eval_processes_on_param_value($param_def['output_processing'], $param_value);
+			$param_value = static::eval_processes_on_param_value($param_def['output_processing'], $param_value);
 		}
 					
 		return $param_value;

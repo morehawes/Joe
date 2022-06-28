@@ -11,7 +11,7 @@ class Joe_Helper {
 	}	
 
 	static public function debug($thing, $die = true) {
-// 		if(! self::is_debug()) {
+// 		if(! static::is_debug()) {
 // 			return;	
 // 		}
 

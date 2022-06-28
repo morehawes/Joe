@@ -11,7 +11,7 @@ class Joe_Settings {
 		//Get current settings from DB
 		$current_settings = get_option(Waymark_Config::get_item('settings_id'));
 		if(is_array($current_settings) && sizeof($current_settings)) {
-			self::$current_settings = $current_settings;
+			static::$current_settings = $current_settings;
 		}	
 		//Execute action?
 // 		if(sizeof($_POST)) {
