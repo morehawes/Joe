@@ -26,6 +26,8 @@ class Joe_Taxonomies {
 					'show_tagcloud' => true
 				], $tax_data['args'])
 			];
+
+			Joe_Helper::debug($taxonomy, false);
 		
 			register_taxonomy($taxonomy['key'], $taxonomy['type'], $taxonomy['args']);			
 		}

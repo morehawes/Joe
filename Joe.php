@@ -1,5 +1,8 @@
 <?php
 
+//Classes
+require_once('Classes/Class.php');
+
 //Helpers
 require_once('Helpers/Helper.php');
 require_once('Helpers/Input.php');

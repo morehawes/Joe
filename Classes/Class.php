@@ -1,6 +1,6 @@
 <?php 
 
-class Waymark_Class {
+class Joe_Class {
 
 	protected $parameters = [];
 	
