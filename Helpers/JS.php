@@ -6,7 +6,10 @@ class Joe_JS {
 	static protected $calls = array();
 	
 	static function init() {
-		static::add_chunk('//' . Joe_Config::get_name(true, true) . ' v' . Joe_Config::get_version());
+		//Both
+		add_action('init', function() {
+			Joe_JS::add_chunk('//' . Joe_Config::get_name() . ' v' . Joe_Config::get_version());
+		});
 		
 		//Front
 		add_action( 'wp_footer', [ get_called_class(), 'footer' ] );					

@@ -5,6 +5,8 @@ class Joe_Config {
 	protected static $default = [];
 	protected static $data = [
 		'plugin_slug' => 'joe',
+		'plugin_name' => 'Joe',
+		'plugin_name_short' => 'Joe',	
 		'plugin_version' => '1.0',
 		'plugin_text_domain' => 'joe',
 		'cache_prefix' => 'Joe_Cache_',
