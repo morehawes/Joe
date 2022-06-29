@@ -1,28 +1,15 @@
 <?php
 	
 class Joe_Taxonomies {
+
+	protected static $taxonomies = [];
 	
 	public static function init() {
 		add_action( 'init', [ get_called_class(), 'register_taxonomies' ] );
 	}	
 
 	public static function register_taxonomies() {
-	
-		$taxonomies = [
-			'waymark_collection' => [
-				'slug' => 'collection',
-				'name' => [
-					'singular' => 'Collection',
-					'plural' => 'Collections'
-				],
-				'types' => [
-					'waymark_map'				
-				],
-				'args' => []
-			]		
-		];
-		
-		foreach($taxonomies as $tax_key => $tax_data) {
+		foreach(static::$taxonomies as $tax_key => $tax_data) {
 			$taxonomy = [
 				'key' =>	$tax_key,
 				'type' => $tax_data['types'],
@@ -40,10 +27,7 @@ class Joe_Taxonomies {
 				], $tax_data['args'])
 			];
 		
-// 			wp_die('<pre>' . print_r($taxonomy, true));
-		
 			register_taxonomy($taxonomy['key'], $taxonomy['type'], $taxonomy['args']);			
-		
 		}
 	}	
 	
@@ -79,5 +63,6 @@ class Joe_Taxonomies {
 			'items_list_navigation' => esc_html__($data['name']['singular'] . ' list navigation', 'waymark'),
 		];
 	}
+
+	
 }
-Joe_Taxonomies::init();
