@@ -4,13 +4,15 @@ class Joe_Config {
 	//Set defaults
 	protected static $default = [];
 	protected static $data = [
-		'multi_value_seperator' => '__multi__',
+		'plugin_slug' => 'joe',
+		'plugin_version' => '1.0',
+		'plugin_text_domain' => 'joe',
 		'cache_prefix' => 'Joe_Cache_',
 		'settings_id' => 'Joe_Settings',
 		'css_prefix' => 'joe-',
-		'plugin_text_domain' => 'joe',
 		'plugin_about' => '<img alt="Joe\'s mug" src="//www.josephhawes.co.uk/assets/images/Joe1BW.jpg" /><p class="joe-first"><b>Joe</b></p>',
-		'shortcode' => 'Joe'
+		'shortcode' => 'Joe',
+		'multi_value_seperator' => '__multi__'
 	];
 
 	public static function set_item($key = null, $value) {
