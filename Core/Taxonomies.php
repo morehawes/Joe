@@ -27,8 +27,6 @@ class Joe_Taxonomies {
 				], $tax_data['args'])
 			];
 
-			Joe_Helper::debug($taxonomy, false);
-		
 			register_taxonomy($taxonomy['key'], $taxonomy['type'], $taxonomy['args']);			
 		}
 	}	
