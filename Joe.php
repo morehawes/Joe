@@ -16,6 +16,7 @@ require_once('Core/Settings.php');
 require_once('Core/Types.php');
 require_once('Core/Taxonomies.php');
 require_once('Core/Shortcode.php');
+require_once('Core/Admin.php');
 require_once('Core/Front.php');
 
 add_action('admin_head', function($data) {

@@ -1,16 +1,16 @@
 <?php
 
-class Joe_Front {
+class Joe_Admin {
 	function __construct() {
-		//Front only
-		if(is_admin()) {
+		//Admin only
+		if(! is_admin()) {
 			return;
 		}
 		
-		add_action('wp_head', array($this, 'wp_head'));			
+		add_action('admin_head', array($this, 'admin_head'));			
 	}
 
-	function wp_head() {
+	function admin_head() {
 		echo '<meta name="' . Waymark_Config::get_name(true, true) . ' Version" content="' . Waymark_Config::get_version() . '" />' . "\n";	
 	}
 }
