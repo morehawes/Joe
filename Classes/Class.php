@@ -2,17 +2,10 @@
 
 class Joe_Class {
 
-	protected $parameters = [];
+	public $parameters = [];
 	
 	function __construct($params_in = []) {
-		//Set passed params
-		foreach($params_in as $key => $value) {
-			//Only accept valid keys
-			//and String values (set in Child class)
-			if(array_key_exists($key, $this->parameters) && is_string($value)) {
-				$this->set_parameter($key, $value);			
-			}
-		}
+		$this->set_parameters($params_in);
 	}	
 
 	function get_parameter($key = null) {
@@ -52,4 +45,15 @@ class Joe_Class {
 			$this->parameters[$key] = $value;		
 		}
 	}	
+	
+	function set_parameters($params_in) {
+		//Set passed params
+		foreach($params_in as $key => $value) {
+			//Only accept valid keys
+			//and String values (set in Child class)
+			if(array_key_exists($key, $this->parameters) && is_string($value)) {
+				$this->set_parameter($key, $value);			
+			}
+		}	
+	}
 }
