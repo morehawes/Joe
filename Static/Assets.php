@@ -102,7 +102,7 @@ class Joe_Assets {
 			return;
 		}
 		
-		echo "\n" . '<!-- START ' . Joe_Config::get_name(true, true) . ' Footer JS -->' . "\n";
+		echo "\n" . '<!-- START ' . Joe_Config::get_name(true, true) . ' Head JS -->' . "\n";
 		echo '<script type="text/javascript">' . "\n";
 
 		echo '//' . Joe_Config::get_name(true, true) . ' v' . Joe_Config::get_version() . "\n";
@@ -113,7 +113,7 @@ class Joe_Assets {
 		}
 
 		echo '</script>' . "\n";
-		echo '<!-- END ' . Joe_Config::get_name(true, true) . ' Footer JS -->' . "\n\n";			
+		echo '<!-- END ' . Joe_Config::get_name(true, true) . ' Head JS -->' . "\n\n";			
 	}
 	
 	static function footer() {
