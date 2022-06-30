@@ -11,6 +11,6 @@ class Joe_Admin {
 	}
 
 	function admin_head() {
-		echo '<meta name="' . Waymark_Config::get_name(true, true) . ' Version" content="' . Waymark_Config::get_version() . '" />' . "\n";	
+		echo '<meta name="' . Joe_Config::get_name(true, true) . ' Version" content="' . Joe_Config::get_version() . '" />' . "\n";	
 	}
 }

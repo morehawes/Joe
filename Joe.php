@@ -2,6 +2,7 @@
 
 //Classes
 require_once('Classes/Class.php');
+require_once('Classes/Request.php');
 
 //Helpers
 require_once('Helpers/Input.php');
