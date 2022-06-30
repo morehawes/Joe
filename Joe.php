@@ -13,8 +13,6 @@ require_once('Core/Config.php');
 require_once('Core/Helper.php');
 require_once('Static/Assets.php');
 
-require_once('Core/JS.php');
-
 require_once('Core/Settings.php');
 require_once('Core/Types.php');
 require_once('Core/Taxonomies.php');
