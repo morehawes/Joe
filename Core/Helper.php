@@ -109,4 +109,11 @@ class Joe_Helper {
 	public static function css_prefix($text = '')	{
 		return Joe_Config::get_item('css_prefix') . $text;
 	}
+
+	public static function slug_prefix($text = '')	{
+		return Joe_Config::get_item('plugin_slug') . '_' . $text;
+	}
+
+
+	
 }
