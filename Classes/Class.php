@@ -2,7 +2,7 @@
 
 class Joe_Class {
 
-	public $parameters = [];
+	protected $parameters = [];
 	
 	function __construct($params_in = []) {
 		$this->set_parameters($params_in);
