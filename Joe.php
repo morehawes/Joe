@@ -21,5 +21,5 @@ require_once('Core/Admin.php');
 require_once('Core/Front.php');
 
 add_action('admin_head', function($data) {
-	Joe_Helper::debug(Joe_Config::get_data(), false);
+// 	Joe_Helper::debug(Joe_Config::get_data(), false);
 });
