@@ -46,7 +46,7 @@ class Joe_Class {
 		}
 	}	
 	
-	function set_parameters($params_in) {
+	function set_parameters($params_in = []) {
 		//Set passed params
 		foreach($params_in as $key => $value) {
 			//Only accept valid keys

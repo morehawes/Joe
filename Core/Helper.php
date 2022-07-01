@@ -10,7 +10,7 @@ class Joe_Helper {
 		return $out;
 	}	
 
-	static public function debug($thing, $die = true) {
+	static public function debug($thing, $die = false) {
 // 		if(! static::is_debug()) {
 // 			return;	
 // 		}
