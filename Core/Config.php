@@ -10,7 +10,12 @@ class Joe_Config {
 		'plugin_version' => '1.0',
 		'plugin_text_domain' => 'joe',
 		'cache_prefix' => 'Joe_Cache_',
+		
+		'menu_slug' => '',
+		
 		'settings_id' => 'Joe_Settings',
+		'settings_menu_slug' => 'options-general.php',
+		
 		'css_prefix' => 'joe-',
 		'plugin_about' => '<img alt="Joe\'s mug" src="//www.josephhawes.co.uk/assets/images/Joe1BW.jpg" /><p class="joe-first"><b>Joe</b></p>',
 		'shortcode' => 'Joe',

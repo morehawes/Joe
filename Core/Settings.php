@@ -23,6 +23,13 @@ class Joe_Settings {
 		
 		add_action( 'admin_init', [ get_called_class(), 'register_settings'] );				
     add_action( 'admin_notices', [ get_called_class(), 'admin_notices' ] );	
+
+		add_action( 'admin_menu', [ get_called_class(), 'admin_menu'] );				
+	}
+	
+	//Menu link
+	public static function admin_menu() {
+		add_submenu_page(Joe_Config::get_item( 'settings_menu_slug' ), esc_html__('Settings', 'waymark'), esc_html__('Settings', 'waymark'), 'manage_options', 'waymark-settings', array(get_called_class(), 'content_admin_page'));					    
 	}
 
 	public static function get_settings() {
