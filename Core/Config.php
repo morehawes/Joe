@@ -21,6 +21,27 @@ class Joe_Config {
 		'shortcode' => 'Joe',
 		'multi_value_seperator' => '__multi__'
 	];
+	
+	public static function init() {
+		//Keep a copy of the original values
+		static::$default = static::$data;
+
+		//Read config options from DB
+		$settings_data = get_option(static::get_item('settings_id'));
+
+		//Joe_Helper::debug($settings_data);
+		
+		//Add settings to config data
+		if(is_array($settings_data)) {
+			foreach($settings_data as $tab_key => $tab_data) {
+				foreach($tab_data as $section_key => $section_data) {
+					foreach($section_data as $parameter_key => $parameter_value) {
+						static::$data[$tab_key][$section_key][$parameter_key] = $parameter_value;
+					}
+				}
+			}	
+		}
+	}
 
 	public static function set_item($key = null, $value) {
 		if(array_key_exists($key, static::$data)) {
