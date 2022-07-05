@@ -15,7 +15,7 @@ class Joe_Helper {
 	}
 
 	static public function asset_url($file_path = '') {	
-		return plugin_dir_url('') . 'waymark/assets/' . $file_path;
+		return plugin_dir_url('') . Joe_Config::get_item('plugin_slug') . '/assets/' . $file_path;
 	}
 	
 	static public function http_url($data = array()) {
