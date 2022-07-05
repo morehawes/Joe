@@ -7,15 +7,13 @@ require_once('Classes/Request.php');
 //Helpers
 require_once('Helpers/Input.php');
 require_once('Helpers/Cache.php');
-
-require_once('Static/Assets.php');
-require_once('Static/Config.php');
+require_once('Helpers/Assets.php');
+require_once('Helpers/Config.php');
+require_once('Helpers/Helper.php');
 
 //Core
-require_once('Core/Helper.php');
 require_once('Core/Types.php');
 require_once('Core/Taxonomies.php');
-
 
 //Admin?
 require_once('Core/Admin.php');

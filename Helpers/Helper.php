@@ -2,6 +2,26 @@
 
 class Joe_Helper {
 
+	static public function make_hash($data, $length = 6) {
+		if(! is_string($data)) {
+			$data = json_encode($data);
+		}
+		
+		return substr(md5($data), 0, $length);
+	}
+
+	static public function site_url($url_path = '') {
+		return Joe_Config::get_item('site_url') . $url_path;
+	}
+
+	static public function asset_url($file_path = '') {	
+		return plugin_dir_url('') . 'waymark/assets/' . $file_path;
+	}
+	
+	static public function http_url($data = array()) {
+		return trim(add_query_arg(array_merge(array('waymark_http' => '1'), $data), home_url('/')), '/');
+	}
+
 	static public function plugin_about() {
 		$out = '	<div id="' . Joe_Helper::css_prefix('about') . '">' . "\n";		
 		$out .= Joe_Config::get_item('plugin_about');
@@ -11,19 +31,15 @@ class Joe_Helper {
 	}	
 
 	static public function debug($thing, $die = false) {
-// 		if(! static::is_debug()) {
-// 			return;	
-// 		}
+		if(! $die) {			
+			echo '<textarea onclick="jQuery(this).hide()" style="background:rgba(255,255,255,.8);position:absolute;top:30px;right:0;width:400px;height:400px;padding:15px;z-index:+10000000"><pre>';
+		}
 
-		//Clear other output
-// 		if($die) {
-// 			@ ob_end_clean();
-// 		}
-			
-		echo '<textarea onclick="jQuery(this).hide()" style="background:rgba(255,255,255,.8);position:absolute;top:30px;right:0;width:400px;height:400px;padding:15px;z-index:+10000000"><pre>';
 		print_r($thing);
-		echo '</pre></textarea>';
-		if($die) {
+
+		if(! $die) {			
+			echo '</pre></textarea>';
+		} else {
 			die;
 		}
 	}
@@ -132,6 +148,42 @@ class Joe_Helper {
 		return Joe_Config::get_item('plugin_slug') . '_' . $text;
 	}
 
-
+	public static function array_string_to_array($string) {
+		$string = str_replace(array('[',']','"','"'), array('','','',''), $string);
+		
+		return self::comma_string_to_array($string);
+	}
 	
+	public static function comma_string_to_array($string) {
+		//Process options
+		$options_exploded = explode(',', $string);
+		$options_array = array();
+		foreach($options_exploded as $option) {
+			$value = trim($option);
+			$key = self::make_key($value);
+		
+			$options_array[$key] = $value;
+		}
+	
+		return $options_array;
+	}
+
+	public static function multi_use_as_key($array_in, $as_key = false) {
+		$array_out = array();
+			
+		$count = 0;
+		foreach($array_in as $data) {
+			if(is_array($data) && $as_key && array_key_exists($as_key, $data)) {
+				$out_key = self::make_key($data[$as_key]);
+			} else {
+				$out_key = $count;
+			}
+
+			$array_out[$out_key] = $data;			
+
+			$count++;						
+		 }	
+		
+		return $array_out;
+	}		
 }
