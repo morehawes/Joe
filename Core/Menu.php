@@ -32,7 +32,11 @@ class Joe_Menu {
 		
 		//https://developer.wordpress.org/reference/functions/add_submenu_page/
 		foreach($this->menu['links'] as $page) {
-		 add_submenu_page(
+			if(! isset($page['title']) || ! isset($page['url'])) {
+				continue;
+			}
+			
+			add_submenu_page(
 				Joe_Config::get_item('menu_slug'),	//Parent Slug 
 				$page['title'],											//Page Title
 				$page['title'],											//Menu Title
