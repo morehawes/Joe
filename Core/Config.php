@@ -4,41 +4,33 @@ class Joe_Config {
 	//Set defaults
 	protected static $default = [];
 	protected static $data = [
-// 		'plugin_slug' => 'joe',
-// 		'plugin_name' => 'Joe',
-// 		'plugin_name_short' => 'Joe',	
-// 		'plugin_version' => '1.0',
-// 		'plugin_text_domain' => 'joe',
-// 		'cache_prefix' => 'Joe_Cache_',
-// 		
-// 		'menu_slug' => '',
-// 		
-// 		'settings_id' => 'Joe_Settings',
-// 		'settings_menu_slug' => 'options-general.php',
-// 		
-// 		'css_prefix' => 'joe-',
-// 		'plugin_about' => '<img alt="Joe\'s mug" src="//www.josephhawes.co.uk/assets/images/Joe1BW.jpg" /><p class="joe-first"><b>Joe</b></p>',
-// 		'shortcode' => 'Joe',
+		'plugin_slug' => 'joe',
+		'plugin_name' => 'Joe',
+		'plugin_name_short' => 'Joe',	
+		'plugin_version' => '1.0',
+		'plugin_text_domain' => 'joe',
+		'css_prefix' => 'joe-',
+		'plugin_about' => '<img alt="Joe\'s mug" src="//www.josephhawes.co.uk/assets/images/Joe1BW.jpg" /><p class="joe-first"><b>Joe</b></p>',
  		'multi_value_seperator' => '__multi__'
 	];
 
-	public static function init($data) {
+	public static function init($data_in = []) {
+		//Merge data provided
+		static::$data = array_merge(static::$data, $data_in);
+
 		//Keep a copy of the original values
-		static::$default = $data;
+		static::$default = static::$data;
 
 		//Read config options from DB
 		$settings_data = get_option(static::get_item('settings_id'));
 
-		Joe_Helper::debug($settings_data);
+// 		Joe_Helper::debug($settings_data, true);
 
 		//Add settings to config data
 		if(is_array($settings_data)) {
 			foreach($settings_data as $tab_key => $tab_data) {
 				foreach($tab_data as $section_key => $section_data) {
 					foreach($section_data as $parameter_key => $parameter_value) {
-					
-				
-					
 						static::$data[$tab_key][$section_key][$parameter_key] = $parameter_value;
 					}
 				}
