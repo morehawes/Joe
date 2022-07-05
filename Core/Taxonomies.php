@@ -2,19 +2,19 @@
 	
 class Joe_Taxonomies {
 
-	protected static $taxonomies = [];
+	protected $taxonomies = [];
 	
-	public static function init() {
-		add_action( 'init', [ get_called_class(), 'register_taxonomies' ] );
+	public function __construct() {
+		add_action( 'init', [ $this, 'register_taxonomies' ] );
 	}	
 
-	public static function register_taxonomies() {
-		foreach(static::$taxonomies as $tax_key => $tax_data) {
+	public function register_taxonomies() {
+		foreach($this->taxonomies as $tax_key => $tax_data) {
 			$taxonomy = [
 				'key' =>	$tax_key,
 				'type' => $tax_data['types'],
 				'args' => array_merge([
-					'labels'=> static::create_tax_labels($tax_data),
+					'labels'=> $this->create_tax_labels($tax_data),
 					'rewrite' => array(
 						'slug' =>  $tax_data['slug']
 					),
@@ -31,7 +31,7 @@ class Joe_Taxonomies {
 		}
 	}	
 	
-	protected static function create_tax_labels($data) {
+	protected function create_tax_labels($data) {
 		if(! isset($data['name']['singular'])) {
 			return null;
 		}
@@ -63,6 +63,4 @@ class Joe_Taxonomies {
 			'items_list_navigation' => esc_html__($data['name']['singular'] . ' list navigation', Joe_Config::get_item('plugin_text_domain')),
 		];
 	}
-
-	
 }
