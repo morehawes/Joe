@@ -9,10 +9,9 @@ require_once('Helpers/Input.php');
 require_once('Helpers/Cache.php');
 
 require_once('Static/Assets.php');
-
+require_once('Static/Config.php');
 
 //Core
-require_once('Core/Config.php');
 require_once('Core/Helper.php');
 require_once('Core/Types.php');
 require_once('Core/Taxonomies.php');
