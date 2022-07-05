@@ -1,13 +1,13 @@
 <?php
 	
 class Joe_Types {
-	protected static $types;
+	protected $types;
 	
-	public static function init() {
-		add_action( 'init', [ get_called_class(), 'register_types' ], 0 );			
+	public function __construct() {
+		add_action( 'init', [ $this, 'register_types' ], 0 );			
 	}	
 	
-	protected static function create_post_type_args($data = []) {
+	protected function create_post_type_args($data = []) {
 		if(! isset($data['slug']) || ! isset($data['name_singular'])) {
 			return null;
 		}
@@ -65,10 +65,10 @@ class Joe_Types {
 		];
 	}
 	
-	public static function register_types() {
+	public function register_types() {
 		$types = array();
 		
-		foreach(static::$types as $type_id => $type_data) {
+		foreach($this->types as $type_id => $type_data) {
 			$types[] = $type_id;
 						
 			register_post_type($type_id, $type_data);			
@@ -77,9 +77,9 @@ class Joe_Types {
 		Joe_Config::set_item('custom_types', $types);			
 	}
 // 
-// 	private static function delete_posts() {
+// 	private function delete_posts() {
 // 		//For each custom type
-// 		foreach(static::$types as $type_id => $type_data) {
+// 		foreach($this->types as $type_id => $type_data) {
 // 			//Get posts
 // 			$posts = get_posts(array(
 // 				'post_type' => $type_id
