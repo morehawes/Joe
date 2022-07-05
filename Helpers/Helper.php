@@ -186,4 +186,35 @@ class Joe_Helper {
 		
 		return $array_out;
 	}		
+
+	static public function flatten_meta($data_in) {
+		$data_out = array();		
+		
+		if(is_array($data_in)) {
+			foreach($data_in as $data_key => $data_value) {
+				$data_out[$data_key] = $data_value[0];
+			}		
+		}
+		
+		return $data_out;		
+	}		
+
+	static public function repeatable_setting_option_array($tab, $section, $key) {
+		$options_array = array();
+		$values = Joe_Config::get_item($tab, $section, true);
+		
+		if(! is_array($values)) {
+			return null;
+		}
+		
+		foreach($values as $s) {
+			//If exists
+			if(array_key_exists($key, $s)) {
+				//Add as option
+				$options_array[Joe_Helper::make_key($s[$key])] = $s[$key];
+			}		
+		}
+		
+		return $options_array;
+	}	
 }

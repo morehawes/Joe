@@ -90,7 +90,6 @@ abstract class Joe_Request {
 
 		//Cached response	
 		//Don't use cache in debug mode
-//		if((! Waymark_Helper::is_debug()) && $cached_response = Joe_Cache::get_item($cache_id)) {			
 		if($cached_response = Joe_Cache::get_item($cache_id)) {			
 			//Get raw response from cache
 			$response_raw = $cached_response;
