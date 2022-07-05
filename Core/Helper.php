@@ -28,6 +28,24 @@ class Joe_Helper {
 		}
 	}
 
+	static public function make_key($str, $prefix = '', $use_underscores = true) {
+		$str = str_replace(' ', '_', $str);
+
+		if($prefix) {
+			$str = $prefix . '_' . $str;	
+		}
+		
+		//Like in JS
+		if(! $use_underscores) {
+			$str = str_replace('_', '', $str);		
+		}
+		
+		$str = strtolower($str);
+		$str = preg_replace('/[^a-z0-9+_]+/i', '', $str);
+		
+		return $str;
+	}
+
 	public static function convert_values_to_single_value($array_in) {
 		$array_out = array();
 		
