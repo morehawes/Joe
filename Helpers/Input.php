@@ -491,7 +491,7 @@ class Joe_Input {
 			$file_mime = mime_content_type($file['tmp_name']);
 			
 			//Is allowed file
-			if(Joe_Helper::allowable_file($file_ext, $file_mime)) {
+			if(Waymark_Helper::allowable_file($file_ext, $file_mime)) {
 				$response = array_merge($response, array(
 					'file_type' => $file_ext,
 					'file_mime' => $file_mime,
