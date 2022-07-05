@@ -1,62 +1,61 @@
 <?php
 
 class Joe_Settings {
-	protected static $current_settings = [];
+	protected $current_settings = [];
 	
-	public static $tabs = [];	
-	public static $settings_nav = [];
+	public $tabs = [];	
+	public $settings_nav = [];
 
-
-	public static function init() {
+	public function __construct() {
 		//Get current settings from DB
 		$current_settings = get_option(Joe_Config::get_item('settings_id'));
 		if(is_array($current_settings) && sizeof($current_settings)) {
-			static::$current_settings = $current_settings;
+			$this->current_settings = $current_settings;
 		}	
 		//Execute action?
 // 		if(sizeof($_POST)) {
 // 			//Clear cache
 // 			if(isset($_POST[Joe_Config::get_item('settings_id')]['advanced']['performance']['clear_cache'])) {	
-// 				static::execute_action('clear_cache');			
+// 				$this->execute_action('clear_cache');			
 // 			}
 // 		}
 		
-		add_action( 'admin_init', [ get_called_class(), 'register_settings'] );				
-    add_action( 'admin_notices', [ get_called_class(), 'admin_notices' ] );	
+		add_action( 'admin_init', [ $this, 'register_settings'] );				
+    add_action( 'admin_notices', [ $this, 'admin_notices' ] );	
 
-		add_action( 'admin_menu', [ get_called_class(), 'admin_menu'] );				
+		add_action( 'admin_menu', [ $this, 'admin_menu'] );				
 	}
 	
 	//Menu link
-	public static function admin_menu() {
-		add_submenu_page(Joe_Config::get_item( 'settings_menu_slug' ), esc_html__('Settings', 'waymark'), esc_html__('Settings', 'waymark'), 'manage_options', 'waymark-settings', array(get_called_class(), 'content_admin_page'));					    
+	public function admin_menu() {
+		add_submenu_page(Joe_Config::get_item( 'settings_menu_slug' ), esc_html__('Settings', 'waymark'), esc_html__('Settings', 'waymark'), 'manage_options', 'waymark-settings', array($this, 'content_admin_page'));					    
 	}
 
-	public static function get_settings() {
-		return static::$current_settings;
+	public function get_settings() {
+		return $this->current_settings;
 	}
 
 
-	public static function register_settings(){
-		register_setting( Joe_Config::get_item('settings_id'), Joe_Config::get_item( 'settings_id' ), [ get_called_class() , 'sanitize_callback' ] );
+	public function register_settings(){
+		register_setting( Joe_Config::get_item('settings_id'), Joe_Config::get_item( 'settings_id' ), [ $this , 'sanitize_callback' ] );
 
 		//For each tab		
-		foreach(static::$tabs as $tab_key => $tab_data) {		
+		foreach($this->tabs as $tab_key => $tab_data) {		
 			//For each section
 			foreach($tab_data['sections'] as $section_key => $section_data) {		
 				//Set if blank if unset		
 				$section_data['title'] = (isset($section_data['title'])) ? $section_data['title'] : '';
 				
 				//Create section
-				add_settings_section($section_key, $section_data['title'], [ get_called_class(), 'section_text' ] , Joe_Config::get_item('settings_id'));		
+				add_settings_section($section_key, $section_data['title'], [ $this, 'section_text' ] , Joe_Config::get_item('settings_id'));		
 				
 				//For each field in section
 				if(is_array($section_data['fields']) && sizeof($section_data['fields'])) {
 					foreach($section_data['fields'] as $field) {
 						//Get set_value
-						if(array_key_exists($tab_key, static::$current_settings) && array_key_exists($section_key, static::$current_settings[$tab_key])) {
-							if(array_key_exists($field['name'], static::$current_settings[$tab_key][$section_key])) {
-								$field['set_value'] = static::$current_settings[$tab_key][$section_key][$field['name']];
+						if(array_key_exists($tab_key, $this->current_settings) && array_key_exists($section_key, $this->current_settings[$tab_key])) {
+							if(array_key_exists($field['name'], $this->current_settings[$tab_key][$section_key])) {
+								$field['set_value'] = $this->current_settings[$tab_key][$section_key][$field['name']];
 							}
 						}
 						
@@ -81,14 +80,14 @@ class Joe_Settings {
 							}							
 						}	
 
-						add_settings_field($field['name'], $field['title'], [ get_called_class(), 'create_input' ], Joe_Config::get_item('settings_id'), $section_key, $field);														
+						add_settings_field($field['name'], $field['title'], [ $this, 'create_input' ], Joe_Config::get_item('settings_id'), $section_key, $field);														
 					}						
 				}			
 			}			
 		}
 	}
 
-	public static function admin_notices() {	
+	public function admin_notices() {	
 		if(isset($_GET['settings-updated'])) {
 			//Settings updates
 			if($_GET['settings-updated'] == 'true') {
@@ -102,7 +101,7 @@ class Joe_Settings {
 		}
 	}
 
-	public static function content_admin_page() {
+	public function content_admin_page() {
 		echo '<div id="' . Joe_Helper::css_prefix() . 'admin-container">' . "\n";
 
 		echo Joe_Helper::plugin_about();
@@ -112,14 +111,14 @@ class Joe_Settings {
 
 		//Tabs
 		$active_content = (isset($_GET['content'])) ? $_GET['content'] : Joe_Config::get_item('settings_default_tab');
-		static::settings_nav($active_content);
+		$this->settings_nav($active_content);
 
 		//Open form
 		echo '		<form action="' . admin_url('options.php') . '" method="post">' . "\n";
 		settings_fields(Joe_Config::get_item('settings_id'));
 
 		//For each tab		
-		foreach(static::$tabs as $tab_key => $tab_data) {
+		foreach($this->tabs as $tab_key => $tab_data) {
 			$style = '';
 // 			if($active_tab != $tab_key) {
 // 				$style = ' style="display:none;"';
@@ -185,7 +184,7 @@ class Joe_Settings {
 		echo '</div>' . "\n";
 	}	
 
-	public static function create_input($field) {
+	public function create_input($field) {
 		//Set value
 		if(array_key_exists('set_value', $field)) {
 			$set_value = $field['set_value'];
@@ -196,13 +195,13 @@ class Joe_Settings {
 		echo Joe_Input::create_field($field, $set_value, false);
 	}	
 
-	public static function section_text($args) {
+	public function section_text($args) {
 		//Unused
 	}
 	
-	public static function sanitize_callback($input_data) {
+	public function sanitize_callback($input_data) {
 		//For each tab
-		foreach(static::$tabs as $tab_key => $tab_data) {
+		foreach($this->tabs as $tab_key => $tab_data) {
 			//If we have sections
 			if(array_key_exists('sections', $tab_data)) {
 				//Iterate over each section
@@ -233,11 +232,11 @@ class Joe_Settings {
 		return $input_data;
 	}	
 
-	public static function settings_nav($current = 'tiles') {
+	public function settings_nav($current = 'tiles') {
 		echo '<div id="' . Joe_Helper::css_prefix() . 'settings-nav" data-init_tab_key="' . $current . '">' . "\n";
 		echo '	<select>' . "\n";
 
-		foreach(static::$settings_nav as $content_id => $content_title) {
+		foreach($this->settings_nav as $content_id => $content_title) {
 			if(strpos($content_id, 'label') === 0) {
 				echo '	<option disabled="disabled">' . $content_title . '</option>' . "\n";				
 			} else {
