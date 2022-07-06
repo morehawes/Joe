@@ -195,4 +195,23 @@ class Joe_Helper {
 		
 		return $options_array;
 	}	
+
+	public static function assoc_array_table($assoc_array) {
+		if(! is_array($assoc_array) || ! sizeof($assoc_array)) {
+			return false;
+		}
+
+		$table = '<table class="' . Joe_Helper::css_prefix() . '-assoc_array">';
+					
+		foreach($assoc_array as $key => $value) {
+			$table .= '<tr class="' . Joe_Helper::css_prefix() . '-assoc_array-' . $key . '">';
+			$table .= '<th>' . $key . '</th>';
+			$table .= '<td>' . $value . '</td>';
+			$table .= '</tr>';
+		}
+		
+		$table .= '</table>';
+	
+		return $table;
+	}	
 }
