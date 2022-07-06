@@ -1,5 +1,13 @@
 <?php
 
+/**
+  * ===============================
+  *              Joe
+  *          by Joe Hawes
+  *       www.morehawes.co.uk
+	* ===============================
+  **/
+ 
 //Classes
 require_once('Classes/Class.php');
 require_once('Classes/Request.php');
