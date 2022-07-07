@@ -28,7 +28,7 @@ class Joe_Admin {
 				'jquery',
 				'jquery-ui-sortable',
 				'jquery-effects-core',
-// 				'wp-color-picker'
+ 				'wp-color-picker'
 			],
 			'data' => [
 				'multi_value_seperator' => Joe_Config::get_item('multi_value_seperator'),			
