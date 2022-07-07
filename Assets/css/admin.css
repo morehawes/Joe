@@ -501,10 +501,10 @@ div.widget-content div.joe-parameters-container div.waymark-controls input[type=
  * ============= SETTINGS =============
  * ====================================
  */
-body.waymark_page_waymark-settings #joe-admin-container.joe-active-waymark-settings-tab-misc .waymark-settings-section-elevation_options,
-body.waymark_page_waymark-settings #joe-admin-container.joe-active-waymark-settings-tab-misc .waymark-settings-section-shortcode_options,
-body.waymark_page_waymark-settings #joe-admin-container.joe-active-waymark-settings-tab-misc .waymark-settings-section-collection_options,
-body.waymark_page_waymark-settings #joe-admin-container.joe-active-waymark-settings-tab-misc .waymark-settings-section-map_options {
+body.waymark_page_waymark-settings #joe-admin-container.joe-active-waymark-settings-tab-misc .joe-settings-section-elevation_options,
+body.waymark_page_waymark-settings #joe-admin-container.joe-active-waymark-settings-tab-misc .joe-settings-section-shortcode_options,
+body.waymark_page_waymark-settings #joe-admin-container.joe-active-waymark-settings-tab-misc .joe-settings-section-collection_options,
+body.waymark_page_waymark-settings #joe-admin-container.joe-active-waymark-settings-tab-misc .joe-settings-section-map_options {
   display: none !important;
 }
 body.waymark_page_waymark-settings div#waymark-settings-nav {
@@ -605,18 +605,18 @@ body.waymark_page_waymark-settings div.joe-settings-tab.joe-settings-tab-markers
   font-size: 10px;
   line-height: 1em;
 }
-body.waymark_page_waymark-settings div.joe-settings-tab div.waymark-settings-section-description {
+body.waymark_page_waymark-settings div.joe-settings-tab div.joe-settings-section-description {
   margin-bottom: 15px;
   font-size: 1.1em;
 }
-body.waymark_page_waymark-settings div.joe-settings-tab div.waymark-settings-section-description ul {
+body.waymark_page_waymark-settings div.joe-settings-tab div.joe-settings-section-description ul {
   margin: 20px 0 40px 0;
 }
-body.waymark_page_waymark-settings div.joe-settings-tab div.waymark-settings-section-description ul li {
+body.waymark_page_waymark-settings div.joe-settings-tab div.joe-settings-section-description ul li {
   margin: 15px 0;
   padding-left: 20px;
 }
-body.waymark_page_waymark-settings div.joe-settings-tab div.waymark-settings-section-footer {
+body.waymark_page_waymark-settings div.joe-settings-tab div.joe-settings-section-footer {
   margin-top: 20px;
   margin-bottom: 20px;
 }

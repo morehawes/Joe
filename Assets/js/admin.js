@@ -229,18 +229,11 @@ function joe_setup_settings_nav() {
 				if(tab.hasClass(selected_content_id)) {
 					tab.show();
 					admin_container.addClass('joe-active-' + selected_content_id);
-					
-					//Specific Tabs					
-// 					switch(true) {
-// 						case tab.hasClass('waymark-settings-tab-query') :
-// 							
-// 							break;
-// 					}
 				}
 			}
 			
 			//Each Section
-			jQuery('.waymark-settings-section', tab).each(function() {
+			jQuery('.joe-settings-section', tab).each(function() {
 				var section = jQuery(this);			
 				
 				if(selected_content_id.indexOf('settings-tab') > 0) {
