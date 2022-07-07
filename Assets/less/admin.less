@@ -101,7 +101,7 @@ div.postbox {
 				margin: 0;
 				padding: 0;
 // 				background: blue;
-				.waymark-control-label {
+				.joe-control-label {
 					display: none;
 				}		
 				.waymark-controls {
@@ -158,7 +158,7 @@ div.postbox {
 }
 .postbox#tax_queries_content {
 	display: none;
-	.waymark-control-label {
+	.joe-control-label {
 		display: none;
 	}
 	.waymark-hidden {
@@ -301,7 +301,7 @@ div.joe-control-group {
 	&:nth-child(even) {
 		background: #f9f9f9;	
 	}		
-	.waymark-control-label {
+	.joe-control-label {
 		display: block;
 		padding-top: 12px;
 		float: left;
@@ -380,7 +380,7 @@ div.joe-control-group {
 			padding-left: 1%;
 			padding-right: 0;
 			width: 49%;
-			label.waymark-control-label {
+			label.joe-control-label {
 				width: 120px;
 			}
 /*
@@ -396,7 +396,7 @@ div.joe-control-group {
 			padding-right: 1%;	
 			float: left;
 			clear: none;
-			.waymark-control-label {
+			.joe-control-label {
 				width: auto;
 				margin-right: 10px;	
 			}							
@@ -417,43 +417,7 @@ p + div.joe-control-group {
 	border-top: 1px solid @waymark-grey;
 }
 
-/**
- * ====================================
- * ================ MENU ==============
- * ====================================
- */
 
-li#toplevel_page_edit-post_type-waymark_map {
-	.wp-menu-name abbr {
-		text-decoration: none;
-		border-bottom: none;
-	}
-	.wp-submenu-head > span,
-	.wp-menu-name > span,
-	.wp-first-item abbr,
-	li.hidden {
-		display: none;
-	}
-	.wp-menu-image {
-		height: 34px !important;
-		background-image: url('../img/waymark-icon-light.png');
-		background-size: 18px 18px;
-		background-position: center center;
-		background-repeat: no-repeat;
-	}
-	&:hover {
-		.wp-menu-image {
-				background-image: url('../img/waymark-icon-white.png');
-		}		
-	}
-	&.wp-has-current-submenu,
-	&.wp-menu-open {
-		.wp-menu-image {
-				background-image: url('../img/waymark-icon-white.png');
-		}		
-	}
-}
-	
 /* Shortcode UI */
 div#waymark_shortcode_ui-insert-dialog {
 	div.joe-parameters-container {
@@ -750,7 +714,7 @@ div#joe-admin-container {
 		max-width: none;
 		.notice {
 			display: none;
-			&.waymark-notice {
+			&.joe-notice {
 				display: block;
 			}
 		}
@@ -1073,7 +1037,7 @@ body.wp-admin {
 						width: 80px !important;
 					}					
 				}
-				.waymark-control-label {
+				.joe-control-label {
 					float: none;
 				}
 			}

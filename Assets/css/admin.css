@@ -166,7 +166,7 @@ div.postbox#waymark_map_meta div.joe-parameters-container .waymark-parameter-gro
   margin: 0;
   padding: 0;
 }
-.waymark-form.waymark-query-form.waymark-map-query .joe-parameters-container .joe-control-group .waymark-control-label {
+.waymark-form.waymark-query-form.waymark-map-query .joe-parameters-container .joe-control-group .joe-control-label {
   display: none;
 }
 .waymark-form.waymark-query-form.waymark-map-query .joe-parameters-container .joe-control-group .waymark-controls .joe-tooltip {
@@ -203,7 +203,7 @@ div.postbox#waymark_map_meta div.joe-parameters-container .waymark-parameter-gro
 .postbox#tax_queries_content {
   display: none;
 }
-.postbox#tax_queries_content .waymark-control-label {
+.postbox#tax_queries_content .joe-control-label {
   display: none;
 }
 .postbox#tax_queries_content .waymark-hidden {
@@ -341,7 +341,7 @@ div.joe-control-group {
 div.joe-control-group:nth-child(even) {
   background: #f9f9f9;
 }
-div.joe-control-group .waymark-control-label {
+div.joe-control-group .joe-control-label {
   display: block;
   padding-top: 12px;
   float: left;
@@ -421,7 +421,7 @@ div.joe-control-group.waymark-inline:nth-child(even) {
 			}			
 */
 }
-div.joe-control-group.waymark-inline:nth-child(even) label.waymark-control-label {
+div.joe-control-group.waymark-inline:nth-child(even) label.joe-control-label {
   width: 120px;
 }
 div.joe-control-group.waymark-inline:nth-child(odd) {
@@ -430,7 +430,7 @@ div.joe-control-group.waymark-inline:nth-child(odd) {
   float: left;
   clear: none;
 }
-div.joe-control-group.waymark-inline:nth-child(odd) .waymark-control-label {
+div.joe-control-group.waymark-inline:nth-child(odd) .joe-control-label {
   width: auto;
   margin-right: 10px;
 }
@@ -443,35 +443,6 @@ div.joe-control-group .waymark-controls {
 }
 p + div.joe-control-group {
   border-top: 1px solid #f1f1f1;
-}
-/**
- * ====================================
- * ================ MENU ==============
- * ====================================
- */
-li#toplevel_page_edit-post_type-waymark_map .wp-menu-name abbr {
-  text-decoration: none;
-  border-bottom: none;
-}
-li#toplevel_page_edit-post_type-waymark_map .wp-submenu-head > span,
-li#toplevel_page_edit-post_type-waymark_map .wp-menu-name > span,
-li#toplevel_page_edit-post_type-waymark_map .wp-first-item abbr,
-li#toplevel_page_edit-post_type-waymark_map li.hidden {
-  display: none;
-}
-li#toplevel_page_edit-post_type-waymark_map .wp-menu-image {
-  height: 34px !important;
-  background-image: url('../img/waymark-icon-light.png');
-  background-size: 18px 18px;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-li#toplevel_page_edit-post_type-waymark_map:hover .wp-menu-image {
-  background-image: url('../img/waymark-icon-white.png');
-}
-li#toplevel_page_edit-post_type-waymark_map.wp-has-current-submenu .wp-menu-image,
-li#toplevel_page_edit-post_type-waymark_map.wp-menu-open .wp-menu-image {
-  background-image: url('../img/waymark-icon-white.png');
 }
 /* Shortcode UI */
 div#waymark_shortcode_ui-insert-dialog div.joe-parameters-container {
@@ -697,7 +668,7 @@ div#joe-admin-container .card {
 div#joe-admin-container .card .notice {
   display: none;
 }
-div#joe-admin-container .card .notice.waymark-notice {
+div#joe-admin-container .card .notice.joe-notice {
   display: block;
 }
 div#joe-admin-container .card .lead {
@@ -956,7 +927,7 @@ body.wp-admin.post-type-waymark_map.post-php #joe-admin-container {
   div.widget-content div.joe-parameters-container div.joe-control-group.waymark-short-input input[type="text"] {
     width: 80px !important;
   }
-  div.widget-content div.joe-parameters-container div.joe-control-group .waymark-control-label {
+  div.widget-content div.joe-parameters-container div.joe-control-group .joe-control-label {
     float: none;
   }
   div.widget-content div.joe-parameters-container #waymark-feed-create {

@@ -254,71 +254,7 @@ function joe_setup_settings_nav() {
 	select.trigger('change');
 }
 
-function joe_setup_repeatable_parameters() {
-	jQuery('.joe-repeatable-container').each(function() {
-		var repeatable_container = jQuery(this);
-		var repeatable_count = repeatable_container.data('count');
-		
-		var template = jQuery('.joe-repeatable-template', repeatable_container);
-		template.removeClass('joe-repeatable-template');
-		
-		template.remove();
-
-		//Each
-		jQuery('.joe-parameters-container', repeatable_container).each(function() {
-			var parameter_container = jQuery(this);
-			
-			var delete_button = jQuery('<button />')
-				.html('<i class="ion ion-android-delete"></i>')
-				.addClass('button joe-delete')
-				.on('click', function(e) {
-					e.preventDefault();
-
-					parameter_container.remove();						
-				})
-			;
-			parameter_container.append(delete_button);		
-		});
-
-		//Add		
-		var add_button = jQuery('.joe-repeatable-add', repeatable_container).first();
-		add_button.on('click', function(e) {
-			e.preventDefault();
-	
-			var clone = template.clone();
-			
-			//Update inputs
-			jQuery('.joe-input', clone).each(function() {
-				var input = jQuery(this);
-			
-				input.attr('name', input.attr('name').replace('__count__', repeatable_count));
-			});	
-
-			jQuery('.waymark-control-label', clone).each(function() {
-				var label = jQuery(this);
-			
-				label.attr('for', label.attr('for').replace('__count__', repeatable_count));
-			});							
-
-			//Add		
-			add_button.before(clone);
-
-			//Do stuff to clone (now it's in the DOM)...		
-			
-			console.log(typeof joe_handle_repeatable_clone);
-				
-			clone = waymark_handle_repeatable_clone(clone);
-			
-			joe_setup_dropdowns();
-			
-			//Update count
-			repeatable_container.data('count', ++repeatable_count);
-			
-			return false;
-		});
-	});
-}
-function waymark_admin_message(text = null, type = 'info', container_selector = '#wpbody-content') {
+function joe_admin_message(text = null, type = 'info', container_selector = '#wpbody-content') {
 	if(text) {
 		var prefix = '';
 		
@@ -349,13 +285,13 @@ function waymark_admin_message(text = null, type = 'info', container_selector = 
 		//Container exists
 		if(container.length) {
 			//Remove existing
-			jQuery('.waymark-notice', container).each(function() {
+			jQuery('.joe-notice', container).each(function() {
 				jQuery(this).remove();
 			});
 
 			var notice_div = jQuery('<div />')
 				.attr({
-					'class' : 'waymark-notice notice notice-' + type
+					'class' : 'joe-notice notice notice-' + type
 				})
 			;
 		
@@ -377,6 +313,5 @@ function waymark_admin_message(text = null, type = 'info', container_selector = 
 jQuery(document).ready(function() {
 	joe_setup_settings_nav();
 	joe_setup_repeatable_settings();
-	joe_setup_repeatable_parameters();
 	joe_setup_dropdowns();
 });
