@@ -29,7 +29,7 @@ function joe_setup_repeatable_settings() {
 				}
 				
 				//Determine clone values
-				values = values.split(waymark_admin_js.multi_value_seperator);
+				values = values.split(joe_admin_js.multi_value_seperator);
 				for(i in values) {
 					if(typeof clones[i] !== 'object') {
 						clones[i] = {};						
@@ -70,7 +70,7 @@ function joe_setup_repeatable_settings() {
 				//Delete button
 				var delete_button = jQuery('<div />')
 					.text('x')
-					.attr('title', waymark_admin_js.lang.repeatable_delete_title)
+					.attr('title', joe_admin_js.lang.repeatable_delete_title)
 					.addClass('joe-delete')						
 					.on('click', function(e) {
 						e.preventDefault();
@@ -261,9 +261,6 @@ function joe_setup_repeatable_parameters() {
 		
 		var template = jQuery('.joe-repeatable-template', repeatable_container);
 		template.removeClass('joe-repeatable-template');
-
-		//Do stuff to template (while it's still in the DOM)...			
-// 		template = waymark_handle_repeatable_template(template);		
 		
 		template.remove();
 
@@ -306,7 +303,10 @@ function joe_setup_repeatable_parameters() {
 			//Add		
 			add_button.before(clone);
 
-			//Do stuff to clone (now it's in the DOM)...			
+			//Do stuff to clone (now it's in the DOM)...		
+			
+			console.log(typeof joe_handle_repeatable_clone);
+				
 			clone = waymark_handle_repeatable_clone(clone);
 			
 			joe_setup_dropdowns();
@@ -323,8 +323,8 @@ function waymark_admin_message(text = null, type = 'info', container_selector = 
 		var prefix = '';
 		
 		//Prefix available?
-		if(typeof waymark_admin_js.lang[type + '_message_prefix'] !== 'undefined') {
-			prefix = waymark_admin_js.lang[type + '_message_prefix'];		
+		if(typeof joe_admin_js.lang[type + '_message_prefix'] !== 'undefined') {
+			prefix = joe_admin_js.lang[type + '_message_prefix'];		
 		}
 				
 		switch(type) {
