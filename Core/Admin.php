@@ -10,9 +10,14 @@ class Joe_Admin {
 			return;
 		}
 
+		add_action('admin_init', array($this, 'load_assets'));
 		add_action('current_screen', array($this, 'get_current_screen'));	
 		add_action('admin_head', array($this, 'admin_head'));			
 	}
+	
+	function load_assets() {
+		Joe_Assets::css_enqueue(Joe_Helper::plugin_url('Joe/Assets/css/admin.min.css'));			
+	}	
 	
 	function get_current_screen() {
 		$this->current_screen = get_current_screen();

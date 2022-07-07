@@ -1,8 +1,8 @@
-function waymark_setup_colour_pickers() {
+function joe_setup_colour_pickers() {
 	jQuery('.waymark-colour-picker .waymark-input').wpColorPicker();	
 }
 
-function waymark_setup_repeatable_settings() {	
+function joe_setup_repeatable_settings() {	
 	//Each container
 	jQuery('.waymark-settings-tab .waymark-repeatable').each(function() {
 		var container = jQuery(this);
@@ -152,7 +152,7 @@ function waymark_setup_repeatable_settings() {
 	});
 }
 
-function waymark_setup_dropdowns() {
+function joe_setup_dropdowns() {
 	jQuery('.waymark-parameters-container').each(function() {
 		var container = jQuery(this);
 		
@@ -182,7 +182,7 @@ function waymark_setup_dropdowns() {
 	});
 }
 
-function waymark_setup_settings_nav() {
+function joe_setup_settings_nav() {
 	var nav_container = jQuery('body.wp-admin.waymark_page_waymark-settings #waymark-settings-nav');
 	
 	if(! nav_container) {
@@ -265,7 +265,7 @@ function waymark_setup_settings_nav() {
 	select.trigger('change');
 }
 
-function waymark_setup_repeatable_parameters() {
+function joe_setup_repeatable_parameters() {
 	jQuery('.waymark-repeatable-container').each(function() {
 		var repeatable_container = jQuery(this);
 		var repeatable_count = repeatable_container.data('count');
@@ -320,7 +320,7 @@ function waymark_setup_repeatable_parameters() {
 			//Do stuff to clone (now it's in the DOM)...			
 			clone = waymark_handle_repeatable_clone(clone);
 			
-			waymark_setup_dropdowns();
+			joe_setup_dropdowns();
 			
 			//Update count
 			repeatable_container.data('count', ++repeatable_count);
@@ -386,10 +386,9 @@ function waymark_admin_message(text = null, type = 'info', container_selector = 
 }
 
 jQuery(document).ready(function() {
-	waymark_setup_colour_pickers();
-	waymark_setup_settings_nav();
-	waymark_setup_repeatable_settings();
-	waymark_setup_repeatable_parameters();
-	waymark_setup_select_icon_type();
-	waymark_setup_dropdowns();
+	joe_setup_colour_pickers();
+	joe_setup_settings_nav();
+	joe_setup_repeatable_settings();
+	joe_setup_repeatable_parameters();
+	joe_setup_dropdowns();
 });
