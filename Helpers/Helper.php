@@ -26,6 +26,14 @@ class Joe_Helper {
 		return trim(add_query_arg(array_merge(array('waymark_http' => '1'), $data), home_url('/')), '/');
 	}
 
+	static public function plugin_name($short = false) {
+		if(! $short) {
+			return Joe_Config::get_item('plugin_name');
+		} else {
+			return Joe_Config::get_item('plugin_name_short');
+		}
+	}
+
 	static public function plugin_about() {
 		$out = '	<div id="' . Joe_Helper::css_prefix('about') . '">' . "\n";		
 		$out .= Joe_Config::get_item('plugin_about');

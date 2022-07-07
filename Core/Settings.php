@@ -28,7 +28,16 @@ class Joe_Settings {
 	
 	//Menu link
 	public function admin_menu() {
-		add_submenu_page(Joe_Config::get_item( 'settings_menu_slug' ), esc_html__('Settings', 'waymark'), esc_html__('Settings', 'waymark'), 'manage_options', 'waymark-settings', array($this, 'content_admin_page'));					    
+		Joe_Helper::debug(Joe_Config::get_data());
+	
+		if( $slug = Joe_Config::get_item( 'settings_menu_slug' ) ) {
+			$text = esc_html__('Settings', Joe_Helper::get_item('plugin_text_domain'));		
+		} else {
+			$slug = 'options-general.php';
+			$text = Joe_Helper::plugin_name();						
+		}
+	
+		add_submenu_page($slug, $text, $text, 'manage_options', Joe_Helper::slug_prefix('settings'), array($this, 'content_admin_page'));					    
 	}
 
 	public function get_settings() {
