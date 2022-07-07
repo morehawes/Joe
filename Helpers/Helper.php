@@ -134,8 +134,8 @@ class Joe_Helper {
 		return Joe_Config::get_item('css_prefix') . $text;
 	}
 
-	public static function slug_prefix($text = '')	{
-		return Joe_Config::get_item('plugin_slug') . '_' . $text;
+	public static function slug_prefix($text = '', $sep = '_')	{
+		return Joe_Config::get_item('plugin_slug') . $sep . $text;
 	}
 
 	public static function array_string_to_array($string) {

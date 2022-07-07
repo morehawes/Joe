@@ -28,16 +28,14 @@ class Joe_Settings {
 	
 	//Menu link
 	public function admin_menu() {
-		Joe_Helper::debug(Joe_Config::get_data());
-	
 		if( $slug = Joe_Config::get_item( 'settings_menu_slug' ) ) {
-			$text = esc_html__('Settings', Joe_Helper::get_item('plugin_text_domain'));		
+			$text = esc_html__('Settings', Joe_Config::get_item('plugin_text_domain'));		
 		} else {
 			$slug = 'options-general.php';
 			$text = Joe_Helper::plugin_name();						
 		}
 	
-		add_submenu_page($slug, $text, $text, 'manage_options', Joe_Helper::slug_prefix('settings'), array($this, 'content_admin_page'));					    
+		add_submenu_page($slug, $text, $text, 'manage_options', Joe_Helper::slug_prefix('settings', '-'), array($this, 'content_admin_page'));					    
 	}
 
 	public function get_settings() {
