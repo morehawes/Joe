@@ -125,206 +125,11 @@ div.joe-accordion-container .joe-accordion-group .joe-parameter-group-descriptio
 .joe-left {
   float: left;
 }
-/*
-	==================================
-	========== OBJECT META ===========
-	==================================
-*/
-div.postbox#waymark_map_meta div.joe-parameters-container .joe-parameter-group {
-  margin: 0;
+.joe-self-clear {
+  overflow: hidden;
 }
-div.postbox#waymark_map_meta div.joe-parameters-container .joe-parameter-group .joe-parameter-group-content {
-  min-height: 0;
-}
-div.postbox#waymark_map_meta div.joe-parameters-container .joe-parameter-group .joe-control-group:nth-child(2n) {
-  background: #f9f9f9 !important;
-}
-/*
-	==================================
-	============== FORMS =============
-	==================================
-*/
-.joe-form.joe-repeatable {
-  border: 1px dotted pink;
-  background: pink;
-  border-radius: 15px;
-}
-/*
-	==================================
-	============= QUERIES ============
-	==================================
-*/
-.joe-form.joe-query-form.joe-tax-query .joe-control-group.query_area_type-container {
-  display: none;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container {
-  padding: 0;
-  display: grid;
-  grid-template-columns: 20% 30% 20% 20% 5% 5%;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container .joe-control-group {
-  margin: 0;
-  padding: 0;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container .joe-control-group .joe-control-label {
-  display: none;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container .joe-control-group .joe-controls .joe-tooltip {
-  display: none;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container .joe-control-group .joe-controls .joe-input {
-  max-height: 32px;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container .button {
-  display: none;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container.joe-active {
-  background: #f7f7f7;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container.joe-active .button {
-  display: block;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container.joe-active .button.joe-delete,
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container.joe-active .button.joe-edit {
-  color: green;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container.joe-active .button.joe-edit {
-  color: blue;
-}
-.joe-form.joe-query-form.joe-map-query .joe-parameters-container.joe-active .button.joe-delete {
-  color: red;
-}
-.joe-form.joe-query-form .joe-parameters-container.joe-dropdown-query_cast_overlay-marker .query_cast_line_type-container {
-  display: none;
-}
-.joe-form.joe-query-form .joe-parameters-container.joe-dropdown-query_cast_overlay-line .query_cast_marker_type-container {
-  display: none;
-}
-.postbox#tax_queries_content {
-  display: none;
-}
-.postbox#tax_queries_content .joe-control-label {
-  display: none;
-}
-.postbox#tax_queries_content .joe-hidden {
-  display: block !important;
-}
-/*
-	==================================
-	=========== TAXONOMIES ===========
-	==================================
-*/
-.joe-query-tax-container {
-  width: 100%;
-}
-.joe-query-tax-container .joe-query-tax-form {
-  padding-right: 1%;
-  width: 32%;
-  float: left;
-}
-.joe-query-tax-container .joe-query-tax-preview {
-  width: 66%;
-  float: left;
-}
-body.wp-admin.taxonomy-waymark_query.edit-tags-php #col-left,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php #col-right {
-  float: none;
-  width: 100%;
-}
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-table,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-table,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-table,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-table {
-  display: block;
-}
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field {
-  display: block;
-}
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field.term-slug-wrap,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field.term-slug-wrap,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field.term-slug-wrap,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field.term-slug-wrap,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field.term-description-wrap,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field.term-description-wrap,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field.term-description-wrap,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field.term-description-wrap {
-  display: none !important;
-}
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field.term-name-wrap p,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field.term-name-wrap p,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field.term-name-wrap p,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field.term-name-wrap p {
-  display: none;
-}
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field.term-name-wrap input[type="text"],
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field.term-name-wrap input[type="text"],
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field.term-name-wrap input[type="text"],
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field.term-name-wrap input[type="text"] {
-  padding-top: 0;
-  max-width: 265px;
-}
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field th,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field th,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field th,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field th,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field td,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field td,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field td,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field td {
-  display: block;
-}
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field th,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field th,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field th,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field th,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field td,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field td,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field td,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field td {
-  padding: 0;
-}
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#addtag .form-field label,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#addtag .form-field label,
-body.wp-admin.taxonomy-waymark_query.term-php.taxonomy-waymark_query form#edittag .form-field label,
-body.wp-admin.taxonomy-waymark_query.edit-tags-php.taxonomy-waymark_query form#edittag .form-field label {
-  font-weight: bold;
-  padding: 0 0 7px 3px;
-}
-/*
-	==================================
-	============ MAP META ============
-	==================================
-*/
-div.postbox#waymark_collectiondiv h2.hndle span,
-div.postbox#waymark_map_shortcode h2.hndle span,
-div.postbox#waymark_map_export h2.hndle span,
-div.postbox#waymark_map_help h2.hndle span {
-  padding-left: 24px;
-  background-image: url('../img/joe-icon-dark.png');
-  background-size: 20px 20px;
-  background-position: left center;
-  background-repeat: no-repeat;
-}
-div.postbox#waymark_map_help .inside {
-  padding: 10px 15px;
-  max-height: 210px;
-  overflow-y: auto;
-}
-div.postbox#waymark_map_help .inside p:first-child {
-  margin-top: 0;
-}
-/**
- * ====================================
- * ============= TOOLTIPS =============
- * ====================================
- */
-p#joe-tooltip-active {
-  background-color: #b42714;
-  color: #fff;
-  border: none;
+* html .joe-self-clear {
+  height: 1%;
 }
 /**
  * ====================================
@@ -444,301 +249,75 @@ div.joe-control-group .joe-controls {
 p + div.joe-control-group {
   border-top: 1px solid #f1f1f1;
 }
-/* Shortcode UI */
-div#waymark_shortcode_ui-insert-dialog div.joe-parameters-container {
-  padding: 15px;
-}
-/* Widget UI */
-div.widget-content .joe-widget-title {
-  margin-bottom: 5px;
-}
-div.widget-content .joe-widget-title label {
-  font-size: 14px;
-  font-weight: bold;
-}
-div.widget-content div.joe-parameters-container {
-  padding: 15px 0;
-}
-div.widget-content div.joe-parameters-container div.joe-controls {
-  position: relative;
-}
-div.widget-content div.joe-parameters-container div.joe-controls select,
-div.widget-content div.joe-parameters-container div.joe-controls input[type="file"],
-div.widget-content div.joe-parameters-container div.joe-controls input[type="text"] {
-  width: 180px;
-}
 /**
  * ====================================
  * ============= SETTINGS =============
  * ====================================
  */
-body.waymark_page_joe-settings #joe-admin-container.joe-active-joe-settings-tab-misc .joe-settings-section-elevation_options,
-body.waymark_page_joe-settings #joe-admin-container.joe-active-joe-settings-tab-misc .joe-settings-section-shortcode_options,
-body.waymark_page_joe-settings #joe-admin-container.joe-active-joe-settings-tab-misc .joe-settings-section-collection_options,
-body.waymark_page_joe-settings #joe-admin-container.joe-active-joe-settings-tab-misc .joe-settings-section-map_options {
-  display: none !important;
+body.wp-admin {
+  /*
+
+	.joe-settings-tab {
+		max-width: 520px;
+
+		table.form-table {
+
+		}
+	}
+
+*/
 }
-body.waymark_page_joe-settings div#joe-settings-nav {
-  margin-top: 10px;
-  height: 35px;
-  margin-bottom: 5px;
-  padding-left: 45px;
-  background-image: url('../img/joe-icon-primary.png');
-  background-size: 35px 35px;
-  background-position: center left;
-  background-repeat: no-repeat;
-}
-body.waymark_page_joe-settings div#joe-settings-nav select {
-  position: absolute;
-  padding: 0;
-  z-index: 1000;
-  font-size: 16px;
-}
-body.waymark_page_joe-settings div#joe-settings-nav select:hover {
-  background: #fff;
-}
-body.waymark_page_joe-settings div#joe-settings-nav select option {
-  padding: 10px 20px;
-}
-body.waymark_page_joe-settings div#joe-settings-nav select option[disabled] {
-  color: #000 !important;
-  background: #f7f7f7;
-}
-body.waymark_page_joe-settings div#joe-settings-nav select option:hover {
-  color: #0073aa;
-}
-body.waymark_page_joe-settings div.joe-settings-tab .joe-docs-link {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-body.waymark_page_joe-settings div.joe-settings-tab > small {
-  display: block;
-  margin-top: 20px;
-  font-size: 0.9em;
-}
-body.waymark_page_joe-settings div.joe-settings-tab .joe-repeatable .form-table {
-  position: relative;
-  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.25);
-}
-body.waymark_page_joe-settings div.joe-settings-tab .joe-repeatable .form-table:hover div.joe-delete {
-  visibility: visible;
-}
-body.waymark_page_joe-settings div.joe-settings-tab .joe-repeatable .form-table.ui-sortable-handle {
-  cursor: move;
-}
-body.waymark_page_joe-settings div.joe-settings-tab .joe-repeatable button.joe-add {
-  display: block;
-  width: 100%;
-  opacity: 0.7;
-}
-body.waymark_page_joe-settings div.joe-settings-tab .joe-repeatable div.joe-delete {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  padding: 0 5px 2px 5px;
-  background: #ac2b2b;
-  color: white;
-  cursor: pointer;
-  visibility: hidden;
-}
-body.waymark_page_joe-settings div.joe-settings-tab .wp-picker-container {
-  display: inline-block;
-}
-body.waymark_page_joe-settings div.joe-settings-tab .wp-picker-container button span {
-  color: #444;
-  text-shadow: 1px 1px 0px #ddd;
-  opacity: 0.8;
-}
-body.waymark_page_joe-settings div.joe-settings-tab.joe-settings-tab-misc .form-table {
-  margin-bottom: 40px !important;
-}
-body.waymark_page_joe-settings div.joe-settings-tab.joe-settings-tab-markers .marker_icon-container .joe-controls {
-  position: relative;
-}
-body.waymark_page_joe-settings div.joe-settings-tab.joe-settings-tab-markers .marker_icon-container .joe-controls input {
-  width: 175px;
-}
-body.waymark_page_joe-settings div.joe-settings-tab.joe-settings-tab-markers .marker_icon-container .joe-controls i {
-  height: 100%;
-  vertical-align: middle;
-  font-size: 26px;
-}
-body.waymark_page_joe-settings div.joe-settings-tab.joe-settings-tab-markers .marker_icon-container .joe-icons-help {
-  display: inline-block;
-  position: absolute;
-  margin-top: -3px;
-  margin-left: 5px;
-  width: 88px;
-}
-body.waymark_page_joe-settings div.joe-settings-tab.joe-settings-tab-markers .marker_icon-container .joe-icons-help a {
-  display: inline-block;
-  font-size: 10px;
-  line-height: 1em;
-}
-body.waymark_page_joe-settings div.joe-settings-tab div.joe-settings-section-description {
-  margin-bottom: 15px;
-  font-size: 1.1em;
-}
-body.waymark_page_joe-settings div.joe-settings-tab div.joe-settings-section-description ul {
-  margin: 20px 0 40px 0;
-}
-body.waymark_page_joe-settings div.joe-settings-tab div.joe-settings-section-description ul li {
-  margin: 15px 0;
-  padding-left: 20px;
-}
-body.waymark_page_joe-settings div.joe-settings-tab div.joe-settings-section-footer {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-body.waymark_page_joe-settings div.joe-settings-tab table.form-table .joe-control-group {
-  border: none;
-}
-body.waymark_page_joe-settings div.joe-settings-tab table.form-table tr th,
-body.waymark_page_joe-settings div.joe-settings-tab table.form-table tr td {
-  background: #f9f9f9;
-  border-bottom: 1px solid #f1f1f1;
-}
-body.waymark_page_joe-settings div.joe-settings-tab table.form-table tr:first-child th,
-body.waymark_page_joe-settings div.joe-settings-tab table.form-table tr:first-child td {
-  border-top: 1px solid #f1f1f1;
-}
-body.waymark_page_joe-settings div.joe-settings-tab table.form-table tr:nth-child(even) th,
-body.waymark_page_joe-settings div.joe-settings-tab table.form-table tr:nth-child(even) td {
-  background: #fff;
-}
-/**
- * ====================================
- * =============== HELP ===============
- * ====================================
- */
-body.waymark_page_joe-help #wpbody-content h2 {
-  margin-top: 40px;
-}
-body.waymark_page_joe-help #wpbody-content table tr:nth-child(even) {
-  background: #f9f9f9;
-}
-body.waymark_page_joe-help #wpbody-content table tr th {
-  text-align: left;
-}
-body.waymark_page_joe-help #wpbody-content table tr td {
-  padding: 7px;
-}
-/**
- * ====================================
- * ========= SETUP / SETTINGS =========
- * ====================================
- */
-div#joe-admin-container {
+body.wp-admin div#joe-admin-container {
   position: relative;
   padding-right: 210px;
   max-width: 600px;
   /* About */
 }
-div#joe-admin-container.joe-top h2.promo {
+body.wp-admin div#joe-admin-container.joe-top h2.promo {
   padding: 40px 0;
   font-size: 2.6em;
 }
-div#joe-admin-container.joe-top h2.lead {
+body.wp-admin div#joe-admin-container.joe-top h2.lead {
   font-size: 1.4em;
   margin-top: 60px;
   margin-bottom: 30px;
 }
-div#joe-admin-container.joe-top p.lead {
+body.wp-admin div#joe-admin-container.joe-top p.lead {
   margin-left: 20px;
 }
-div#joe-admin-container.joe-top p.lead small {
+body.wp-admin div#joe-admin-container.joe-top p.lead small {
   font-size: 0.7em;
 }
-div#joe-admin-container h1 {
+body.wp-admin div#joe-admin-container h1 {
   padding-bottom: 9px;
-  padding-left: 34px;
-  background-image: url('../img/joe-icon-primary.png');
   background-size: 30px 30px;
   background-position: left center;
   background-repeat: no-repeat;
 }
-div#joe-admin-container .notice {
+body.wp-admin div#joe-admin-container .notice {
   background-color: #f9f9f9;
 }
-div#joe-admin-container .card {
+body.wp-admin div#joe-admin-container .card {
   min-width: 266px;
   max-width: none;
 }
-div#joe-admin-container .card .notice {
+body.wp-admin div#joe-admin-container .card .notice {
   display: none;
 }
-div#joe-admin-container .card .notice.joe-notice {
+body.wp-admin div#joe-admin-container .card .notice.joe-notice {
   display: block;
 }
-div#joe-admin-container .card .lead {
+body.wp-admin div#joe-admin-container .card .lead {
   font-size: 1.2em;
 }
-div#joe-admin-container .joe-video iframe {
+body.wp-admin div#joe-admin-container .joe-video iframe {
   width: 550px;
   height: 308px;
 }
-div#joe-admin-container .button-primary.button-large {
+body.wp-admin div#joe-admin-container .button-primary.button-large {
   font-size: 15px;
 }
-div#joe-admin-container .joe-settings-tab {
-  max-width: 520px;
-}
-div#joe-admin-container .joe-settings-tab.joe-settings-tab-map table.form-table:last-child th {
-  width: 100px;
-  vertical-align: top;
-}
-div#joe-admin-container .joe-settings-tab.joe-settings-tab-map table.form-table tr.joe-capability-disabled th {
-  opacity: 0.5;
-}
-div#joe-admin-container .joe-settings-tab.joe-settings-tab-map textarea {
-  position: relative;
-  height: 400px;
-  width: 92%;
-  font-family: "Lucida Console", Monaco, monospace;
-}
-div#joe-admin-container .joe-settings-tab.joe-settings-tab-map .joe-tooltip {
-  top: 6px;
-  right: 5px;
-}
-div#joe-admin-container .joe-settings-tab .joe-settings-tab-description {
-  font-size: 1.1em;
-}
-div#joe-admin-container .joe-settings-tab .joe-settings-tab-description h2 {
-  display: none;
-}
-div#joe-admin-container .joe-settings-tab table.form-table {
-  margin-bottom: 30px;
-}
-div#joe-admin-container .joe-settings-tab table.form-table tr.joe-align-top th {
-  vertical-align: top;
-}
-div#joe-admin-container .joe-settings-tab table.form-table tr th {
-  padding: 10px 20px;
-  width: 160px;
-  vertical-align: middle;
-}
-div#joe-admin-container .joe-settings-tab table.form-table tr td {
-  padding: 0;
-}
-div#joe-admin-container .joe-settings-tab select,
-div#joe-admin-container .joe-settings-tab input[type="file"],
-div#joe-admin-container .joe-settings-tab input[type="text"] {
-  width: 200px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #DDDDDD;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
-}
-div#joe-admin-container .joe-settings-tab .joe-short-input select,
-div#joe-admin-container .joe-settings-tab .joe-short-input input[type="file"],
-div#joe-admin-container .joe-settings-tab .joe-short-input input[type="text"] {
-  width: 100px;
-}
-div#joe-admin-container .joe-settings-tab .joe-controls .joe-tooltip {
-  margin-top: 2px;
-}
-div#joe-admin-container #joe-about {
+body.wp-admin div#joe-admin-container #joe-about {
   position: absolute;
   top: 0;
   right: 0;
@@ -749,24 +328,24 @@ div#joe-admin-container #joe-about {
   border: 1px solid #ccc;
   background: #f7f7f7;
 }
-div#joe-admin-container #joe-about ul {
+body.wp-admin div#joe-admin-container #joe-about ul {
   padding-left: 15px;
   list-style: circle;
 }
-div#joe-admin-container #joe-about ul li.joe-multi a {
+body.wp-admin div#joe-admin-container #joe-about ul li.joe-multi a {
   margin-right: -4px;
 }
-div#joe-admin-container #joe-about p {
+body.wp-admin div#joe-admin-container #joe-about p {
   margin-top: 0;
   line-height: 1.5em;
 }
-div#joe-admin-container #joe-about p.joe-first {
+body.wp-admin div#joe-admin-container #joe-about p.joe-first {
   margin: 20px 0 40px 0;
   font-weight: bold;
   font-size: 1.8em;
   line-height: 1.1em;
 }
-div#joe-admin-container #joe-about img {
+body.wp-admin div#joe-admin-container #joe-about img {
   width: 100px;
   height: 100px;
   margin-right: 12px;
@@ -774,201 +353,143 @@ div#joe-admin-container #joe-about img {
   border-radius: 50%;
   border: 1px solid #999;
 }
-div#joe-admin-container #joe-about a.button {
+body.wp-admin div#joe-admin-container #joe-about a.button {
   margin-bottom: 5px;
 }
-/**
- * ====================================
- * =========== ADMIN NOTICES ==========
- * ====================================
- */
-body.taxonomy-waymark_collection div#joe-admin-container,
-body.post-type-waymark_map.post-new-php div#joe-admin-container,
-body.post-type-waymark_map.edit-php div#joe-admin-container {
-  max-width: none;
-  padding-right: 0;
-}
-body.taxonomy-waymark_collection div#joe-admin-container ol,
-body.post-type-waymark_map.post-new-php div#joe-admin-container ol,
-body.post-type-waymark_map.edit-php div#joe-admin-container ol {
-  margin-left: 15px;
-}
-/**
- * ====================================
- * ================ MISC ==============
- * ====================================
- */
-.joe-self-clear {
-  overflow: hidden;
-}
-* html .joe-self-clear {
-  height: 1%;
-}
-/* Shortcode */
-i.mce-i-joe-shortcode-icon {
-  background-image: url('../img/joe-editor-icon.png');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-}
-/* Logo */
-/*
-body.wp-admin {
-	&.post-type-waymark_map {
-		h1.wp-heading-inline {				
-			padding-left: 34px;
-			background-image: url('../img/joe-icon-primary.png');
-			background-size: 30px 30px;
-			background-position: left 9px;
-			background-repeat: no-repeat;
-		}
-	}
-}
-*/
-#waymark_shortcode_ui-insert-dialog-dragh {
-  background-image: url('../img/joe-icon-primary.png');
-  background-size: 24px 24px;
-  background-position: center center;
+body.wp-admin div#joe-settings-nav {
+  margin-top: 10px;
+  height: 35px;
+  margin-bottom: 5px;
+  background-size: 35px 35px;
+  background-position: center left;
   background-repeat: no-repeat;
 }
-/* Meta */
-.postbox-container .control-group a.an-tooltip {
+body.wp-admin div#joe-settings-nav select {
   position: absolute;
-  top: 6px;
-  right: 0;
+  padding: 0;
+  z-index: 1000;
+  font-size: 16px;
+  min-width: 240px;
 }
-.postbox-container p.lead {
-  margin: 15px 0 0 0;
-  font-size: 1.2em;
+body.wp-admin div#joe-settings-nav select:hover {
+  background: #fff;
 }
-/* Media Uploader */
-body.post-type-waymark_map .media-modal.wp-core-ui {
-  /*
-		.button.media-button::before {
-			content: 'T';
-			color: red;
-		}
-*/
+body.wp-admin div#joe-settings-nav select option {
+  padding: 10px 20px;
 }
-body.post-type-waymark_map .media-modal.wp-core-ui .media-menu * {
+body.wp-admin div#joe-settings-nav select option[disabled] {
+  color: #000 !important;
+  background: #f7f7f7;
+}
+body.wp-admin div#joe-settings-nav select option:hover {
+  color: #0073aa;
+}
+body.wp-admin div.joe-settings-tab .joe-docs-link {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+body.wp-admin div.joe-settings-tab > small {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.9em;
+}
+body.wp-admin div.joe-settings-tab .joe-settings-tab-description {
+  font-size: 1.1em;
+}
+body.wp-admin div.joe-settings-tab .joe-settings-tab-description h2 {
   display: none;
 }
-body.post-type-waymark_map .media-modal.wp-core-ui #alt-text-description,
-body.post-type-waymark_map .media-modal.wp-core-ui .attachment-details label.setting,
-body.post-type-waymark_map .media-modal.wp-core-ui .attachment-display-settings {
-  display: none;
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table {
+  position: relative;
+  margin-bottom: 30px;
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.25);
 }
-/* Admin Pages */
-body.wp-admin.post-type-waymark_map.taxonomy-waymark_collection #message,
-body.wp-admin.post-type-waymark_map.edit-php #message,
-body.wp-admin.post-type-waymark_map.post-php #message,
-body.wp-admin.post-type-waymark_map.post-new-php #message {
-  margin: 10px 0 0 0;
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table:hover div.joe-delete {
+  visibility: visible;
 }
-body.wp-admin.post-type-waymark_map.taxonomy-waymark_collection .wp-heading-inline,
-body.wp-admin.post-type-waymark_map.edit-php .wp-heading-inline,
-body.wp-admin.post-type-waymark_map.post-php .wp-heading-inline,
-body.wp-admin.post-type-waymark_map.post-new-php .wp-heading-inline {
-  display: none;
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table.ui-sortable-handle {
+  cursor: move;
 }
-body.wp-admin.post-type-waymark_map.taxonomy-waymark_collection .page-title-action,
-body.wp-admin.post-type-waymark_map.edit-php .page-title-action,
-body.wp-admin.post-type-waymark_map.post-php .page-title-action,
-body.wp-admin.post-type-waymark_map.post-new-php .page-title-action {
-  top: 0;
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr.joe-align-top th {
+  vertical-align: top;
 }
-body.wp-admin.post-type-waymark_map.post-php #joe-admin-container {
-  padding-right: 0 !important;
-  max-width: none !important;
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr th {
+  padding: 10px 20px;
+  width: 160px;
+  vertical-align: middle;
 }
-/**
- * ====================================
- * ============ RESPONSIVE ============
- * ====================================
- */
-/* Phone */
-@media only screen and (max-width: 576px) {
-  /* Admin Container */
-  div#joe-admin-container {
-    padding-right: 0;
-    padding-bottom: 180px;
-  }
-  div#joe-admin-container div#joe-about {
-    bottom: 0;
-    left: 0;
-    top: unset;
-    width: auto;
-  }
-  div#joe-admin-container div#joe-about img {
-    margin-bottom: 20px;
-  }
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td {
+  padding: 0;
 }
-/* Tablet */
-@media only screen and (min-width: 578px) and (max-width: 768px) {
-  /* Admin Container */
-  div#joe-admin-container .joe-video iframe {
-    width: 485px;
-    height: 271px;
-  }
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td select,
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td input[type="file"],
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td input[type="text"] {
+  width: 200px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #DDDDDD;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
 }
-/* Phone */
-@media only screen and (max-width: 768px) {
-  /* Admin Container */
-  div#joe-admin-container.joe-top .card {
-    margin-bottom: 60px;
-  }
-  div#joe-admin-container .joe-video iframe {
-    width: 280px;
-    height: 156px;
-  }
-  /* Widget UI */
-  div.widget-content div.joe-parameters-container div.joe-control-group.joe-short-input select,
-  div.widget-content div.joe-parameters-container div.joe-control-group.joe-short-input input[type="file"],
-  div.widget-content div.joe-parameters-container div.joe-control-group.joe-short-input input[type="text"] {
-    width: 80px !important;
-  }
-  div.widget-content div.joe-parameters-container div.joe-control-group .joe-control-label {
-    float: none;
-  }
-  div.widget-content div.joe-parameters-container #joe-feed-create {
-    margin-left: 3px !important;
-  }
-  /* Settings Page */
-  body.joe-setup_page_joe-settings .card {
-    padding: 15px;
-  }
-  body.joe-setup_page_joe-settings h2.nav-tab-wrapper a {
-    margin-left: 4px;
-  }
-  body.joe-setup_page_joe-settings h2.nav-tab-wrapper a.nav-tab-active {
-    background: #fff;
-    border-bottom: 1px solid #fff;
-  }
-  body.joe-setup_page_joe-settings table.form-table tr:first-child th,
-  body.joe-setup_page_joe-settings table.form-table tr:first-child td {
-    border-top: none;
-  }
-  body.joe-setup_page_joe-settings table.form-table tr th,
-  body.joe-setup_page_joe-settings table.form-table tr td {
-    background: #fff;
-    border-bottom: none;
-  }
-  body.joe-setup_page_joe-settings table.form-table tr th {
-    padding-left: 5px !important;
-    padding-bottom: 0 !important;
-  }
-  body.joe-setup_page_joe-settings table.form-table tr .joe-control-group {
-    border: none;
-    position: relative;
-  }
-  body.joe-setup_page_joe-settings table.form-table tr .joe-control-group .joe-tooltip {
-    position: absolute;
-    top: 6px;
-    right: 0;
-  }
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td .joe-short-input select,
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td .joe-short-input input[type="file"],
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td .joe-short-input input[type="text"] {
+  width: 100px;
 }
-/**
- * ====================================
- * ============== DEBUG ===============
- * ====================================
- */
+body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td .joe-controls .joe-tooltip {
+  margin-top: 2px;
+}
+body.wp-admin div.joe-settings-tab .joe-repeatable button.joe-add {
+  display: block;
+  width: 100%;
+  opacity: 0.7;
+}
+body.wp-admin div.joe-settings-tab .joe-repeatable div.joe-delete {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  padding: 0 5px 2px 5px;
+  background: #ac2b2b;
+  color: white;
+  cursor: pointer;
+  visibility: hidden;
+}
+body.wp-admin div.joe-settings-tab .wp-picker-container {
+  display: inline-block;
+}
+body.wp-admin div.joe-settings-tab .wp-picker-container button span {
+  color: #444;
+  text-shadow: 1px 1px 0px #ddd;
+  opacity: 0.8;
+}
+body.wp-admin div.joe-settings-tab div.joe-settings-section-description {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+body.wp-admin div.joe-settings-tab div.joe-settings-section-description ul {
+  margin: 20px 0 40px 0;
+}
+body.wp-admin div.joe-settings-tab div.joe-settings-section-description ul li {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+body.wp-admin div.joe-settings-tab div.joe-settings-section-footer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+body.wp-admin div.joe-settings-tab table.form-table .joe-control-group {
+  border: none;
+}
+body.wp-admin div.joe-settings-tab table.form-table tr th,
+body.wp-admin div.joe-settings-tab table.form-table tr td {
+  background: #f9f9f9;
+  border-bottom: 1px solid #f1f1f1;
+}
+body.wp-admin div.joe-settings-tab table.form-table tr:first-child th,
+body.wp-admin div.joe-settings-tab table.form-table tr:first-child td {
+  border-top: 1px solid #f1f1f1;
+}
+body.wp-admin div.joe-settings-tab table.form-table tr:nth-child(even) th,
+body.wp-admin div.joe-settings-tab table.form-table tr:nth-child(even) td {
+  background: #fff;
+}
