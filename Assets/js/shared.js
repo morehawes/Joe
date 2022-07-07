@@ -1,12 +1,12 @@
 //Tooltips
-function waymark_setup_parameter_tooltips() {
-	jQuery('a.waymark-tooltip').on({
+function joe_setup_parameter_tooltips() {
+	jQuery('a.joe-tooltip').on({
     mouseenter: function(e) {
 		  var title = jQuery(this).data('title');
-		  jQuery('<p id="waymark-tooltip-active"></p>').text(title).appendTo('body').fadeIn('slow');
+		  jQuery('<p id="joe-tooltip-active"></p>').text(title).appendTo('body').fadeIn('slow');
     },
     mouseleave: function(e) {
-		  jQuery('#waymark-tooltip-active').remove();
+		  jQuery('#joe-tooltip-active').remove();
     },
     mousemove: function(e) {
 			if(waymark_is_touch_device()) {
@@ -16,7 +16,7 @@ function waymark_setup_parameter_tooltips() {
 			}
 
 		  var mousey = e.pageY + 5;
-		  jQuery('#waymark-tooltip-active').css({ top: mousey, left: mousex });
+		  jQuery('#joe-tooltip-active').css({ top: mousey, left: mousex });
     }	
 	});
 }
@@ -125,6 +125,6 @@ function waymark_setup_accordions() {
 }
 
 jQuery(document).ready(function() {
-	waymark_setup_parameter_tooltips();
+	joe_setup_parameter_tooltips();
 	waymark_setup_accordions();	
 });

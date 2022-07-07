@@ -1,10 +1,6 @@
-function joe_setup_colour_pickers() {
-	jQuery('.waymark-colour-picker .waymark-input').wpColorPicker();	
-}
-
 function joe_setup_repeatable_settings() {	
 	//Each container
-	jQuery('.waymark-settings-tab .waymark-repeatable').each(function() {
+	jQuery('.joe-settings-tab .joe-repeatable').each(function() {
 		var container = jQuery(this);
 				
 		//Each form table
@@ -15,10 +11,10 @@ function joe_setup_repeatable_settings() {
 			form.remove();
 
 			//Each input
-			jQuery('.waymark-input', form).each(function() {
+			jQuery('.joe-input', form).each(function() {
 				var input = jQuery(this);
-				//Copy ID to class
-				input.addClass('waymark-' + input.data('id'));
+				//Copy ID to class 
+				input.addClass('joe-' + input.data('id'));
 
 				//Get values
 				if(input.get(0).nodeName != 'SELECT') {
@@ -50,7 +46,7 @@ function joe_setup_repeatable_settings() {
 				for(j in clones[i]) {
 					var set_value = clones[i][j];
 					
-					var input = jQuery('.waymark-input-' + j, clone);
+					var input = jQuery('.joe-input-' + j, clone);
 					input.attr('name', input.attr('name') + '[' + i + ']');
 					
 					//This is a Select without a valid option
@@ -66,7 +62,7 @@ function joe_setup_repeatable_settings() {
 					;
 					
 					//Make uneditable
-					if(input.parents('.waymark-control-group').hasClass('waymark-uneditable')) {
+					if(input.parents('.joe-control-group').hasClass('joe-uneditable')) {
 						input.attr('readonly', 'readonly');
 					}										
 				}
@@ -75,7 +71,7 @@ function joe_setup_repeatable_settings() {
 				var delete_button = jQuery('<div />')
 					.text('x')
 					.attr('title', waymark_admin_js.lang.repeatable_delete_title)
-					.addClass('waymark-delete')						
+					.addClass('joe-delete')						
 					.on('click', function(e) {
 						e.preventDefault();
 		
@@ -88,24 +84,24 @@ function joe_setup_repeatable_settings() {
 
 				container.append(clone);
 				container.attr('data-count', i);					
-				waymark_setup_parameter_tooltips();
+				joe_setup_parameter_tooltips();
 			}
 	
 			var add_button = jQuery('<button />')
 				.html('<i class="ion ion-plus"></i>')
-				.addClass('button waymark-add')
+				.addClass('button joe-add')
 				.on('click', function(e) {
 					e.preventDefault();
 	
 					//Increment count
-					var container = jQuery(this).parents('.waymark-repeatable');
+					var container = jQuery(this).parents('.joe-repeatable');
 					var count_old = parseInt(container.attr('data-count'));
 					var count_new = count_old + 1;
 					container.attr('data-count', count_new);
 					
 					//Modify clone
 					var clone = form.clone();				
-					jQuery('.waymark-input', clone).each(function() {
+					jQuery('.joe-input', clone).each(function() {
 						var input = jQuery(this);
 						var input_name = input.attr('name') + '[' + count_new + ']';									
 																				
@@ -137,7 +133,7 @@ function joe_setup_repeatable_settings() {
 					});
 					
 					jQuery(this).before(clone);
-					waymark_setup_parameter_tooltips();
+					joe_setup_parameter_tooltips();
 // 					waymark_setup_select_meta_type();
 // 					waymark_setup_select_icon_type();
 					
@@ -153,12 +149,12 @@ function joe_setup_repeatable_settings() {
 }
 
 function joe_setup_dropdowns() {
-	jQuery('.waymark-parameters-container').each(function() {
+	jQuery('.joe-parameters-container').each(function() {
 		var container = jQuery(this);
 		
 		jQuery('select', container).each(function() {
 			//Prefix
-			var class_string = 'waymark-dropdown-' + jQuery(this).data('id') + '-';			
+			var class_string = 'joe-dropdown-' + jQuery(this).data('id') + '-';			
 
 			//Add new
 			class_string += jQuery(this).val();
@@ -167,7 +163,7 @@ function joe_setup_dropdowns() {
 			//On Change
 			jQuery(this).on('change', function() {			
 				//Prefix
-				var class_string = 'waymark-dropdown-' + jQuery(this).data('id') + '-';			
+				var class_string = 'joe-dropdown-' + jQuery(this).data('id') + '-';			
 				
 				//Remove old
 				jQuery('option', jQuery(this)).each(function() {
@@ -183,16 +179,16 @@ function joe_setup_dropdowns() {
 }
 
 function joe_setup_settings_nav() {
-	var nav_container = jQuery('body.wp-admin.waymark_page_waymark-settings #waymark-settings-nav');
+	var nav_container = jQuery('body.wp-admin #joe-settings-nav');
 	
 	if(! nav_container) {
 		return false;
 	}
 
-	var admin_container = jQuery('#waymark-admin-container');
+	var admin_container = jQuery('#joe-admin-container');
 	var form = jQuery('form', admin_container);
 
-	var tabs = jQuery('.waymark-settings-tab', admin_container);
+	var tabs = jQuery('.joe-settings-tab', admin_container);
 	var init_tab_key = nav_container.data('init_tab_key');
 
 	//Change
@@ -223,7 +219,7 @@ function joe_setup_settings_nav() {
 		var show_content = jQuery('.' + selected_content_id).first();
 		
 		//Each Tab
-		jQuery('.waymark-settings-tab').each(function() {
+		jQuery('.joe-settings-tab').each(function() {
 			var tab = jQuery(this);
 			tab.hide();
 			
@@ -232,7 +228,7 @@ function joe_setup_settings_nav() {
 				//Selected
 				if(tab.hasClass(selected_content_id)) {
 					tab.show();
-					admin_container.addClass('waymark-active-' + selected_content_id);
+					admin_container.addClass('joe-active-' + selected_content_id);
 					
 					//Specific Tabs					
 // 					switch(true) {
@@ -256,7 +252,7 @@ function joe_setup_settings_nav() {
 					if(section.hasClass(selected_content_id)) {
 						tab.show();		
 						section.show();
-						admin_container.addClass('waymark-active-' + selected_content_id);						
+						admin_container.addClass('joe-active-' + selected_content_id);						
 					}
 				}					
 			});					
@@ -266,12 +262,12 @@ function joe_setup_settings_nav() {
 }
 
 function joe_setup_repeatable_parameters() {
-	jQuery('.waymark-repeatable-container').each(function() {
+	jQuery('.joe-repeatable-container').each(function() {
 		var repeatable_container = jQuery(this);
 		var repeatable_count = repeatable_container.data('count');
 		
-		var template = jQuery('.waymark-repeatable-template', repeatable_container);
-		template.removeClass('waymark-repeatable-template');
+		var template = jQuery('.joe-repeatable-template', repeatable_container);
+		template.removeClass('joe-repeatable-template');
 
 		//Do stuff to template (while it's still in the DOM)...			
 // 		template = waymark_handle_repeatable_template(template);		
@@ -279,12 +275,12 @@ function joe_setup_repeatable_parameters() {
 		template.remove();
 
 		//Each
-		jQuery('.waymark-parameters-container', repeatable_container).each(function() {
+		jQuery('.joe-parameters-container', repeatable_container).each(function() {
 			var parameter_container = jQuery(this);
 			
 			var delete_button = jQuery('<button />')
 				.html('<i class="ion ion-android-delete"></i>')
-				.addClass('button waymark-delete')
+				.addClass('button joe-delete')
 				.on('click', function(e) {
 					e.preventDefault();
 
@@ -295,14 +291,14 @@ function joe_setup_repeatable_parameters() {
 		});
 
 		//Add		
-		var add_button = jQuery('.waymark-repeatable-add', repeatable_container).first();
+		var add_button = jQuery('.joe-repeatable-add', repeatable_container).first();
 		add_button.on('click', function(e) {
 			e.preventDefault();
 	
 			var clone = template.clone();
 			
 			//Update inputs
-			jQuery('.waymark-input', clone).each(function() {
+			jQuery('.joe-input', clone).each(function() {
 				var input = jQuery(this);
 			
 				input.attr('name', input.attr('name').replace('__count__', repeatable_count));
@@ -386,7 +382,6 @@ function waymark_admin_message(text = null, type = 'info', container_selector = 
 }
 
 jQuery(document).ready(function() {
-	joe_setup_colour_pickers();
 	joe_setup_settings_nav();
 	joe_setup_repeatable_settings();
 	joe_setup_repeatable_parameters();
