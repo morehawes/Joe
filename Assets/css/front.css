@@ -3,12 +3,12 @@
  * ============= UTILITY ==============
  * ====================================
  */
-.waymark-self-clear:after {
+.joe-self-clear:after {
   content: "";
   display: table;
   clear: both;
 }
-.waymark-code {
+.joe-code {
   display: inline-block;
   margin: 0 3px;
   padding: 3px;
@@ -37,7 +37,7 @@ a.joe-tooltip {
   border: 1px solid #DDDDDD;
   border-radius: 50%;
 }
-a.joe-tooltip.waymark-link {
+a.joe-tooltip.joe-link {
   cursor: pointer !important;
 }
 p#joe-tooltip-active {
@@ -56,19 +56,19 @@ p#joe-tooltip-active {
  * ============ PARAMETERS ============
  * ====================================
  */
-div.waymark-accordion-container {
+div.joe-accordion-container {
   padding-top: 2%;
   padding-bottom: 2%;
 }
-div.waymark-accordion-container .waymark-accordion-group {
+div.joe-accordion-container .joe-accordion-group {
   width: 100%;
   margin: 0 ;
   margin-bottom: 10px;
 }
-div.waymark-accordion-container .waymark-accordion-group.waymark-first {
+div.joe-accordion-container .joe-accordion-group.joe-first {
   margin-top: 15px;
 }
-div.waymark-accordion-container .waymark-accordion-group legend {
+div.joe-accordion-container .joe-accordion-group legend {
   display: block;
   padding: 10px;
   width: -webkit-fill-available;
@@ -79,14 +79,14 @@ div.waymark-accordion-container .waymark-accordion-group legend {
   border-radius: 5px;
   cursor: pointer;
 }
-div.waymark-accordion-container .waymark-accordion-group legend span {
+div.joe-accordion-container .joe-accordion-group legend span {
   float: right;
   opacity: 0.7;
 }
-div.waymark-accordion-container .waymark-accordion-group .waymark-accordion-group-content {
+div.joe-accordion-container .joe-accordion-group .joe-accordion-group-content {
   padding: 0 10px;
 }
-div.waymark-accordion-container .waymark-accordion-group .waymark-parameter-group-description {
+div.joe-accordion-container .joe-accordion-group .joe-parameter-group-description {
   margin: 5px 0 15px 0;
   font-size: 1.15em;
 }
@@ -96,28 +96,28 @@ div.waymark-accordion-container .waymark-accordion-group .waymark-parameter-grou
  * ============= SHORTCODE ============
  * ====================================
  */
-.waymark-shortcode {
+.joe-shortcode {
   overflow: hidden;
   margin-bottom: 1.5em;
   border: 1px solid #999;
 }
-.waymark-shortcode .waymark-header {
+.joe-shortcode .joe-header {
   position: relative;
   padding: 10px;
   background: #f7f7f7;
   border-bottom: 1px solid #ccc;
 }
-.waymark-shortcode .waymark-header .ion {
+.joe-shortcode .joe-header .ion {
   margin-left: 3px;
   font-size: 18px;
 }
-.waymark-shortcode .waymark-header .waymark-title {
+.joe-shortcode .joe-header .joe-title {
   font-weight: bold;
 }
-.waymark-shortcode .waymark-header .waymark-link {
+.joe-shortcode .joe-header .joe-link {
   float: right;
 }
-.waymark-shortcode .waymark-header .waymark-meta {
+.joe-shortcode .joe-header .joe-meta {
   display: none;
   position: absolute;
   top: 0;
@@ -130,21 +130,21 @@ div.waymark-accordion-container .waymark-accordion-group .waymark-parameter-grou
   padding: 15px 10px;
   overflow: auto;
 }
-.waymark-shortcode .waymark-header .waymark-meta .waymark-link {
+.joe-shortcode .joe-header .joe-meta .joe-link {
   position: absolute;
   top: 10px;
   right: 10px;
 }
-.waymark-shortcode .waymark-header .waymark-meta .waymark-meta-close {
+.joe-shortcode .joe-header .joe-meta .joe-meta-close {
   position: absolute;
   top: 15px;
   left: 10px;
   cursor: pointer;
 }
-.waymark-shortcode .waymark-header .waymark-meta .waymark-map-meta {
+.joe-shortcode .joe-header .joe-meta .joe-map-meta {
   padding-top: 20px;
 }
-.waymark-shortcode .waymark-header .waymark-meta .waymark-map-meta legend {
+.joe-shortcode .joe-header .joe-meta .joe-map-meta legend {
   font-size: 1.1em;
 }
 /**
@@ -152,17 +152,17 @@ div.waymark-accordion-container .waymark-accordion-group .waymark-parameter-grou
  * ============== MESSAGES ============
  * ====================================
  */
-.waymark-message {
+.joe-message {
   margin-bottom: 15px;
   padding: 10px 15px;
   border-width: 1px;
   border-style: solid;
 }
-.waymark-message.waymark-success {
+.joe-message.joe-success {
   color: green;
   border-color: green;
 }
-.waymark-message.waymark-error {
+.joe-message.joe-error {
   color: red;
   border-color: red;
 }
@@ -176,55 +176,55 @@ div.waymark-accordion-container .waymark-accordion-group .waymark-parameter-grou
  * =============== META ===============
  * ====================================
  */
-.waymark-map-meta {
+.joe-map-meta {
   font-size: 0.85em;
 }
-.waymark-map-meta .waymark-map-meta-ungrouped {
+.joe-map-meta .joe-map-meta-ungrouped {
   margin-bottom: 15px;
 }
-.waymark-map-meta .waymark-meta-item {
+.joe-map-meta .joe-meta-item {
   padding: 15px;
   border-bottom: 1px solid #ddd;
 }
-.waymark-map-meta .waymark-meta-item:last-child {
+.joe-map-meta .joe-meta-item:last-child {
   border-bottom: 0;
 }
-.waymark-map-meta .waymark-meta-item:nth-child(even) {
+.joe-map-meta .joe-meta-item:nth-child(even) {
   background-color: #fafafa;
 }
-.waymark-map-meta .waymark-meta-item .waymark-meta-title {
+.joe-map-meta .joe-meta-item .joe-meta-title {
   margin-bottom: 5px;
   font-weight: bold;
 }
-.waymark-map-meta .waymark-meta-item .waymark-meta-content {
+.joe-map-meta .joe-meta-item .joe-meta-content {
   font-weight: normal;
 }
-.waymark-map-meta .waymark-meta-item .waymark-meta-info {
+.joe-map-meta .joe-meta-item .joe-meta-info {
   float: right;
 }
-.waymark-map-meta .waymark-meta-item.waymark-meta-map_thumbnail {
+.joe-map-meta .joe-meta-item.joe-meta-map_thumbnail {
   padding: 0;
 }
-.waymark-map-meta .waymark-meta-item.waymark-meta-map_thumbnail .waymark-map-thumbnail {
+.joe-map-meta .joe-meta-item.joe-meta-map_thumbnail .joe-map-thumbnail {
   max-width: 100%;
   height: unset;
 }
 /* Phone */
 @media only screen and (min-width: 768px) {
-  .single-waymark_map .waymark-map-meta .waymark-meta-item {
+  .single-waymark_map .joe-map-meta .joe-meta-item {
     padding: 15px;
     border-bottom: none;
   }
-  .single-waymark_map .waymark-map-meta .waymark-meta-item.waymark-meta-map_thumbnail {
+  .single-waymark_map .joe-map-meta .joe-meta-item.joe-meta-map_thumbnail {
     width: 50%;
     float: right;
   }
-  .single-waymark_map .waymark-map-meta.waymark-meta-count-1 .waymark-meta-map_thumbnail {
+  .single-waymark_map .joe-map-meta.joe-meta-count-1 .joe-meta-map_thumbnail {
     width: 100% !important;
     float: unset !important;
   }
 }
-.waymark-info-description .waymark-description-link {
+.joe-info-description .joe-description-link {
   padding-top: 10px;
   margin-top: 10px;
   border-top: 1px solid #999;

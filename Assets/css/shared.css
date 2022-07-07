@@ -3,12 +3,12 @@
  * ============= UTILITY ==============
  * ====================================
  */
-.waymark-self-clear:after {
+.joe-self-clear:after {
   content: "";
   display: table;
   clear: both;
 }
-.waymark-code {
+.joe-code {
   display: inline-block;
   margin: 0 3px;
   padding: 3px;
@@ -37,7 +37,7 @@ a.joe-tooltip {
   border: 1px solid #DDDDDD;
   border-radius: 50%;
 }
-a.joe-tooltip.waymark-link {
+a.joe-tooltip.joe-link {
   cursor: pointer !important;
 }
 p#joe-tooltip-active {
@@ -56,19 +56,19 @@ p#joe-tooltip-active {
  * ============ PARAMETERS ============
  * ====================================
  */
-div.waymark-accordion-container {
+div.joe-accordion-container {
   padding-top: 2%;
   padding-bottom: 2%;
 }
-div.waymark-accordion-container .waymark-accordion-group {
+div.joe-accordion-container .joe-accordion-group {
   width: 100%;
   margin: 0 ;
   margin-bottom: 10px;
 }
-div.waymark-accordion-container .waymark-accordion-group.waymark-first {
+div.joe-accordion-container .joe-accordion-group.joe-first {
   margin-top: 15px;
 }
-div.waymark-accordion-container .waymark-accordion-group legend {
+div.joe-accordion-container .joe-accordion-group legend {
   display: block;
   padding: 10px;
   width: -webkit-fill-available;
@@ -79,14 +79,14 @@ div.waymark-accordion-container .waymark-accordion-group legend {
   border-radius: 5px;
   cursor: pointer;
 }
-div.waymark-accordion-container .waymark-accordion-group legend span {
+div.joe-accordion-container .joe-accordion-group legend span {
   float: right;
   opacity: 0.7;
 }
-div.waymark-accordion-container .waymark-accordion-group .waymark-accordion-group-content {
+div.joe-accordion-container .joe-accordion-group .joe-accordion-group-content {
   padding: 0 10px;
 }
-div.waymark-accordion-container .waymark-accordion-group .waymark-parameter-group-description {
+div.joe-accordion-container .joe-accordion-group .joe-parameter-group-description {
   margin: 5px 0 15px 0;
   font-size: 1.15em;
 }

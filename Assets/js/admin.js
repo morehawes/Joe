@@ -1,3 +1,129 @@
+//Tooltips
+function joe_setup_parameter_tooltips() {
+	jQuery('a.joe-tooltip').on({
+    mouseenter: function(e) {
+		  var title = jQuery(this).data('title');
+		  jQuery('<p id="joe-tooltip-active"></p>').text(title).appendTo('body').fadeIn('slow');
+    },
+    mouseleave: function(e) {
+		  jQuery('#joe-tooltip-active').remove();
+    },
+    mousemove: function(e) {
+			if(joe_is_touch_device()) {
+			  var mousex = e.pageX - 250;			
+			} else {
+			  var mousex = e.pageX - 220;				
+			}
+
+		  var mousey = e.pageY + 5;
+		  jQuery('#joe-tooltip-active').css({ top: mousey, left: mousex });
+    }	
+	});
+}
+
+//Touch device?	
+//Thanks https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript/4819886#4819886
+function joe_is_touch_device() {
+  var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+  var mq = function(media_qry) {
+    return window.matchMedia(media_qry).matches;
+  }
+
+  if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+    return true;
+  }
+
+  // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+  // https://git.io/vznFH
+  var media_qry = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+  return mq(media_qry);
+}
+
+function joe_setup_accordions() {
+	var accordion_container = jQuery('.joe-accordion-container');
+	
+	if(! accordion_container.length) {
+		return;
+	}
+	
+	accordion_container.addClass('joe-self-clear');
+	
+	//For each accordion
+	accordion_container.each(function() {
+	  //Hide all but first initially
+	  var group_index = 0;
+		
+		//Each group
+	  jQuery('.joe-accordion-group', jQuery(this)).each(function() {
+	  	var group = jQuery(this);
+	  	
+	  	group.addClass('joe-self-clear');
+	  	group.data('joe-index', group_index);
+			
+			var group_content = jQuery('.joe-accordion-group-content', group);
+			
+			//Show first
+		  if(group_index == 0) {	  	
+		  	group.addClass('joe-first joe-active');
+		  	
+			  group_content.show().addClass(group_index);
+			//Hide others
+			} else {
+			  group_content.hide().addClass(group_index);
+		  }
+			
+			//Each legend
+			jQuery('legend', jQuery(this)).each(function() {
+				//Append text to legend (if not already exists)
+				var legend_html = jQuery(this).html();			
+				if(legend_html.indexOf('[+]') == -1 && legend_html.indexOf('[-]') == -1) {
+					var text = (group_index == 0) ? '[-]' : '[+]';
+					jQuery(this).html(legend_html + ' <span>' + text + '</span>');			
+				}
+				
+				//Slide
+				jQuery(this).click(function() { 	
+					var clicked_group_index = jQuery(this).parents('.joe-accordion-group').data('joe-index');
+
+					//For each parameter group
+					jQuery('.joe-accordion-group', jQuery(this).parents('.joe-accordion-container')).each(function() {
+						//If this was clicked
+						if(jQuery(this).data('joe-index') == clicked_group_index) {
+							var legend = jQuery('legend', jQuery(this));
+
+							//Is it active?
+							if(jQuery(this).hasClass('joe-active')) {
+								legend.html(legend.html().replace('[-]', '[+]'));			
+
+								jQuery(this).removeClass('joe-active');								
+
+								jQuery('.joe-accordion-group-content', jQuery(this)).slideUp();		  															
+							//Not active (yet)
+							} else {
+								legend.html(legend.html().replace('[+]', '[-]'));			
+
+								jQuery(this).addClass('joe-active');
+
+								jQuery('.joe-accordion-group-content', jQuery(this)).slideDown();		  										
+							}							
+						//Hide others
+						} else {
+							jQuery(this).removeClass('joe-active');								
+
+							var legend = jQuery('legend', jQuery(this));
+							legend.html(legend.html().replace('[-]', '[+]'));			
+
+							jQuery('.joe-accordion-group-content', jQuery(this)).slideUp();		  							
+						}
+					})
+				});				
+			});
+		  
+		  group_index++;
+	  });		
+	});
+}
+
 function joe_setup_repeatable_settings() {	
 	//Each container
 	jQuery('.joe-settings-tab .joe-repeatable').each(function() {
@@ -311,6 +437,9 @@ function joe_admin_message(text = null, type = 'info', container_selector = '#wp
 }
 
 jQuery(document).ready(function() {
+	joe_setup_parameter_tooltips();
+	joe_setup_accordions();	
+
 	joe_setup_settings_nav();
 	joe_setup_repeatable_settings();
 	joe_setup_dropdowns();
