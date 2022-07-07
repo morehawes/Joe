@@ -14,6 +14,10 @@ class Joe_Helper {
 		return Joe_Config::get_item('site_url') . $url_path;
 	}
 
+	static public function plugin_url($file_path = '') {	
+		return plugin_dir_url('') . Joe_Config::get_item('plugin_slug') . '/' . $file_path;
+	}
+
 	static public function asset_url($file_path = '') {	
 		return plugin_dir_url('') . Joe_Config::get_item('plugin_slug') . '/assets/' . $file_path;
 	}
