@@ -400,6 +400,34 @@ body.wp-admin div.joe-settings-tab .joe-settings-tab-description {
 body.wp-admin div.joe-settings-tab .joe-settings-tab-description h2 {
   display: none;
 }
+body.wp-admin div.joe-settings-tab table.form-table tr.joe-align-top th {
+  vertical-align: top;
+}
+body.wp-admin div.joe-settings-tab table.form-table tr th {
+  padding: 10px 20px;
+  width: 160px;
+  vertical-align: middle;
+}
+body.wp-admin div.joe-settings-tab table.form-table tr td {
+  padding: 0;
+}
+body.wp-admin div.joe-settings-tab table.form-table tr td select,
+body.wp-admin div.joe-settings-tab table.form-table tr td input[type="file"],
+body.wp-admin div.joe-settings-tab table.form-table tr td input[type="text"] {
+  width: 200px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #DDDDDD;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+}
+body.wp-admin div.joe-settings-tab table.form-table tr td .joe-short-input select,
+body.wp-admin div.joe-settings-tab table.form-table tr td .joe-short-input input[type="file"],
+body.wp-admin div.joe-settings-tab table.form-table tr td .joe-short-input input[type="text"] {
+  width: 100px;
+}
+body.wp-admin div.joe-settings-tab table.form-table tr td .joe-controls .joe-tooltip {
+  margin-top: 2px;
+}
 body.wp-admin div.joe-settings-tab .joe-repeatable .form-table {
   position: relative;
   margin-bottom: 30px;
@@ -410,34 +438,6 @@ body.wp-admin div.joe-settings-tab .joe-repeatable .form-table:hover div.joe-del
 }
 body.wp-admin div.joe-settings-tab .joe-repeatable .form-table.ui-sortable-handle {
   cursor: move;
-}
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr.joe-align-top th {
-  vertical-align: top;
-}
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr th {
-  padding: 10px 20px;
-  width: 160px;
-  vertical-align: middle;
-}
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td {
-  padding: 0;
-}
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td select,
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td input[type="file"],
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td input[type="text"] {
-  width: 200px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #DDDDDD;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
-}
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td .joe-short-input select,
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td .joe-short-input input[type="file"],
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td .joe-short-input input[type="text"] {
-  width: 100px;
-}
-body.wp-admin div.joe-settings-tab .joe-repeatable .form-table tr td .joe-controls .joe-tooltip {
-  margin-top: 2px;
 }
 body.wp-admin div.joe-settings-tab .joe-repeatable button.joe-add {
   display: block;
