@@ -239,27 +239,13 @@ function joe_setup_repeatable_settings() {
 						if(input.get(0).nodeName != 'SELECT') {
 							input.val('');						
 						}
-
-						switch(input.data('id')) {
-							case 'line_colour' :
-							case 'shape_colour' :
-							case 'icon_colour' :
-							case 'marker_colour' :
-								input.wpColorPicker();
-								
-								break;
-
-							case 'meta_options' :
-								input.parents('tr').hide();
-								
-								break;
-						}
-
-						
 					});
 					
 					jQuery(this).before(clone);
+
 					joe_setup_parameter_tooltips();
+					joe_setup_colour_pickers();
+
 // 					waymark_setup_select_meta_type();
 // 					waymark_setup_select_icon_type();
 					
@@ -436,6 +422,10 @@ function joe_admin_message(text = null, type = 'info', container_selector = '#wp
 	}
 }
 
+function joe_setup_colour_pickers() {
+	jQuery('.joe-colour-picker .joe-input').wpColorPicker();	
+}
+
 jQuery(document).ready(function() {
 	joe_setup_parameter_tooltips();
 	joe_setup_accordions();	
@@ -443,4 +433,5 @@ jQuery(document).ready(function() {
 	joe_setup_settings_nav();
 	joe_setup_repeatable_settings();
 	joe_setup_dropdowns();
+	joe_setup_colour_pickers();
 });
