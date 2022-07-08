@@ -59,6 +59,11 @@ class Joe_Settings {
 				//For each field in section
 				if(is_array($section_data['fields']) && sizeof($section_data['fields'])) {
 					foreach($section_data['fields'] as $field) {
+						//Use ID for Name (if absent)
+						if(! array_key_exists('name', $field)) {
+							$field['name'] = $field['id'];
+						}
+		
 						//Get set_value
 						if(array_key_exists($tab_key, $this->current_settings) && array_key_exists($section_key, $this->current_settings[$tab_key])) {
 							if(array_key_exists($field['name'], $this->current_settings[$tab_key][$section_key])) {
@@ -131,6 +136,11 @@ class Joe_Settings {
 // 				$style = ' style="display:none;"';
 // 			}
 			echo '	<div class="' . Joe_Helper::css_prefix() . 'settings-tab ' . Joe_Helper::css_prefix() . 'settings-tab-' . $tab_key . '"' . $style . '>' . "\n";
+
+			//Tab title?
+			if(array_key_exists('name', $tab_data)) {
+				echo '	<h2 class="' . Joe_Helper::css_prefix() . 'settings-tab-title">' . $tab_data['name'] . '</h2>' . "\n";
+			}
 
 			//Tab description?
 			if(array_key_exists('description', $tab_data)) {
@@ -240,6 +250,10 @@ class Joe_Settings {
 	}	
 
 	public function settings_nav($current = 'tiles') {
+		if(! sizeof($this->settings_nav)) {
+			return;
+		}
+		
 		echo '<div id="' . Joe_Helper::css_prefix() . 'settings-nav" data-init_tab_key="' . $current . '">' . "\n";
 		echo '	<select>' . "\n";
 

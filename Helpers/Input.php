@@ -11,10 +11,8 @@ class Joe_Input {
 			$field['id'] = substr(md5(rand(0,999999)), 0, 5);
 		}
 
-		$out = "\n" . '<!-- START ' . $field['id'] . ' Input -->' . "\n";
-
 		//Use ID for Name (if absent)
-		if(array_key_exists('id', $field) && (! array_key_exists('name', $field))) {
+		if(! array_key_exists('name', $field)) {
 			$field['name'] = $field['id'];
 		}
 
@@ -39,6 +37,9 @@ class Joe_Input {
 				);
 			}
 		}		
+		
+		//Start output
+		$out = "\n" . '<!-- START ' . $field['id'] . ' Input -->' . "\n";
 		
 		//Add class?
 		$add_class = (array_key_exists('class', $field)) ? ' ' . $field['class'] : '';
