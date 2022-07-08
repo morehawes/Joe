@@ -22,9 +22,9 @@ class Joe_Helper {
 		return plugin_dir_url('') . Joe_Config::get_item('plugin_slug') . '/assets/' . $file_path;
 	}
 	
-	static public function http_url($data = array()) {
-		return trim(add_query_arg(array_merge(array('waymark_http' => '1'), $data), home_url('/')), '/');
-	}
+// 	static public function http_url($data = array()) {
+// 		return trim(add_query_arg(array_merge(array('waymark_http' => '1'), $data), home_url('/')), '/');
+// 	}
 
 	static public function plugin_name($short = false) {
 		if(! $short) {

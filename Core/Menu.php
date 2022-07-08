@@ -51,7 +51,7 @@ class Joe_Menu {
 	function modify_menu() {
     global $menu, $submenu;   
 
-		//Waymark menu
+		//Joe menu
 		foreach($menu  as &$m) {
 			if($m[2] == Joe_Config::get_item('menu_slug')) {
 				if(! isset($m[4])) {
@@ -64,7 +64,7 @@ class Joe_Menu {
 			}
 		}
 		
-		//Waymark sub menu
+		//Joe sub menu
 		if(array_key_exists(Joe_Config::get_item('menu_slug'), $submenu)) {	
 			foreach($submenu[Joe_Config::get_item('menu_slug')] as &$sub) {
 				if(! isset($sub[4])) {

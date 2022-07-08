@@ -491,7 +491,7 @@ class Joe_Input {
 			$file_mime = mime_content_type($file['tmp_name']);
 			
 			//Is allowed file
-			if(Waymark_Helper::allowable_file($file_ext, $file_mime)) {
+			if(self::allowable_file($file_ext, $file_mime)) {
 				$response = array_merge($response, array(
 					'file_type' => $file_ext,
 					'file_mime' => $file_mime,
@@ -508,6 +508,29 @@ class Joe_Input {
 		
 		return $response;
 	}	
+
+	public static function allowable_file($ext = '', $mime = '', $file_image = 'file') {
+		$allowable_mimes = Joe_Config::get_item('mimes', $file_image);
+		
+		//Valid extension
+		if(array_key_exists($ext, $allowable_mimes)) {
+			if($mime === false) {
+				return true;
+			}
+			
+			//Check MIME
+			//Single
+			if(is_string($allowable_mimes[$ext])) {
+				return $mime == $allowable_mimes[$ext];
+			//Multiple
+			} elseif(is_array($allowable_mimes[$ext])) {
+				return in_array($mime, $allowable_mimes[$ext]);
+			}
+		}
+		
+		return false;
+	}	
+	
 
 //		add_filter('wp_check_filetype_and_ext', array($this, 'wp_check_filetype_and_ext'), 10, 4);				
 // 	function wp_check_filetype_and_ext( $check, $file, $filename, $mimes ) {

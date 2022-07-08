@@ -34,11 +34,11 @@ class Joe_Admin {
 				'multi_value_seperator' => Joe_Config::get_item('multi_value_seperator'),			
 				'lang' => [
 					//Editor
-					'repeatable_delete_title' => esc_attr__('Remove!', 'waymark'),
-					'error_message_prefix' => Joe_Config::get_name() . ' ' . esc_attr__('Error', 'waymark'),	
-					'info_message_prefix' => Joe_Config::get_name() . ' ' . esc_attr__('Info', 'waymark'),
-					'success_message_prefix' => Joe_Config::get_name() . ' ' . esc_attr__('Success', 'waymark'),
-					'warning_message_prefix' => Joe_Config::get_name() . ' ' . esc_attr__('Warning', 'waymark')
+					'repeatable_delete_title' => esc_attr__('Remove!', Joe_Config::get_item('plugin_text_domain')),
+					'error_message_prefix' => Joe_Config::get_name() . ' ' . esc_attr__('Error', Joe_Config::get_item('plugin_text_domain')),	
+					'info_message_prefix' => Joe_Config::get_name() . ' ' . esc_attr__('Info', Joe_Config::get_item('plugin_text_domain')),
+					'success_message_prefix' => Joe_Config::get_name() . ' ' . esc_attr__('Success', Joe_Config::get_item('plugin_text_domain')),
+					'warning_message_prefix' => Joe_Config::get_name() . ' ' . esc_attr__('Warning', Joe_Config::get_item('plugin_text_domain'))
 				]						
 			]
 		]);				
