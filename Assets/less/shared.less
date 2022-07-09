@@ -1,3 +1,6 @@
+@joe-grey-light: #f7f7f7;
+@joe-grey-dark: #ddd;
+
 /**
  * ====================================
  * ============= UTILITY ==============
@@ -15,8 +18,8 @@
 	padding: 3px;
 	font-size: 90%;
 	color: #999;
-	border: 1px solid #ddd;
-	background: #f7f7f7;
+	border: 1px solid @joe-grey-dark;
+	background: @joe-grey-light;
 }
 
 /**
@@ -37,7 +40,7 @@ a.joe-tooltip {
 	cursor: help !important;
 	background: #F9F9F9;
 	color: #444 !important;
-	border: 1px solid #DDDDDD;
+	border: 1px solid @joe-grey-dark;
 	border-radius: 50%;
 	&.joe-link {
 		cursor: pointer !important;
@@ -66,14 +69,14 @@ div.joe-accordion-container {
 // 	max-width: 494px;
 // 	.joe-parameters-tabs {
 // 		padding-left: 10px;
-// 		border-bottom: 1px solid #DDDDDD;
+// 		border-bottom: 1px solid @joe-grey-dark;
 // 		.joe-parameters-tab {
 // 			margin-right: 10px;
 // 			padding: 10px 15px;
 // 			display: inline-block;
 // 			font-weight: bold;			
 // 			font-size: 1.2em;			
-// 			border: 1px solid #DDDDDD;		
+// 			border: 1px solid @joe-grey-dark;		
 // 			background: #f1f1f1;				
 // 			border-bottom: none;
 // 			border-top-left-radius: 5px;			
@@ -101,7 +104,7 @@ div.joe-accordion-container {
 			width: -webkit-fill-available;
 			font-weight: bold;
 			font-size: 1.2em;
-			border: 1px solid #DDDDDD;
+			border: 1px solid @joe-grey-dark;
 			background: #f1f1f1;
 			border-radius: 5px;
 			cursor: pointer;
@@ -118,5 +121,28 @@ div.joe-accordion-container {
 			margin: 5px 0 15px 0;
 			font-size: 1.15em;
 		}		
+	}
+}
+
+/**
+ * ====================================
+ * ============ PARAMETERS ============
+ * ====================================
+ */
+table.joe-assoc_array {
+	tr {
+		&:nth-child(odd) {
+			background: @joe-grey-light;	
+		}
+		th, td {
+			padding: 5px 10px;
+		}
+		th {
+		
+		}
+		
+		td {
+
+		}
 	}
 }

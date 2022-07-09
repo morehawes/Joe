@@ -213,10 +213,10 @@ class Joe_Helper {
 			return false;
 		}
 
-		$table = '<table class="' . Joe_Helper::css_prefix() . '-assoc_array">';
+		$table = '<table class="' . Joe_Helper::css_prefix('assoc_array') . '">';
 					
 		foreach($assoc_array as $key => $value) {
-			$table .= '<tr class="' . Joe_Helper::css_prefix() . '-assoc_array-' . $key . '">';
+			$table .= '<tr class="' . Joe_Helper::css_prefix('assoc_array-' . $key) . '">';
 			$table .= '<th>' . $key . '</th>';
 			$table .= '<td>' . $value . '</td>';
 			$table .= '</tr>';

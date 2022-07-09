@@ -34,7 +34,7 @@ a.joe-tooltip {
   cursor: help !important;
   background: #F9F9F9;
   color: #444 !important;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #ddd;
   border-radius: 50%;
 }
 a.joe-tooltip.joe-link {
@@ -74,7 +74,7 @@ div.joe-accordion-container .joe-accordion-group legend {
   width: -webkit-fill-available;
   font-weight: bold;
   font-size: 1.2em;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #ddd;
   background: #f1f1f1;
   border-radius: 5px;
   cursor: pointer;
@@ -89,4 +89,16 @@ div.joe-accordion-container .joe-accordion-group .joe-accordion-group-content {
 div.joe-accordion-container .joe-accordion-group .joe-parameter-group-description {
   margin: 5px 0 15px 0;
   font-size: 1.15em;
+}
+/**
+ * ====================================
+ * ============ PARAMETERS ============
+ * ====================================
+ */
+table.joe-assoc_array tr:nth-child(odd) {
+  background: #f7f7f7;
+}
+table.joe-assoc_array tr th,
+table.joe-assoc_array tr td {
+  padding: 5px 10px;
 }
