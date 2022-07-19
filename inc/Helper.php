@@ -216,6 +216,8 @@ class Joe_Helper {
 		$table = '<table class="' . Joe_Helper::css_prefix('assoc_array') . '">';
 					
 		foreach($assoc_array as $key => $value) {
+			$key = Joe_Helper::make_key($key);
+		
 			$table .= '<tr class="' . Joe_Helper::css_prefix('assoc_array-' . $key) . '">';
 			$table .= '<th>' . $key . '</th>';
 			$table .= '<td>' . $value . '</td>';
