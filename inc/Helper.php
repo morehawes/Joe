@@ -216,9 +216,7 @@ class Joe_Helper {
 		$table = '<table class="' . Joe_Helper::css_prefix('assoc_array') . '">';
 					
 		foreach($assoc_array as $key => $value) {
-			$key = Joe_Helper::make_key($key);
-		
-			$table .= '<tr class="' . Joe_Helper::css_prefix('assoc_array-' . $key) . '">';
+			$table .= '<tr class="' . Joe_Helper::css_prefix('assoc_array-' . Joe_Helper::make_key($key)) . '">';
 			$table .= '<th>' . $key . '</th>';
 			$table .= '<td>' . $value . '</td>';
 			$table .= '</tr>';
@@ -227,5 +225,47 @@ class Joe_Helper {
 		$table .= '</table>';
 	
 		return $table;
+	}	
+	
+	static function time_ago($time = '0') {
+		$periods_singular = [
+			__('Second', Joe_Config::get_item('plugin_text_domain')),
+			__('Minute', Joe_Config::get_item('plugin_text_domain')),
+			__('Hour', Joe_Config::get_item('plugin_text_domain')),
+			__('Day', Joe_Config::get_item('plugin_text_domain')),
+			__('Week', Joe_Config::get_item('plugin_text_domain')),
+			__('Month', Joe_Config::get_item('plugin_text_domain')),
+			__('Year', Joe_Config::get_item('plugin_text_domain'))
+		];
+		
+		$periods_plural = [
+			__('Seconds', Joe_Config::get_item('plugin_text_domain')),
+			__('Minutes', Joe_Config::get_item('plugin_text_domain')),
+			__('Hours', Joe_Config::get_item('plugin_text_domain')),
+			__('Days', Joe_Config::get_item('plugin_text_domain')),
+			__('Weeks', Joe_Config::get_item('plugin_text_domain')),
+			__('Months', Joe_Config::get_item('plugin_text_domain')),
+			__('Years', Joe_Config::get_item('plugin_text_domain'))
+		];
+		
+		$lengths = array("60","60","24","7","4.35","12");
+	
+		$now = time();
+		$difference = $now - $time;
+		$tense = __('ago', Joe_Config::get_item('plugin_text_domain'));
+	
+		for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+			 $difference /= $lengths[$j];
+		}
+	
+		$difference = round($difference);
+	
+		if($difference == 1) {
+			$period = $periods_singular[$j];
+		} else {
+			$period = $periods_plural[$j];	   
+		}
+	
+		return "$difference $period $tense";
 	}	
 }
