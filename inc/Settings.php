@@ -67,7 +67,15 @@ class Joe_Settings {
 						//Get set_value
 						if(array_key_exists($tab_key, $this->current_settings) && array_key_exists($section_key, $this->current_settings[$tab_key])) {
 							if(array_key_exists($field['name'], $this->current_settings[$tab_key][$section_key])) {
-								$field['set_value'] = $this->current_settings[$tab_key][$section_key][$field['name']];
+								$setting_val = $this->current_settings[$tab_key][$section_key][$field['name']];
+								
+								//Check for empty
+								if(empty($setting_val) && isset($field['allow_empty']) && $field['allow_empty'] == false) {	
+									//Use fallback
+									$field['set_value'] = Joe_Config::get_setting($tab_key, $section_key, $field['name'], true);
+								} else {
+									$field['set_value'] = $setting_val;								
+								}
 							}
 						}
 						
@@ -102,9 +110,9 @@ class Joe_Settings {
 	public function admin_notices() {	
 		if(isset($_GET['settings-updated'])) {
 			//Settings updates
-			if($_GET['settings-updated'] == 'true') {
-				echo '<div class="' . Joe_Helper::css_prefix() . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Settings Updated', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
-			}
+// 			if($_GET['settings-updated'] == 'true') {
+// 				echo '<div class="' . Joe_Helper::css_prefix() . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Settings Updated', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
+// 			}
 
 //Action			
 // 			 elseif($_GET['settings-updated'] == 'joe_action') {
