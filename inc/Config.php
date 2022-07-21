@@ -2,6 +2,7 @@
 
 class Joe_Config {
 	//Set defaults
+	protected static $fallback = [];
 	protected static $default = [];
 	protected static $data = [
 		'plugin_slug' => 'joe',
@@ -18,7 +19,8 @@ class Joe_Config {
 		//Merge data provided
 		static::$data = array_merge(static::$data, $data_in);
 
-		//Keep a copy of the original values
+		//Keep copies of the original values
+		static::$fallback = static::$data;
 		static::$default = static::$data;
 
 		//Read config options from DB
@@ -101,9 +103,15 @@ class Joe_Config {
 		}	
 	}
 
-	public static function get_setting($tab, $group, $key) {
+	public static function get_setting($tab, $group, $key, $fallback_if_empty = true) {
 		if(array_key_exists($tab, static::$data) && array_key_exists($group, static::$data[$tab]) && array_key_exists($key, static::$data[$tab][$group])) {			
-			return static::$data[$tab][$group][$key];
+			$value = static::$data[$tab][$group][$key];
+			
+			if($fallback_if_empty && empty($value) && isset(static::$fallback[$tab][$group][$key])) {
+				return static::$fallback[$tab][$group][$key];
+			}
+			
+			return $value;
 		} else {
 			return false;
 		}	
