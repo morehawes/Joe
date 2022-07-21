@@ -68,6 +68,20 @@ class Joe_Input {
 		}
 	
 		//Tip
+		
+		//Auto-for required
+		if(isset($field['required']) && $field['required']) {	
+			if(in_array($field['type'], [ 'text', 'color'  ])) {
+				if(isset($field['tip'])) {
+					$field['tip'] .= ' ';
+				} else {
+					$field['tip'] = '';			
+				}
+
+				$field['tip'] .= __('Leave blank to restore the default.', Joe_Config::get_item('plugin_text_domain'));
+			}
+		}
+				
 		if(array_key_exists('tip', $field)) {
 			//Add missing periods
 			$last_char = $field['tip'][strlen($field['tip'])-1];
@@ -122,14 +136,12 @@ class Joe_Input {
 			}
 		}
 		
-		//Allow empty values?
-		if(isset($field['allow_empty']) && $field['allow_empty'] == false) {	
-			if(is_string($set_value) && empty($set_value)) {
-				$set_value = null;		
-
-				Joe_Helper::debug($field['name']);
-				Joe_Helper::debug($field['allow_empty']);
-
+		//Required!!!!!
+		if(isset($field['required']) && $field['required']) {	
+			//Empty
+			if(empty($set_value)) {
+				//Use default
+				$set_value = $field['default'];		
 			}
 		}
 		
@@ -251,8 +263,19 @@ class Joe_Input {
 				if(! in_array($field['type'], ['text', 'date', 'color', 'datetime-local'])) {
 					$field['type'] = 'text';
 				}
+
+				//Required?
+// 				$placeholder = (isset($field['default']) && $field['default']) ? ' placeholder="' . $field['default'] . '"' : '';
 				
-				$out .= '		<input type="' . $field['type'] . '" class="' . Joe_Helper::css_prefix() . 'input ' . Joe_Helper::css_prefix() . 'input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '"';
+				//Build Input		
+				$out .= '		<input'
+					. ' type="' . $field['type'] . '"'
+					. ' class="' . Joe_Helper::css_prefix('input') . ' ' . Joe_Helper::css_prefix('input-' . $field['id']) . '"'
+					. ' name="' . $field['name'] . '" data-id="' . $field['id'] . '"'
+// 					. $placeholder
+				;
+				
+				
 				//Do we have a value for this post?
 				if($set_value !== null) {
 					$out .= ' value="' . $set_value . '"';
@@ -285,34 +308,34 @@ class Joe_Input {
 		return $fields_grouped;	
 	}	
 
-	static function create_repeatable_parameter_groups($name = 'repeatable', $fields, $groups = [], $repeatable_data = []) {
-		$count = 0;
-
-		//Populate
-		$repeatable_parameter_groups = '';
-		if(sizeof($repeatable_data)) {
-			foreach($repeatable_data as $data) {
-				$repeatable_parameter_groups .= static::create_parameter_groups($fields, $groups, $data, $name . '[' . $count . '][%s]');			
-				
-				$count++;
-			}		
-		}		
-
-		$out = '<!-- START Repeatable Container -->' . "\n";
-		$out .= '<div class="' . Joe_Helper::css_prefix() . 'repeatable-container" data-count="' . $count . '">' . "\n";
-		
-		$out .= $repeatable_parameter_groups;
-
-		//Template
-		$out .= static::create_parameter_groups($fields, $groups, [], $name . '[__count__][%s]', '', Joe_Helper::css_prefix() . 'repeatable-template');			
-
-		$out .= '<button class="button ' . Joe_Helper::css_prefix() . 'repeatable-add" title="' . __('Add Query', Joe_Config::get_item('plugin_text_domain')) . '"><i class="ion ion-plus"></i></button>';
-
-		$out .= '</div>' . "\n";
-		$out .= '<!-- END Repeatable Container -->' . "\n";
-
-		return $out;
-	}
+// 	static function create_repeatable_parameter_groups($name = 'repeatable', $fields, $groups = [], $repeatable_data = []) {
+// 		$count = 0;
+// 
+// 		//Populate
+// 		$repeatable_parameter_groups = '';
+// 		if(sizeof($repeatable_data)) {
+// 			foreach($repeatable_data as $data) {
+// 				$repeatable_parameter_groups .= static::create_parameter_groups($fields, $groups, $data, $name . '[' . $count . '][%s]');			
+// 				
+// 				$count++;
+// 			}		
+// 		}		
+// 
+// 		$out = '<!-- START Repeatable Container -->' . "\n";
+// 		$out .= '<div class="' . Joe_Helper::css_prefix() . 'repeatable-container" data-count="' . $count . '">' . "\n";
+// 		
+// 		$out .= $repeatable_parameter_groups;
+// 
+// 		//Template
+// 		$out .= static::create_parameter_groups($fields, $groups, [], $name . '[__count__][%s]', '', Joe_Helper::css_prefix() . 'repeatable-template');			
+// 
+// 		$out .= '<button class="button ' . Joe_Helper::css_prefix() . 'repeatable-add" title="' . __('Add Query', Joe_Config::get_item('plugin_text_domain')) . '"><i class="ion ion-plus"></i></button>';
+// 
+// 		$out .= '</div>' . "\n";
+// 		$out .= '<!-- END Repeatable Container -->' . "\n";
+// 
+// 		return $out;
+// 	}
 
 	
 	static function create_parameter_groups($fields, $groups = array(), $data = array(), $input_name_format = null, $id = '', $class_append = '') {				

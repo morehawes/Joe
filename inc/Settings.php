@@ -75,7 +75,7 @@ class Joe_Settings {
 								$setting_val = $this->current_settings[$tab_key][$section_key][$field['name']];
 								
 								//Check for empty
-								if(empty($setting_val) && isset($field['allow_empty']) && $field['allow_empty'] == false) {	
+								if(empty($setting_val) && isset($field['required']) && $field['required']) {	
 									//Use fallback
 									$field['set_value'] = Joe_Config::get_setting($tab_key, $section_key, $field['name'], true);
 								} else {
