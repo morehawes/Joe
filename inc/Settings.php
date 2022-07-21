@@ -63,7 +63,12 @@ class Joe_Settings {
 				
 				//For each field in section
 				if(is_array($section_data['fields']) && sizeof($section_data['fields'])) {
-					foreach($section_data['fields'] as $field) {
+					foreach($section_data['fields'] as $field_id => $field) {
+						//Use index as default ID
+						if(! isset($field['id'])) {
+							$field['id'] = $field_id;
+						}
+						
 						//Use ID for Name (if absent)
 						if(! array_key_exists('name', $field)) {
 							$field['name'] = $field['id'];
