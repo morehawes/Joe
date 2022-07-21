@@ -137,12 +137,8 @@ class Joe_Input {
 		}
 		
 		//Required!!!!!
-		if(isset($field['required']) && $field['required']) {	
-			//Empty
-			if(empty($set_value)) {
-				//Use default
-				$set_value = $field['default'];		
-			}
+		if(empty($set_value) && isset($field['required']) && $field['required']) {	
+			$set_value = $field['required'];
 		}
 		
 		switch($field['type']) {
@@ -265,14 +261,14 @@ class Joe_Input {
 				}
 
 				//Required?
-// 				$placeholder = (isset($field['default']) && $field['default']) ? ' placeholder="' . $field['default'] . '"' : '';
+ 				$placeholder = (isset($field['required']) && $field['required']) ? ' placeholder="' . $field['required'] . '"' : '';
 				
 				//Build Input		
 				$out .= '		<input'
 					. ' type="' . $field['type'] . '"'
 					. ' class="' . Joe_Helper::css_prefix('input') . ' ' . Joe_Helper::css_prefix('input-' . $field['id']) . '"'
 					. ' name="' . $field['name'] . '" data-id="' . $field['id'] . '"'
-// 					. $placeholder
+ 					. $placeholder
 				;
 				
 				
