@@ -122,6 +122,17 @@ class Joe_Input {
 			}
 		}
 		
+		//Allow empty values?
+		if(isset($field['allow_empty']) && $field['allow_empty'] == false) {	
+			if(is_string($set_value) && empty($set_value)) {
+				$set_value = null;		
+
+				Joe_Helper::debug($field['name']);
+				Joe_Helper::debug($field['allow_empty']);
+
+			}
+		}
+		
 		switch($field['type']) {
 			case 'boolean' :
 			case 'select' :
@@ -237,7 +248,11 @@ class Joe_Input {
 				break;
 			case 'text' :
 			default :
-				$out .= '		<input class="' . Joe_Helper::css_prefix() . 'input ' . Joe_Helper::css_prefix() . 'input-' . $field['id'] . '" type="text" name="' . $field['name'] . '" data-id="' . $field['id'] . '"';
+				if(! in_array($field['type'], ['text', 'date', 'color', 'datetime-local'])) {
+					$field['type'] = 'text';
+				}
+				
+				$out .= '		<input type="' . $field['type'] . '" class="' . Joe_Helper::css_prefix() . 'input ' . Joe_Helper::css_prefix() . 'input-' . $field['id'] . '" name="' . $field['name'] . '" data-id="' . $field['id'] . '"';
 				//Do we have a value for this post?
 				if($set_value !== null) {
 					$out .= ' value="' . $set_value . '"';

@@ -110,9 +110,9 @@ class Joe_Settings {
 	public function admin_notices() {	
 		if(isset($_GET['settings-updated'])) {
 			//Settings updates
-			if($_GET['settings-updated'] == 'true') {
-				echo '<div class="' . Joe_Helper::css_prefix() . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Settings Updated', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
-			}
+// 			if($_GET['settings-updated'] == 'true') {
+// 				echo '<div class="' . Joe_Helper::css_prefix() . 'notice notice notice-success is-dismissible"><p>' . esc_html__('Settings Updated', Joe_Config::get_item('plugin_text_domain')) . '.</p></div>';				
+// 			}
 
 //Action			
 // 			 elseif($_GET['settings-updated'] == 'joe_action') {
