@@ -240,6 +240,11 @@ class Joe_Settings {
 					if(array_key_exists('fields', $section_data)) {
 						//For each field
 						foreach($section_data['fields'] as $field_key => $field_definition) {
+							//Name passed?
+							if(! isset($field_definition['name'])) {
+								$field_definition['name'] = $field_key;
+							}
+							
 							//If this field was submitted
 							if(isset($input_data[$tab_key][$section_key][$field_definition['name']])) {															
 								$value = $input_data[$tab_key][$section_key][$field_definition['name']];
