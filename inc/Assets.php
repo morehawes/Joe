@@ -56,7 +56,7 @@ class Joe_Assets {
 			if((! in_array($js[strlen($js)-1], array(';', "\n")) && (strpos($js, '//') === false))) {
 				$js .= ';';
 			}
-			static::$head['js']['inline'][] = $js;
+			static::$foot['js']['inline'][] = $js;
 		}
 	}
 
@@ -96,28 +96,12 @@ class Joe_Assets {
 		}
 
 		echo '</style>' . "\n";
-		echo '<!-- END ' . Joe_Config::get_name(true, true) . ' Head CSS -->' . "\n\n";			
-
-		if(! sizeof(static::$head['js']['inline'])) {
-			return;
-		}
-		
-		echo "\n" . '<!-- START ' . Joe_Config::get_name(true, true) . ' Head JS -->' . "\n";
-		echo '<script type="text/javascript">' . "\n";
-
-		echo '//' . Joe_Config::get_name(true, true) . ' v' . Joe_Config::get_version() . "\n";
-
-		//Lines
-		foreach(static::$head['js']['inline'] as $js) {
-			 echo $js;
-		}
-
-		echo '</script>' . "\n";
-		echo '<!-- END ' . Joe_Config::get_name(true, true) . ' Head JS -->' . "\n\n";			
+		echo '<!-- END ' . Joe_Config::get_name(true, true) . ' Head CSS -->' . "\n\n";				
 	}
 	
 	static function footer() {
-		if(! sizeof(static::$foot['js']['onready'])) {
+		//Something to output?
+		if(! (sizeof(static::$foot['js']['inline']) + sizeof(static::$foot['js']['onready']))) {
 			return;
 		}
 			
@@ -125,6 +109,11 @@ class Joe_Assets {
 		echo '<script type="text/javascript">' . "\n";
 
 		echo '	//' . Joe_Config::get_name(true, true) . ' v' . Joe_Config::get_version() . "\n";
+
+		//Inline
+		foreach(static::$foot['js']['inline'] as $js) {
+			 echo $js;
+		}
 		
 		//Calls
 		if(sizeof(static::$foot['js']['onready'])) {

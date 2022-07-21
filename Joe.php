@@ -39,5 +39,5 @@ spl_autoload_register(function($class_name) {
 // require_once('Core/Shortcode.php');
 
 add_action('admin_head', function($data) {
- 	Joe_Helper::debug(Joe_Config::get_data(), false);
+ 	Joe_Assets::js_inline('console.log("Joe v' . Joe_Config::get_version() . ' was here!");');
 });

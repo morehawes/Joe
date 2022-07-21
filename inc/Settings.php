@@ -7,6 +7,11 @@ class Joe_Settings {
 	public $settings_nav = [];
 
 	public function __construct() {
+		//Not front
+		if(! is_admin()) {
+			return;
+		}
+	
 		//Get current settings from DB
 		$current_settings = get_option(Joe_Config::get_item('settings_id'));
 		if(is_array($current_settings) && sizeof($current_settings)) {

@@ -26,8 +26,6 @@ class Joe_Config {
 		//Read config options from DB
 		$settings_data = get_option(static::get_item('settings_id'));
 
-// 		Joe_Helper::debug($settings_data, true);
-
 		//Add settings to config data
 		if(is_array($settings_data)) {
 			foreach($settings_data as $tab_key => $tab_data) {
@@ -38,6 +36,10 @@ class Joe_Config {
 				}
 			}	
 		}
+	}
+
+	public static function get_data() {	
+		return static::$data;
 	}
 
 	public static function set_item($key = null, $value) {
@@ -90,10 +92,6 @@ class Joe_Config {
 			return null;
 		}			
 	}
-
-	public static function get_data() {	
-		return static::$data;
-	}	
 
 	public static function get_default($tab, $group, $key) {	
 		if(array_key_exists($tab, static::$default) && array_key_exists($group, static::$default[$tab]) && array_key_exists($key, static::$default[$tab][$group])) {
@@ -150,26 +148,4 @@ class Joe_Config {
 	
 		return $settings;		
 	}
-
-	public static function convert_values_to_single_value($array_in) {
-		$array_out = array();
-		
-		if(! is_array($array_in)) {
-			return $array_out;
-		}
-					
-		foreach($array_in as $key => $value) {
-			//Single value
-			if(! is_array($value)) {
-				//Use that
-				$array_out[$key] = $value;
-			//Multiple values
-			} else {
-				//Single value, use that
-				$array_out[$key] = implode(static::get_item('multi_value_seperator'), $value);
-			}
-		}	
-		
-		return $array_out;
-	}	
 }
