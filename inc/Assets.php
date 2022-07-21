@@ -23,29 +23,29 @@ class Joe_Assets {
 	
 	static function init() {
 		//Front
-		add_action( 'wp_enqueue_scripts', [ self, 'enqueue_styles' ] );		
-		add_action( 'wp_enqueue_scripts', [ self, 'enqueue_scripts' ] );		
-		add_action( 'wp_head', [ self, 'head' ] );		
-		add_action( 'wp_footer', [ self, 'footer' ] );		
+		add_action( 'wp_enqueue_scripts', [ get_called_class(), 'enqueue_styles' ] );		
+		add_action( 'wp_enqueue_scripts', [ get_called_class(), 'enqueue_scripts' ] );		
+		add_action( 'wp_head', [ get_called_class(), 'head' ] );		
+		add_action( 'wp_footer', [ get_called_class(), 'footer' ] );		
 		
 		//Admin
-		add_action( 'admin_enqueue_scripts', [ self, 'enqueue_styles' ] );								
-		add_action( 'admin_enqueue_scripts', [ self, 'enqueue_scripts' ] );								
-		add_action( 'admin_head', [ self, 'head' ] );		
-		add_action( 'admin_footer', [ self, 'footer' ] );		
+		add_action( 'admin_enqueue_scripts', [ get_called_class(), 'enqueue_styles' ] );								
+		add_action( 'admin_enqueue_scripts', [ get_called_class(), 'enqueue_scripts' ] );								
+		add_action( 'admin_head', [ get_called_class(), 'head' ] );		
+		add_action( 'admin_footer', [ get_called_class(), 'footer' ] );		
 	}
 	
 	// CSS
 	
 	static function css_inline($css = '') {	
 		if($css) {
-			self::$head['css']['inline'][] = $css . "\n";
+			static::$head['css']['inline'][] = $css . "\n";
 		}
 	}
 
 	static function css_enqueue($url = '') {	
 		if($url) {
-			self::$head['css']['enqueue'][] = $url;
+			static::$head['css']['enqueue'][] = $url;
 		}
 	}
 	
@@ -56,13 +56,13 @@ class Joe_Assets {
 			if((! in_array($js[strlen($js)-1], array(';', "\n")) && (strpos($js, '//') === false))) {
 				$js .= ';';
 			}
-			self::$foot['js']['inline'][] = $js;
+			static::$foot['js']['inline'][] = $js;
 		}
 	}
 
 	static function js_onready($js = '') {	
 		if($js) {
-			self::$foot['js']['onready'][] = $js;
+			static::$foot['js']['onready'][] = $js;
 		}
 	}
 	
@@ -74,15 +74,15 @@ class Joe_Assets {
 			}
 
 			if($enqueue['in_footer']) {
-				self::$foot['js']['enqueue'][] = $enqueue;			
+				static::$foot['js']['enqueue'][] = $enqueue;			
 			} else {
-				self::$head['js']['enqueue'][] = $enqueue;			
+				static::$head['js']['enqueue'][] = $enqueue;			
 			}
 		}
 	}
 
 	static function head() {
-		if(! sizeof(self::$head['css']['inline']) && ! sizeof(self::$head['js']['inline'])) {
+		if(! sizeof(static::$head['css']['inline']) && ! sizeof(static::$head['js']['inline'])) {
 			return;
 		}
 	
@@ -91,21 +91,19 @@ class Joe_Assets {
 
 		echo '/* ' . Joe_Config::get_name(true, true) . ' v' . Joe_Config::get_version() . ' */' . "\n";
 
-		foreach(self::$head['css']['inline'] as $css) {
+		foreach(static::$head['css']['inline'] as $css) {
 			 echo $css;
 		}
 
 		echo '</style>' . "\n";
-		echo '<!-- END ' . Joe_Config::get_name(true, true) . ' Head CSS -->' . "\n\n";			
-
-		echo '</script>' . "\n";
-		echo '<!-- END ' . Joe_Config::get_name(true, true) . ' Head JS -->' . "\n\n";			
+		echo '<!-- END ' . Joe_Config::get_name(true, true) . ' Head CSS -->' . "\n\n";				
 	}
 	
 	static function footer() {
-// 		if(! sizeof(self::$foot['js']['inline']) + sizeof(self::$foot['js']['onready'])) {
-// 			return;
-// 		}
+		//Something to output?
+		if(! (sizeof(static::$foot['js']['inline']) + sizeof(static::$foot['js']['onready']))) {
+			return;
+		}
 			
 		echo "\n" . '<!-- START ' . Joe_Config::get_name(true, true) . ' Footer JS -->' . "\n";
 		echo '<script type="text/javascript">' . "\n";
@@ -113,14 +111,14 @@ class Joe_Assets {
 		echo '	//' . Joe_Config::get_name(true, true) . ' v' . Joe_Config::get_version() . "\n";
 
 		//Inline
-		foreach(self::$foot['js']['inline'] as $js) {
+		foreach(static::$foot['js']['inline'] as $js) {
 			 echo $js;
 		}
 		
 		//Calls
-		if(sizeof(self::$foot['js']['onready'])) {
+		if(sizeof(static::$foot['js']['onready'])) {
 			echo "\n" . 'jQuery(document).ready(function() {' . "\n";
-			foreach(self::$foot['js']['onready'] as $js) {
+			foreach(static::$foot['js']['onready'] as $js) {
 				echo "	" . $js . ";\n";
 			}		
 			echo '});' . "\n";
@@ -130,12 +128,12 @@ class Joe_Assets {
 	}	
 	
 	static function enqueue_styles() {
-		if(! sizeof(self::$head['css']['enqueue'])) {
+		if(! sizeof(static::$head['css']['enqueue'])) {
 			return;
 		}
 		
 		$count = 1;
-		foreach(self::$head['css']['enqueue'] as $url) {
+		foreach(static::$head['css']['enqueue'] as $url) {
 			$id = Joe_Helper::slug_prefix($count);
 			
 			wp_register_style($id, $url, [], Joe_Config::get_version());
@@ -148,8 +146,8 @@ class Joe_Assets {
 	static function enqueue_scripts() {
 
 		$enqueues = array_merge(
-			self::$foot['js']['enqueue'],
-			self::$head['js']['enqueue']
+			static::$foot['js']['enqueue'],
+			static::$head['js']['enqueue']
 		);
 		
 		if(! sizeof($enqueues)) {
@@ -193,3 +191,4 @@ class Joe_Assets {
 		}
 	}	
 }
+Joe_Assets::init();
