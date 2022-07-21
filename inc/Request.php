@@ -105,7 +105,7 @@ abstract class Joe_Request {
 			
 			//Only cache success
 			if(array_key_exists('status', $response_processed) && $response_processed['status'] == 'success') {
-				$cache_minutes = Joe_Config::get_setting('query', 'performance', 'cache_minutes');
+				$cache_minutes = Joe_Config::get_setting('inreach', 'advanced', 'cache_minutes');
 						
 				//Insert into cache
 				Joe_Cache::set_item($cache_id, $response_raw, $cache_minutes);			

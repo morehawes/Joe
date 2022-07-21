@@ -113,7 +113,7 @@ class Joe_Input {
 	 */			
 	static public function create_input($field, $set_value = null) {
 		$out = '';
-
+		
 		if(! array_key_exists('type', $field)) {
 			$field['type'] = 'text';
 		}
@@ -138,7 +138,10 @@ class Joe_Input {
 		
 		//Required!!!!!
 		if(empty($set_value) && isset($field['required']) && $field['required']) {	
-			$set_value = $field['required'];
+			if($field['required'] !== true) {
+				$set_value = $field['required'];			
+				$placeholder = $field['required'];			
+			}
 		}
 		
 		switch($field['type']) {
@@ -260,8 +263,10 @@ class Joe_Input {
 					$field['type'] = 'text';
 				}
 
-				//Required?
- 				$placeholder = (isset($field['required']) && $field['required']) ? ' placeholder="' . $field['required'] . '"' : '';
+				//Placeholder?
+				$placeholder = (isset($placeholder)) ? ' placeholder="' . $placeholder . '"' : '';
+				
+				$required = (isset($field['required']) && $field['required'] === true) ? ' required="required"' : '';
 				
 				//Build Input		
 				$out .= '		<input'
@@ -269,6 +274,7 @@ class Joe_Input {
 					. ' class="' . Joe_Helper::css_prefix('input') . ' ' . Joe_Helper::css_prefix('input-' . $field['id']) . '"'
 					. ' name="' . $field['name'] . '" data-id="' . $field['id'] . '"'
  					. $placeholder
+ 					. $required
 				;
 				
 				
