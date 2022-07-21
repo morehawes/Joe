@@ -101,6 +101,14 @@ class Joe_Config {
 		}	
 	}
 
+	public static function get_fallback($tab, $group, $key) {
+		if(array_key_exists($tab, static::$fallback) && array_key_exists($group, static::$fallback[$tab]) && array_key_exists($key, static::$fallback[$tab][$group])) {			
+			return static::$fallback[$tab][$group][$key];
+		} else {
+			return false;
+		}	
+	}
+
 	public static function get_setting($tab, $group, $key, $fallback_if_empty = true) {
 		if(array_key_exists($tab, static::$data) && array_key_exists($group, static::$data[$tab]) && array_key_exists($key, static::$data[$tab][$group])) {			
 			$value = static::$data[$tab][$group][$key];

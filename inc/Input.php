@@ -140,7 +140,6 @@ class Joe_Input {
 		if(empty($set_value) && isset($field['required']) && $field['required']) {	
 			if($field['required'] !== true) {
 				$set_value = $field['required'];			
-				$placeholder = $field['required'];			
 			}
 		}
 		
@@ -263,27 +262,23 @@ class Joe_Input {
 					$field['type'] = 'text';
 				}
 
-				//Placeholder?
-				$placeholder = (isset($placeholder)) ? ' placeholder="' . $placeholder . '"' : '';
-
 				//Class
 				$class = Joe_Helper::css_prefix('input') 
 					. ' ' . Joe_Helper::css_prefix('input-' . $field['id'])
 				;
-				
-				//Required?
-				if(isset($field['required']) && $field['required'] === true) {
-// 					$required = ' required="required"';
-					$class .= ' ' . Joe_Helper::css_prefix('required');
-				}
 				
 				//Build Input		
 				$out .= '		<input'
 					. ' type="' . $field['type'] . '"'
 					. ' class="' . $class . '"'
 					. ' name="' . $field['name'] . '" data-id="' . $field['id'] . '"'
- 					. $placeholder
 				;
+
+				//Placeholder
+				if(isset($field['required']) && $field['required'] !== true) {
+					//Placeholder?
+					$out .= ' placeholder="' . $field['required'] . '"';				
+				}
 				
 				
 				//Do we have a value for this post?

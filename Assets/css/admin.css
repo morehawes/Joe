@@ -182,6 +182,8 @@ div.joe-control-group .joe-controls select {
   width: 200px;
   border: 1px solid #ddd;
 }
+div.joe-control-group .joe-controls input[type="date"],
+div.joe-control-group .joe-controls input[type="datetime-local"],
 div.joe-control-group .joe-controls input[type="file"],
 div.joe-control-group .joe-controls input[type="text"] {
   padding: 2px 8px;
@@ -190,6 +192,10 @@ div.joe-control-group .joe-controls input[type="text"] {
 }
 div.joe-control-group .joe-controls input[type="file"] {
   font-size: 12px;
+}
+div.joe-control-group input[type="color"] {
+  width: 100px;
+  height: 32px;
 }
 div.joe-control-group.joe-short-input div.joe-controls select,
 div.joe-control-group.joe-short-input div.joe-controls input {
