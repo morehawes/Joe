@@ -265,16 +265,24 @@ class Joe_Input {
 
 				//Placeholder?
 				$placeholder = (isset($placeholder)) ? ' placeholder="' . $placeholder . '"' : '';
+
+				//Class
+				$class = Joe_Helper::css_prefix('input') 
+					. ' ' . Joe_Helper::css_prefix('input-' . $field['id'])
+				;
 				
-				$required = (isset($field['required']) && $field['required'] === true) ? ' required="required"' : '';
+				//Required?
+				if(isset($field['required']) && $field['required'] === true) {
+// 					$required = ' required="required"';
+					$class .= ' ' . Joe_Helper::css_prefix('required');
+				}
 				
 				//Build Input		
 				$out .= '		<input'
 					. ' type="' . $field['type'] . '"'
-					. ' class="' . Joe_Helper::css_prefix('input') . ' ' . Joe_Helper::css_prefix('input-' . $field['id']) . '"'
+					. ' class="' . $class . '"'
 					. ' name="' . $field['name'] . '" data-id="' . $field['id'] . '"'
  					. $placeholder
- 					. $required
 				;
 				
 				

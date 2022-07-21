@@ -169,6 +169,9 @@ div.joe-control-group .joe-control-label {
 div.joe-control-group .joe-controls {
   padding: 5px 0;
 }
+div.joe-control-group .joe-controls .joe-input.joe-error {
+  border: 1px solid red !important;
+}
 div.joe-control-group .joe-controls .joe-input.joe-disabled {
   opacity: 0.5;
 }
