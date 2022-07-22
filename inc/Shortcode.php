@@ -2,7 +2,7 @@
 	
 class Joe_Shortcode {
 	function __construct() {
-		if($shortcode = Joe_Config::get_item('shortcode')) {
+		if($shortcode = Joe_Config::get_item('plugin_shortcode')) {
 			add_shortcode($shortcode, [ $this, 'handle_shortcode' ] );		
 		}
 	}
