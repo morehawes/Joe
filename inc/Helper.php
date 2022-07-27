@@ -134,8 +134,14 @@ class Joe_Helper {
 		return Joe_Config::get_item('css_prefix') . $text;
 	}
 
-	public static function slug_prefix($text = '', $sep = '_')	{
-		return Joe_Config::get_item('plugin_slug') . $sep . $text;
+	public static function slug_prefix($text = '', $sep = '_', $hyphen = true)	{
+		$out = Joe_Config::get_item('plugin_slug') . $sep . $text;
+		
+		if(! $hyphen) {
+			$out = str_replace('-', '_', $out);
+		}
+		
+		return $out;
 	}
 
 	public static function array_string_to_array($string) {

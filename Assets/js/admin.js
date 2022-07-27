@@ -422,9 +422,9 @@ function joe_admin_message(text = null, type = 'info', container_selector = '#wp
 	}
 }
 
-// function joe_setup_colour_pickers() {
-// 	jQuery('.joe-colour-picker .joe-input').wpColorPicker();	
-// }
+function joe_setup_colour_pickers() {
+	jQuery('.joe-colour-picker .joe-input').wpColorPicker();	
+}
 
 jQuery(document).ready(function() {
 	joe_setup_parameter_tooltips();
@@ -433,5 +433,5 @@ jQuery(document).ready(function() {
 	joe_setup_settings_nav();
 	joe_setup_repeatable_settings();
 	joe_setup_dropdowns();
-// 	joe_setup_colour_pickers();
+	joe_setup_colour_pickers();
 });

@@ -133,10 +133,43 @@ class Joe_Assets {
 		}
 		
 		$count = 1;
-		foreach(static::$head['css']['enqueue'] as $url) {
+		foreach(static::$head['css']['enqueue'] as $enqueue) {
+			$deps = [];
+			
+			//URL
+			if(is_string($enqueue)) {
+				$url = $enqueue;
+			//Data
+			} elseif(is_array($enqueue) && isset($enqueue['url'])) {
+				$url = $enqueue['url'];
+				
+				//Deps
+				if(isset($enqueue['deps']) && sizeof($enqueue['deps'])) {
+					foreach($enqueue['deps'] as $dep) {
+						switch($dep) {
+							//Manually enqueue
+// 							case 'jquery-ui-datepicker' :
+// 								$id = Joe_Helper::slug_prefix($count);
+// 			
+// 								wp_register_style($id, Joe_Helper::plugin_url('Joe/Assets/css/jquery-ui.min.css'), $deps, Joe_Config::get_version());
+// 								wp_enqueue_style($id);
+// 								
+// 								$count++;
+// 															
+// 								break;
+							default :
+							
+								$deps[] = $dep;
+							
+								break;
+						}						
+					}
+				}
+			}
+			
 			$id = Joe_Helper::slug_prefix($count);
 			
-			wp_register_style($id, $url, [], Joe_Config::get_version());
+			wp_register_style($id, $url, $deps, Joe_Config::get_version());
 			wp_enqueue_style($id);
 			
 			$count++;			

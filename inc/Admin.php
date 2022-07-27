@@ -19,7 +19,12 @@ class Joe_Admin {
  		Joe_Assets::js_onready('jQuery("body").addClass("joe-admin");');						 		
  		
 		//Enqueue
-		Joe_Assets::css_enqueue(Joe_Helper::plugin_url('Joe/Assets/css/admin.min.css'));			
+		Joe_Assets::css_enqueue([
+			'url' => Joe_Helper::plugin_url('Joe/Assets/css/admin.min.css'),
+			'deps' => [
+// 				'jquery-ui-datepicker'			
+			]
+		]);			
 
 		Joe_Assets::js_enqueue([
 			'id' => 'joe_admin_js',
