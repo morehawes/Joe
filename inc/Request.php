@@ -89,7 +89,6 @@ abstract class Joe_Request {
 		$cache_id = 'Request_' . Joe_Cache::do_hash($request);
 
 		//Cached response	
-		//Don't use cache in debug mode
 		if($cached_response = Joe_Cache::get_item($cache_id)) {			
 			//Get raw response from cache
 			$response_raw = $cached_response;
