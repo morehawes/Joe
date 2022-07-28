@@ -20,7 +20,7 @@ class Joe_Log {
 
 	public static function in_error() {
 		if(static::$in_error === true) {
-			return static::$latest;
+			return static::latest();
 		}
 		
 		return false;
@@ -28,12 +28,23 @@ class Joe_Log {
 
 	public static function in_success() {
 		if(static::$in_success === true) {
-			return static::$latest;
+			return static::latest();
 		}
 		
 		return false;
 	}
-
+	
+	public static function latest($type = null) {
+		$out = [];
+		
+		if((! $type && is_array(static::$latest)) || is_array(static::$latest)) {
+			$out = static::$latest;
+		} elseif(is_array(static::$log[$type])) {
+			$out = static::$log[$type][sizeof($log[$type])-1];
+		}
+		
+		return $out;
+	}	
 	
 	public static function add($message = '', $type = 'log', $code = 'info') {	
 		//Flags
@@ -52,7 +63,7 @@ class Joe_Log {
 			'message' => $message
 		];
 
-		static::$log[$type][$code] = $item;
+		static::$log[$type][] = $item;
 		
 		static::$latest = $item;
 					
@@ -63,7 +74,27 @@ class Joe_Log {
 		return static::$count;
 	}
 	
-	public static function output($response_type = 'print_r') {
+	public static function render($response_type = 'print_r') {
 		return print_r(static::$log, true);
+	}
+
+	public static function render_item(array $item, $render_type = 'notice') {
+		if(empty($item) || ! isset($item['message']) || ! isset($item['type'])) {
+			return false;
+		}
+
+		switch($render_type) {
+			case 'console' :
+				Joe_Assets::js_inline('console.log("[' . Joe_Config::get_name() . ' ' . ucwords($item['type']) . '] ' . $item['message'] . '");');
+			
+				break;
+
+			default :
+			case 'notice' :
+				Joe_Assets::js_onready('joe_admin_message("' . $item['message'] . '", "' . $item['type'] . '")');
+			
+				break;
+
+		}
 	}
 }

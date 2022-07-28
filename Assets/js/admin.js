@@ -366,7 +366,7 @@ function joe_setup_settings_nav() {
 	select.trigger('change');
 }
 
-function joe_admin_message(text = null, type = 'info', container_selector = '#wpbody-content') {
+function joe_admin_message(text = null, type = 'info', container_selector = '#joe-admin-container .card') {
 	if(text) {
 		var prefix = '';
 		
@@ -394,10 +394,15 @@ function joe_admin_message(text = null, type = 'info', container_selector = '#wp
 		//Get container
 		var container = jQuery(container_selector).first();
 
+		//Fallback
+		if(! container.length) {
+			var container = jQuery('#wpbody-content').first();
+		}
+		
 		//Container exists
 		if(container.length) {
-			//Remove existing
-			jQuery('.joe-notice,.is-dismissible', container).each(function() {
+			//Remove *all* existing
+			jQuery('.notice').each(function() {
 				jQuery(this).remove();
 			});
 
