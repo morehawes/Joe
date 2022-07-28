@@ -326,6 +326,7 @@ body.wp-admin div#joe-admin-container .card .notice {
 }
 body.wp-admin div#joe-admin-container .card .notice.joe-notice {
   display: block;
+  margin-left: 0;
 }
 body.wp-admin div#joe-admin-container .card .lead {
   font-size: 1.2em;

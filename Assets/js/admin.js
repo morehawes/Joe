@@ -397,7 +397,7 @@ function joe_admin_message(text = null, type = 'info', container_selector = '#wp
 		//Container exists
 		if(container.length) {
 			//Remove existing
-			jQuery('.joe-notice', container).each(function() {
+			jQuery('.joe-notice,.is-dismissible', container).each(function() {
 				jQuery(this).remove();
 			});
 
