@@ -3,6 +3,7 @@
 class Joe_Log {
 
 	private static $log = [];
+	private static $by_type = [];
 	
 	private static $count = 0;
 	private static $latest = null;
@@ -12,8 +13,8 @@ class Joe_Log {
 	
 	public static function reset() {
 		static::$log = [];
+		static::$by_type = [];
 		static::$count = 0;
-		static::$latest = null;		
 		static::$in_error = false;		
 		static::$in_success = false;		
 	}	
@@ -37,10 +38,10 @@ class Joe_Log {
 	public static function latest($type = null) {
 		$out = [];
 		
-		if((! $type && is_array(static::$latest)) || is_array(static::$latest)) {
-			$out = static::$latest;
-		} elseif(is_array(static::$log[$type])) {
-			$out = static::$log[$type][sizeof($log[$type])-1];
+		if(! $type) {
+			$out = static::$log[sizeof(static::$log)-1];
+		} elseif(is_array(static::$by_type[$type]) && sizeof(static::$by_type[$type])) {
+			$out = static::$by_type[$type][sizeof(static::$by_type[$type])-1];
 		}
 		
 		return $out;
@@ -57,13 +58,14 @@ class Joe_Log {
 		}
 		
 		$item = [
-			'microtime' => microtime(),
+			'microtime' => time(),
 			'type' => $type,
 			'code' => $code,
 			'message' => $message
 		];
 
-		static::$log[$type][] = $item;
+		static::$log[] = $item;
+		static::$by_type[$type] = $item;
 		
 		static::$latest = $item;
 					
@@ -74,24 +76,28 @@ class Joe_Log {
 		return static::$count;
 	}
 	
-	public static function render($response_type = 'print_r') {
-		return print_r(static::$log, true);
+	public static function render($render_type = 'console') {
+		foreach(static::$log as $item) {
+			static::render_item($item, $render_type);
+		}
 	}
 
-	public static function render_item(array $item, $render_type = 'notice') {
+	public static function render_item(array $item, $render_type = 'console') {
 		if(empty($item) || ! isset($item['message']) || ! isset($item['type'])) {
 			return false;
 		}
+		
+		$code = isset($item['code']) ? '=' . $item['code'] : '';
 
 		switch($render_type) {
-			case 'console' :
-				Joe_Assets::js_inline('console.log("[' . Joe_Config::get_name() . ' ' . ucwords($item['type']) . '] ' . $item['message'] . '");');
+			case 'notice' :
+				Joe_Assets::js_onready('joe_admin_message("' . $item['message'] . '", "' . $item['type'] . '")');
 			
 				break;
 
 			default :
-			case 'notice' :
-				Joe_Assets::js_onready('joe_admin_message("' . $item['message'] . '", "' . $item['type'] . '")');
+			case 'console' :
+				Joe_Assets::js_inline('console.log("[' . Joe_Config::get_name() . ' ' . ucwords($item['type']) . $code . '] ' . $item['message'] . '");');
 			
 				break;
 
