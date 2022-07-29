@@ -15,6 +15,17 @@ class Joe_Settings {
 		//Joe Plugin
 		$this->add_setting_tab('joe', [
 			'sections' => [
+				'cache' => [		
+					'title' => esc_html__('Cache', Joe_Config::get_item('plugin_text_domain')),
+					'fields' => [
+						'minutes' => [
+							'required' => Joe_Config::get_fallback('joe', 'cache', 'minutes'),
+							'class' => 'joe-short-input',
+							'title' => esc_html__('Minutes', Joe_Config::get_item('plugin_text_domain')),
+							'tip' => esc_attr__('How often the Cache updates.', Joe_Config::get_item('plugin_text_domain'))
+						]						
+					],
+				],
 				'debug' => [		
 					'title' => esc_html__('Debug', Joe_Config::get_item('plugin_text_domain')),
 					'fields' => [
@@ -25,18 +36,7 @@ class Joe_Settings {
 							'tip' => esc_attr__('Display useful infomation to administrators (admin notices and browser console logging).', Joe_Config::get_item('plugin_text_domain'))
 						]						
 					]
-				],
-				'cache' => [		
-					'title' => esc_html__('Cache', Joe_Config::get_item('plugin_text_domain')),
-					'fields' => [
-						'minutes' => [
-							'required' => Joe_Config::get_fallback('joe', 'cache', 'minutes'),
-							'class' => 'joe-short-input',
-							'title' => esc_html__('Cache Minutes', Joe_Config::get_item('plugin_text_domain')),
-							'tip' => esc_attr__('How often the Cache updates.', Joe_Config::get_item('plugin_text_domain'))
-						]						
-					],
-				]
+				]				
 			]
 		]);
 	
