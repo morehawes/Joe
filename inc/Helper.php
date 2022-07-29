@@ -43,6 +43,10 @@ class Joe_Helper {
 	}	
 
 	static public function debug($thing, $die = false) {
+		if(!	Joe_Config::get_setting('joe', 'debug', 'enabled')) {
+			return;
+		}
+		
 		if(! $die) {			
 			echo '<textarea onclick="jQuery(this).hide()" style="background:rgba(255,255,255,.8);position:absolute;top:30px;right:0;width:400px;height:400px;padding:15px;z-index:+10000000"><pre>';
 		}
@@ -72,6 +76,11 @@ class Joe_Helper {
 		$str = preg_replace('/[^a-z0-9+_]+/i', '', $str);
 		
 		return $str;
+	}
+
+	static public function anchor_urls(string $text) {
+		//Thanks! https://stackoverflow.com/a/580163
+		return preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@', '<a href="$1">$1</a>', $text);
 	}
 
 	public static function convert_values_to_single_value($array_in) {
@@ -107,8 +116,7 @@ class Joe_Helper {
 				$count = 0;
 				foreach($multi as $m) {
 					$array_out[$count][$key] = $m;
-	//				Joe_Helper::debug($m, false);
-				
+
 					$count++;
 				}			
 			}	

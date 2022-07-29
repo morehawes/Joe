@@ -12,7 +12,15 @@ class Joe_Config {
 		'plugin_text_domain' => 'joe',
 		'css_prefix' => 'joe-',
 		'plugin_about' => '<img alt="Joe\'s mug" src="//www.josephhawes.co.uk/assets/images/Joe1BW.jpg" /><p class="joe-first"><b>Joe</b></p>',
- 		'multi_value_seperator' => '__multi__'
+ 		'multi_value_seperator' => '__multi__',
+ 		'joe' => [
+ 			'debug' => [
+ 				'enabled' => '0'
+ 			],
+ 			'cache' => [
+ 				'minutes' => '15'
+ 			] 			
+ 		]
 	];
 
 	public static function init($data_in = []) {
@@ -49,8 +57,6 @@ class Joe_Config {
 	}
 
 	public static function get_item($key, $key_2 = null, $is_repeatable = false) {	
-		//Joe_Helper::debug(static::$data);
-
 		if(array_key_exists($key, static::$data)) {
 			if(is_array(static::$data[$key]) && array_key_exists($key_2, static::$data[$key])) {
 				//Single value

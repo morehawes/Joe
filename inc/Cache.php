@@ -2,7 +2,10 @@
 
 class Joe_Cache {
 	
-	static function set_item($cache_id, $cache_content, $cache_minutes = 0) {
+	static function set_item($cache_id, string $cache_content, int $cache_minutes = 0) {
+		if(! $cache_minutes) {
+			$cache_minutes = (int) Joe_Config::get_setting('joe', 'cache', 'minutes');
+		}
 		$cache_seconds = $cache_minutes * 60;
 
 		set_transient(Joe_Helper::slug_prefix($cache_id, '_', false), $cache_content, $cache_seconds);						

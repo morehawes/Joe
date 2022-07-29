@@ -11,6 +11,34 @@ class Joe_Settings {
 		if(! is_admin()) {
 			return;
 		}
+		
+		//Joe Plugin
+		$this->add_setting_tab('joe', [
+			'sections' => [
+				'debug' => [		
+					'title' => esc_html__('Debug', Joe_Config::get_item('plugin_text_domain')),
+					'fields' => [
+						'enabled' => [
+							'required' => Joe_Config::get_fallback('joe', 'debug', 'enabled'),
+							'type' => 'boolean',
+							'title' => esc_html__('Enabled', Joe_Config::get_item('plugin_text_domain')),
+							'tip' => esc_attr__('Display useful infomation to administrators (admin notices and browser console logging).', Joe_Config::get_item('plugin_text_domain'))
+						]						
+					]
+				],
+				'cache' => [		
+					'title' => esc_html__('Cache', Joe_Config::get_item('plugin_text_domain')),
+					'fields' => [
+						'minutes' => [
+							'required' => Joe_Config::get_fallback('joe', 'cache', 'minutes'),
+							'class' => 'joe-short-input',
+							'title' => esc_html__('Cache Minutes', Joe_Config::get_item('plugin_text_domain')),
+							'tip' => esc_attr__('How often the Cache updates.', Joe_Config::get_item('plugin_text_domain'))
+						]						
+					],
+				]
+			]
+		]);
 	
 		//Get current settings from DB
 		$current_settings = get_option(Joe_Config::get_item('settings_id'));
@@ -29,6 +57,20 @@ class Joe_Settings {
     add_action( 'admin_notices', [ $this, 'admin_notices' ] );	
 
 		add_action( 'admin_menu', [ $this, 'admin_menu'] );				
+	}
+	
+	private function add_setting_tab(string $tab_key, array $tab_data) {
+		if(! $tab_key || ! $tab_data) {
+			return false;
+		}
+		
+		//Create
+		if(! array_key_exists($tab_key, $this->tabs)) {
+			$this->tabs[$tab_key] = $tab_data;		
+		//Merge
+		} else {
+			$this->tabs[$tab_key] = array_merge($this->tabs[$tab_key], $tab_data);		
+		}
 	}
 	
 	//Menu link

@@ -68,9 +68,7 @@ abstract class Joe_Request {
 		//%20, not + for spaces
 		//https://www.php.net/manual/en/function.http-build-query.php
 		$request .= http_build_query($params_in, '', null, PHP_QUERY_RFC3986);
-		
-		//Joe_Helper::debug($request);
-		
+
 		return $request;
 	}	
 
@@ -104,10 +102,8 @@ abstract class Joe_Request {
 			
 			//Only cache success
 			if(array_key_exists('status', $response_processed) && $response_processed['status'] == 'success') {
-// 				$cache_minutes = Joe_Config::get_setting('waymark', 'advanced', 'cache_minutes');
-						
 				//Insert into cache
-				Joe_Cache::set_item($cache_id, $response_raw, $cache_minutes);			
+				Joe_Cache::set_item($cache_id, $response_raw);			
 			}
 		}
 		
@@ -120,8 +116,7 @@ abstract class Joe_Request {
 	 * Run the request
 	 */
 	function perform_request($request) {
-
-// 		Joe_Helper::debug($request);
+		Joe_Log::add('Performing remote request: ' . $request, 'info');
 
 		return wp_remote_get($request);
 	}

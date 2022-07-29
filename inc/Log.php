@@ -21,6 +21,25 @@ class Joe_Log {
 		static::$in_error = false;		
 		static::$in_success = false;		
 	}	
+	
+	public static function out($content = '') {
+		switch(static::$output_type) {
+			case 'notice' :
+				$latest = Joe_Log::latest();
+				$type = isset($latest['type']) ? $latest['type'] : '';
+
+				Joe_Assets::js_onready('joe_admin_message("' . $content . '", "' . $type . '")');
+		
+				break;
+
+			default :
+			case 'console' :
+				Joe_Assets::js_inline('console.log("' . $content . '");');
+		
+				break;
+
+		}
+	}	
 
 	public static function set_output_type($type) {
 		static::$output_type = $type;
@@ -92,30 +111,23 @@ class Joe_Log {
 		return false;
 	}
 	
-	public static function out($content = '') {
-		switch(static::$output_type) {
-			case 'notice' :
-				$latest = Joe_Log::latest();
-				$type = isset($latest['type']) ? $latest['type'] : '';
-				
-				Joe_Assets::js_onready('joe_admin_message("' . $content . '", "' . $type . '")');
-		
-				break;
-
-			default :
-			case 'console' :
-				Joe_Assets::js_inline('console.log("' . $content . '");');
-		
-				break;
-
-		}
-	}
-	
 	public static function render() {
+		if(! sizeof(static::$log) || ! current_user_can('administrator')) {
+			return;
+		}
+	
 		$log_content = '';
 		
-		foreach(static::$log as $item) {
-			$log_content .= static::draw_item($item);
+		//Not debugging
+		if(! Joe_Config::get_setting('joe', 'debug', 'enabled') && $latest = Joe_Log::latest()) {
+			if(in_array($latest['type'], [ 'success', 'error' ])) {
+				$log_content .= static::draw_item($latest);
+			}		
+		//Everything
+		} else {
+			foreach(static::$log as $item) {
+				$log_content .= static::draw_item($item);
+			}		
 		}
 		
 		if($log_content) {
@@ -138,7 +150,7 @@ class Joe_Log {
 
 		switch(static::$output_type) {
 			case 'notice' :
-				return '<br /> &ndash; [' . ucwords($item['type']) . '] ' . $item['message'] . ' (' . $code . ')';
+				return '<br />[' . ucwords($item['type']) . '] ' . $item['message'] . ' (' . $code . ')';
 			default :
 			case 'console' :
 				if($code) {

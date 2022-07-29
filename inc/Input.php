@@ -137,10 +137,12 @@ class Joe_Input {
 		}
 		
 		//Required!!!!!
-		if(empty($set_value) && isset($field['required']) && $field['required']) {	
-			if($field['required'] !== true) {
-				$set_value = $field['required'];			
-			}
+		if(empty($set_value) && isset($field['required'])) {	
+			if($field['type'] == 'boolean') {
+				$set_value = $field['required'];					
+			} elseif($field['required'] !== true) {
+				$set_value = $field['required'];					
+			}		
 		}
 		
 		switch($field['type']) {
@@ -191,10 +193,7 @@ class Joe_Input {
 				if(isset($field['options'])) {
 					foreach($field['options'] as $value => $description) {
 						//Always use strings
-						$value = (string)$value;
-
-						//Joe_Helper::debug($set_value);
-					
+						$value = (string)$value;					
 						$out .= '			<option value="' . $value . '"';
 									
 						//Has this value already been set
@@ -347,8 +346,6 @@ class Joe_Input {
 		//Group
 		$fields = static::group_fields($fields, $groups);
 		
-// 		Joe_Helper::debug($fields);
-		
 		$out = '<!-- START Parameter Container -->' . "\n";
 		
 		$id = ($id) ? ' id="' . $id . '"' : '';
@@ -367,8 +364,6 @@ class Joe_Input {
 				$fields_reorder[''] = $fields[''];		
 			}
 			foreach($groups as $group_id => $group) {
-// 				Joe_Helper::debug($fields);
-
 				if(isset($fields[$group_id])) {
 					$fields_reorder[$group_id] = $fields[$group_id];					
 				}
@@ -461,8 +456,6 @@ class Joe_Input {
 			foreach($processes as $process) {
 				//Values stored in array
 				if(is_array($param_value)) {
-					//Joe_Helper::debug($param_value, false);
-
 					//Single Value
 					if(sizeof($param_value) == 1) {
 						//Make string
