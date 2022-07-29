@@ -366,15 +366,8 @@ function joe_setup_settings_nav() {
 	select.trigger('change');
 }
 
-function joe_admin_message(text = null, type = 'info', container_selector = '#joe-admin-container .card') {
-	if(text) {
-		var prefix = '';
-		
-		//Prefix available?
-		if(typeof joe_admin_js.lang[type + '_message_prefix'] !== 'undefined') {
-			prefix = joe_admin_js.lang[type + '_message_prefix'];		
-		}
-				
+function joe_admin_message(message = null, type = 'info', container_selector = '#joe-admin-container .card') {
+	if(message) {
 		switch(type) {
 // 			case 'error' :
 // 				
@@ -384,12 +377,6 @@ function joe_admin_message(text = null, type = 'info', container_selector = '#jo
 
 				break;			
 		}
-		
-		if(prefix) {
-			prefix = '<b>[' + prefix + ']</b> ';
-		}
-		
-		var message = prefix + text;
 
 		//Get container
 		var container = jQuery(container_selector).first();

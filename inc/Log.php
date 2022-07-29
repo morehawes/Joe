@@ -119,14 +119,18 @@ class Joe_Log {
 		$log_content = '';
 		
 		//Not debugging
-		if(! Joe_Config::get_setting('joe', 'debug', 'enabled') && $latest = Joe_Log::latest()) {
+		if(! Joe_Helper::do_debug() && $latest = Joe_Log::latest()) {
 			if(in_array($latest['type'], [ 'success', 'error' ])) {
 				$log_content .= static::draw_item($latest);
 			}		
 		//Everything
 		} else {
-			foreach(static::$log as $item) {
-				$log_content .= static::draw_item($item);
+			for($i = 0; $i < sizeof(static::$log); $i++) {
+				$log_content .= static::draw_item(static::$log[$i]);
+				
+				if($i < sizeof(static::$log)) {
+					$log_content .= '<br />';
+				}
 			}		
 		}
 		
@@ -149,8 +153,16 @@ class Joe_Log {
 		$code = isset($item['code']) ? $item['code'] : '';
 
 		switch(static::$output_type) {
+			case 'html' :
 			case 'notice' :
-				return '<br />[' . ucwords($item['type']) . '] ' . $item['message'] . ' (' . $code . ')';
+				$out = '<b>[' . ucwords($item['type']) . ']</b> ' . $item['message'];
+				
+				if(Joe_Helper::do_debug()) {
+					$out .= ' (' . $code . ')';
+				}
+				
+				return $out;
+				
 			default :
 			case 'console' :
 				if($code) {

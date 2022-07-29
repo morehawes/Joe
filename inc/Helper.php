@@ -42,8 +42,12 @@ class Joe_Helper {
 		return $out;
 	}	
 
+	static public function do_debug() {
+		return Joe_Config::get_setting('joe', 'debug', 'enabled')	 == 1;
+	}
+
 	static public function debug($thing, $die = false) {
-		if(!	Joe_Config::get_setting('joe', 'debug', 'enabled')) {
+		if(!	self::do_debug()) {
 			return;
 		}
 		
