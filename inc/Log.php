@@ -11,6 +11,8 @@ class Joe_Log {
 	private static $in_error = false;
 	private static $in_success = false;
 	
+	private static $output_type = 'console';
+	
 	public static function reset() {
 		static::$log = [];
 		static::$by_type = [];
@@ -18,6 +20,10 @@ class Joe_Log {
 		static::$in_error = false;		
 		static::$in_success = false;		
 	}	
+
+	public static function set_output_type($type) {
+		static::$output_type = $type;
+	}
 
 	public static function in_error() {
 		if(static::$in_error === true) {
@@ -76,31 +82,61 @@ class Joe_Log {
 		return static::$count;
 	}
 	
-	public static function render($render_type = 'console') {
-		foreach(static::$log as $item) {
-			static::render_item($item, $render_type);
-		}
-	}
-
-	public static function render_item(array $item, $render_type = 'console') {
-		if(empty($item) || ! isset($item['message']) || ! isset($item['type'])) {
-			return false;
-		}
-		
-		$code = isset($item['code']) ? '=' . $item['code'] : '';
-
-		switch($render_type) {
+	public static function out($content = '') {
+		switch(static::$output_type) {
 			case 'notice' :
-				Joe_Assets::js_onready('joe_admin_message("' . $item['message'] . '", "' . $item['type'] . '")');
-			
+				$latest = Joe_Log::latest();
+				$type = isset($latest['type']) ? $latest['type'] : '';
+				
+				Joe_Assets::js_onready('joe_admin_message("' . $content . '", "' . $type . '")');
+		
 				break;
 
 			default :
 			case 'console' :
-				Joe_Assets::js_inline('console.log("[' . Joe_Config::get_name() . ' ' . ucwords($item['type']) . $code . '] ' . $item['message'] . '");');
-			
+				Joe_Assets::js_inline('console.log("' . $content . '");');
+		
 				break;
 
 		}
 	}
+	
+	public static function render() {
+		$log_content = '';
+		
+		foreach(static::$log as $item) {
+			$log_content .= static::draw_item($item);
+		}
+		
+		if($log_content) {
+			static::out($log_content);		
+		}
+	}
+
+	public static function render_item(array $item) {
+		if($item_content = static::draw_item($item)) {
+			static::out($item_content);
+		}
+	}
+
+	public static function draw_item(array $item) {
+		if(empty($item) || ! isset($item['message']) || ! isset($item['type'])) {
+			return false;
+		}
+		
+		$code = isset($item['code']) ? $item['code'] : '';
+
+		switch(static::$output_type) {
+			case 'notice' :
+				return '<br /> &ndash; [' . ucwords($item['type']) . '] ' . $item['message'] . ' (' . $code . ')';
+			default :
+			case 'console' :
+				if($code) {
+					$code = '=' . $code;
+				}
+				return '[' . Joe_Config::get_name() . ' ' . ucwords($item['type']) . $code . '] ' . $item['message'] . '\n';
+		}
+		
+		return false;
+	}	
 }
