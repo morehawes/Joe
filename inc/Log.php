@@ -4,6 +4,7 @@ class Joe_Log {
 
 	private static $log = [];
 	private static $by_type = [];
+	private static $by_code = [];
 	
 	private static $count = 0;
 	private static $latest = null;
@@ -72,6 +73,7 @@ class Joe_Log {
 
 		static::$log[] = $item;
 		static::$by_type[$type] = $item;
+		static::$by_code[$code] = $item;
 		
 		static::$latest = $item;
 					
@@ -80,6 +82,14 @@ class Joe_Log {
 
 	public static function size() {
 		return static::$count;
+	}
+
+	public static function has(string $code) {
+		if(array_key_exists($code, static::$by_code)) {
+			return static::$by_code[$code];
+		}
+		
+		return false;
 	}
 	
 	public static function out($content = '') {
