@@ -34,7 +34,7 @@ class Joe_Log {
 
 			default :
 			case 'console' :
-				Joe_Assets::js_inline('console.log("' . $content . '");');
+				Joe_Assets::js_inline('console.log("' . strip_tags($content) . '");');
 		
 				break;
 
