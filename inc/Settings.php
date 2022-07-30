@@ -204,6 +204,9 @@ class Joe_Settings {
 		$active_content = (isset($_GET['content'])) ? $_GET['content'] : Joe_Config::get_item('settings_default_tab');
 		$this->settings_nav($active_content);
 
+		//Prepend?
+		echo apply_filters('joe_admin_before_form', '');
+
 		//Open form
 		echo '		<form action="' . admin_url('options.php') . '" method="post">' . "\n";
 		settings_fields(Joe_Config::get_item('settings_id'));
@@ -277,6 +280,9 @@ class Joe_Settings {
 
 		submit_button(null, 'primary large');
 		echo '		</form>' . "\n";
+		
+		//Append?
+		echo apply_filters('joe_admin_after_form', '');		
 		
 		echo '	</div>' . "\n";
 		echo '</div>' . "\n";
