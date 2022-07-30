@@ -26,6 +26,7 @@ class Joe_Settings {
 
 		//Add Menu link
 		add_action( 'admin_menu', [ $this, 'admin_menu'] );				
+		add_action( 'admin_init', [ $this, 'register_settings'] );				
 
 		//Only continue if we are on the Settings page
 		if($pagenow != $this->slug || ! isset($_GET['page']) || $_GET['page'] != $this->submenu_slug) {
@@ -73,7 +74,6 @@ class Joe_Settings {
 // 			}
 // 		}
 		
-		add_action( 'admin_init', [ $this, 'register_settings'] );				
     add_action( 'admin_notices', [ $this, 'admin_notices' ] );	
 		
 		return true;		
