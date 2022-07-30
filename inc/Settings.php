@@ -1,15 +1,35 @@
 <?php
 
 class Joe_Settings {
+
+	private $default_slug = 'options-general.php';
+	private $submenu_slug;
+	
 	protected $current_settings = [];
 	
 	public $tabs = [];	
 	public $settings_nav = [];
 
 	public function __construct() {
+		global $pagenow;
+		
 		//Not front
 		if(! is_admin()) {
-			return;
+			return false;
+		}
+		
+		//Determine page slug
+		if(! $this->slug = Joe_Config::get_item( 'settings_menu_slug' ) ) {
+			$this->slug = $this->default_slug;
+		}
+		$this->submenu_slug = Joe_Helper::slug_prefix('settings', '-');		
+
+		//Add Menu link
+		add_action( 'admin_menu', [ $this, 'admin_menu'] );				
+
+		//Only continue if we are on the Settings page
+		if($pagenow != $this->slug || ! isset($_GET['page']) || $_GET['page'] != $this->submenu_slug) {
+			return false;		
 		}
 		
 		//Joe Plugin
@@ -55,8 +75,8 @@ class Joe_Settings {
 		
 		add_action( 'admin_init', [ $this, 'register_settings'] );				
     add_action( 'admin_notices', [ $this, 'admin_notices' ] );	
-
-		add_action( 'admin_menu', [ $this, 'admin_menu'] );				
+		
+		return true;		
 	}
 	
 	private function add_setting_tab(string $tab_key, array $tab_data) {
@@ -75,14 +95,13 @@ class Joe_Settings {
 	
 	//Menu link
 	public function admin_menu() {
-		if( $slug = Joe_Config::get_item( 'settings_menu_slug' ) ) {
+		if($this->slug != $this->default_slug) {
 			$text = esc_html__('Settings', Joe_Config::get_item('plugin_text_domain'));		
 		} else {
-			$slug = 'options-general.php';
 			$text = Joe_Helper::plugin_name();						
 		}
 	
-		add_submenu_page($slug, $text, $text, 'manage_options', Joe_Helper::slug_prefix('settings', '-'), array($this, 'content_admin_page'));					    
+		add_submenu_page($this->slug, $text, $text, 'manage_options', $this->submenu_slug, array($this, 'content_admin_page'));					    
 	}
 
 	public function get_settings() {
@@ -204,7 +223,9 @@ class Joe_Settings {
 
 			//Tab description?
 			if(array_key_exists('description', $tab_data)) {
-				echo '	<div class="' . Joe_Helper::css_prefix() . 'settings-tab-description">' . $tab_data['description'] . '</div>' . "\n";
+				$tab_description = $tab_data['description'];
+				
+				echo '	<div class="' . Joe_Helper::css_prefix() . 'settings-tab-description">' . $tab_description . '</div>' . "\n";
 			}
 
 			//For each section
@@ -333,18 +354,4 @@ class Joe_Settings {
 		echo '	</select>' . "\n";
 		echo '</div>' . "\n";
 	}
-
-// 	public static function execute_action($action) {
-// 		switch($action) {
-// 			//Clear cache
-// 			case 'clear_cache' :
-// 				Joe_Cache::flush();
-// 				
-// 				break;
-// 		}
-// 		
-// 		wp_redirect(admin_url('admin.php?page=joe-settings&tab=advanced&settings-updated=joe_action'));
-// 
-// 		die;
-// 	}	
 }
