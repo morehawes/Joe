@@ -6,6 +6,8 @@ class Joe_Log {
 	private static $by_type = [];
 	private static $by_code = [];
 	
+	private static $data = [];
+	
 	private static $count = 0;
 	private static $latest = null;
 	
@@ -14,6 +16,7 @@ class Joe_Log {
 	
 	private static $output_type = 'console';
 	
+	//Resets the $log. $data persists.
 	public static function reset() {
 		static::$log = [];
 		static::$by_type = [];
@@ -40,6 +43,18 @@ class Joe_Log {
 
 		}
 	}	
+
+	public static function set_data(string $key, $value) {
+		static::$data[$key] = $value;
+	}
+
+	public static function get_data(string $key = '') {
+		if($key && array_key_exists($key, static::$data)) {
+			return static::$data[$key];
+		}
+		
+		return null;
+	}
 
 	public static function set_output_type($type) {
 		static::$output_type = $type;
