@@ -14,18 +14,22 @@ class Joe_Helper {
 		return Joe_Config::get_item('site_url') . $url_path;
 	}
 
-	static public function plugin_url($file_path = '') {	
-		return plugin_dir_url('') . Joe_Config::get_item('plugin_slug') . '/' . $file_path;
+	static public function plugin_url($file_path = '', $plugin_slug = '') {	
+		if(! $plugin_slug) {
+			$plugin_slug = Joe_Config::get_item('plugin_slug');
+		}
+		
+		return plugin_dir_url('') . $plugin_slug . '/' . $file_path;
 	}
 
-	static public function asset_url($file_path = '') {	
-		return plugin_dir_url('') . Joe_Config::get_item('plugin_slug') . '/assets/' . $file_path;
+	static public function asset_url($file_path = '', $plugin_slug = '') {	
+		if(! $plugin_slug) {
+			$plugin_slug = Joe_Config::get_item('plugin_slug');
+		}
+
+		return plugin_dir_url('') . $plugin_slug . '/assets/' . $file_path;
 	}
 	
-// 	static public function http_url($data = array()) {
-// 		return trim(add_query_arg(array_merge(array('waymark_http' => '1'), $data), home_url('/')), '/');
-// 	}
-
 	static public function plugin_name($short = false) {
 		if(! $short) {
 			return Joe_Config::get_item('plugin_name');
