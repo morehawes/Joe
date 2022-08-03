@@ -194,6 +194,11 @@ class Joe_Assets {
 				continue;
 			}
 			
+			//Don't cache when debugging
+			if(Joe_Helper::do_debug()) {
+				$enqueue['url'] = add_query_arg('no_cache', rand(0,99999999), $enqueue['url']);			
+			}
+			
 			//ID
 			if(! isset($enqueue['id']) || ! $enqueue['id']) {
 				$enqueue['id'] = Joe_Helper::slug_prefix($count);			
