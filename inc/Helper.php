@@ -14,18 +14,22 @@ class Joe_Helper {
 		return Joe_Config::get_item('site_url') . $url_path;
 	}
 
-	static public function plugin_url($file_path = '') {	
-		return plugin_dir_url('') . Joe_Config::get_item('plugin_slug') . '/' . $file_path;
+	static public function plugin_url($file_path = '', $plugin_slug = '') {	
+		if(! $plugin_slug) {
+			$plugin_slug = Joe_Config::get_item('plugin_slug');
+		}
+		
+		return plugin_dir_url('') . $plugin_slug . '/' . $file_path;
 	}
 
-	static public function asset_url($file_path = '') {	
-		return plugin_dir_url('') . Joe_Config::get_item('plugin_slug') . '/assets/' . $file_path;
+	static public function asset_url($file_path = '', $plugin_slug = '') {	
+		if(! $plugin_slug) {
+			$plugin_slug = Joe_Config::get_item('plugin_slug');
+		}
+
+		return plugin_dir_url('') . $plugin_slug . '/assets/' . $file_path;
 	}
 	
-// 	static public function http_url($data = array()) {
-// 		return trim(add_query_arg(array_merge(array('waymark_http' => '1'), $data), home_url('/')), '/');
-// 	}
-
 	static public function plugin_name($short = false) {
 		if(! $short) {
 			return Joe_Config::get_item('plugin_name');
@@ -245,7 +249,7 @@ class Joe_Helper {
 		return $table;
 	}	
 	
-	static function time_ago($time = '0') {
+	static function time_ago($time = '0', $comparison = false) {
 		$periods_singular = [
 			__('Second', Joe_Config::get_item('plugin_text_domain')),
 			__('Minute', Joe_Config::get_item('plugin_text_domain')),
@@ -267,9 +271,14 @@ class Joe_Helper {
 		];
 		
 		$lengths = array("60","60","24","7","4.35","12");
-	
+
 		$now = time();
-		$difference = $now - $time;
+		if($comparison && ($now >= $comparison)) {
+			$difference = $comparison - $time;
+		} else {
+			$difference = $now - $time;
+		}
+
 		$tense = __('ago', Joe_Config::get_item('plugin_text_domain'));
 	
 		for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
