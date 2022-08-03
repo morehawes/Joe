@@ -20,6 +20,7 @@ class Joe_Log {
 	public static function reset() {
 		static::$log = [];
 		static::$by_type = [];
+		static::$by_code = [];
 		static::$count = 0;
 		static::$in_error = false;		
 		static::$in_success = false;		
