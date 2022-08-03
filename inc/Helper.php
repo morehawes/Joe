@@ -249,7 +249,7 @@ class Joe_Helper {
 		return $table;
 	}	
 	
-	static function time_ago($time = '0') {
+	static function time_ago($time = '0', $comparison = false) {
 		$periods_singular = [
 			__('Second', Joe_Config::get_item('plugin_text_domain')),
 			__('Minute', Joe_Config::get_item('plugin_text_domain')),
@@ -271,9 +271,14 @@ class Joe_Helper {
 		];
 		
 		$lengths = array("60","60","24","7","4.35","12");
-	
+
 		$now = time();
-		$difference = $now - $time;
+		if($comparison && ($now >= $comparison)) {
+			$difference = $comparison - $time;
+		} else {
+			$difference = $now - $time;
+		}
+
 		$tense = __('ago', Joe_Config::get_item('plugin_text_domain'));
 	
 		for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
