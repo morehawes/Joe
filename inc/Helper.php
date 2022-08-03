@@ -22,6 +22,18 @@ class Joe_Helper {
 		return plugin_dir_url('') . $plugin_slug . '/' . $file_path;
 	}
 
+	static public function plugin_file_path($file_path = '', $plugin_slug = '') {	
+		if(! $file_path) {
+			$file_path = Joe_Config::get_item('plugin_slug') . '.php';
+		}
+
+		if(! $plugin_slug) {
+			$plugin_slug = Joe_Config::get_item('plugin_slug');
+		}
+		
+		return $plugin_slug . '/' . $file_path;
+	}
+
 	static public function asset_url($file_path = '', $plugin_slug = '') {	
 		if(! $plugin_slug) {
 			$plugin_slug = Joe_Config::get_item('plugin_slug');
