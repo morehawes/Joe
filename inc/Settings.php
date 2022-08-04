@@ -123,7 +123,7 @@ class Joe_Settings {
 				add_settings_section($section_key, $section_data['title'], [ $this, 'section_text' ] , Joe_Config::get_item('settings_id'));		
 				
 				//For each field in section
-				if(is_array($section_data['fields']) && sizeof($section_data['fields'])) {
+				if(isset($section_data['fields']) && is_array($section_data['fields']) && sizeof($section_data['fields'])) {
 					foreach($section_data['fields'] as $field_id => $field) {
 						//Use index as default ID
 						if(! isset($field['id'])) {

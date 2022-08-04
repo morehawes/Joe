@@ -129,7 +129,7 @@ table.joe-assoc_array tr td {
   background-repeat: no-repeat;
 }
 .joe-lead {
-  font-size: 1.1em;
+  font-size: 1.3em;
 }
 .joe-right {
   float: right;
@@ -142,6 +142,15 @@ table.joe-assoc_array tr td {
 }
 * html .joe-self-clear {
   height: 1%;
+}
+.joe-shortcode {
+  padding: 15px 0;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: center;
+  background: #f1f1f1;
+  font-family: monospace;
+  border: 1px solid #8c8f94;
 }
 /**
  * ====================================
@@ -388,7 +397,6 @@ body.wp-admin div#joe-settings-nav {
 body.wp-admin div#joe-settings-nav select {
   position: absolute;
   padding: 0;
-  z-index: 2000;
   font-size: 16px;
   min-width: 240px;
 }

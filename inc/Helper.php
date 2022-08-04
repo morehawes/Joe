@@ -282,7 +282,7 @@ class Joe_Helper {
 			__('Years', Joe_Config::get_item('plugin_text_domain'))
 		];
 		
-		$lengths = array("60","60","24","7","4.35","12");
+		$lengths = array("60","60","24","7","4.35","12", "365");
 
 		$now = time();
 		if($comparison && ($now >= $comparison)) {
