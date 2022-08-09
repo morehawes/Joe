@@ -147,16 +147,6 @@ class Joe_Assets {
 				if(isset($enqueue['deps']) && sizeof($enqueue['deps'])) {
 					foreach($enqueue['deps'] as $dep) {
 						switch($dep) {
-							//Manually enqueue
-// 							case 'jquery-ui-datepicker' :
-// 								$id = Joe_Helper::slug_prefix($count);
-// 			
-// 								wp_register_style($id, Joe_Helper::plugin_url('Joe/Assets/css/jquery-ui.min.css'), $deps, Joe_Config::get_version());
-// 								wp_enqueue_style($id);
-// 								
-// 								$count++;
-// 															
-// 								break;
 							default :
 							
 								$deps[] = $dep;
