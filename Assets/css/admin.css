@@ -378,16 +378,29 @@ body.wp-admin div#joe-admin-container #joe-about p.joe-first {
   font-size: 1.8em;
   line-height: 1.1em;
 }
-body.wp-admin div#joe-admin-container #joe-about img {
+body.wp-admin div#joe-admin-container #joe-about a.button {
+  margin-bottom: 5px;
+}
+body.wp-admin div#joe-admin-container #joe-about .joe-footer {
+  margin-bottom: 0;
+  background: red;
+}
+body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe {
+  background: blue;
+}
+body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe img {
   width: 100px;
   height: 100px;
   margin-right: 12px;
-  float: left;
   border-radius: 50%;
   border: 1px solid #999;
 }
-body.wp-admin div#joe-admin-container #joe-about a.button {
-  margin-bottom: 5px;
+body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe p {
+  color: green;
+}
+body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe small {
+  display: block;
+  clear: both;
 }
 body.wp-admin div#joe-settings-nav {
   margin-top: 10px;
