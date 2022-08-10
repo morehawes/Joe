@@ -358,6 +358,9 @@ body.wp-admin div#joe-admin-container #joe-about {
   border: 1px solid #ccc;
   background: #f7f7f7;
 }
+body.wp-admin div#joe-admin-container #joe-about h1 {
+  line-height: initial;
+}
 body.wp-admin div#joe-admin-container #joe-about ul {
   padding-left: 15px;
   list-style: circle;

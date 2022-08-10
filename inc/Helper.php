@@ -52,7 +52,10 @@ class Joe_Helper {
 
 	static public function plugin_about() {
 		$out = '	<div id="' . Joe_Helper::css_prefix('about') . '">' . "\n";		
+
 		$out .= Joe_Config::get_item('plugin_about');
+
+		$out .= '		<p><small>v' . Joe_Config::get_item('plugin_version') . '</small></p>';
 		$out .= '	</div>' . "\n";		
 		
 		return $out;
