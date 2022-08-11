@@ -245,9 +245,6 @@ function joe_setup_repeatable_settings() {
 
 					joe_setup_parameter_tooltips();
 					joe_setup_colour_pickers();
-
-// 					waymark_setup_select_meta_type();
-// 					waymark_setup_select_icon_type();
 					
 					return false;
 				})
