@@ -413,6 +413,7 @@ body.wp-admin div#joe-settings-nav {
 body.wp-admin div#joe-settings-nav select {
   position: absolute;
   padding: 0;
+  z-index: 1100;
   font-size: 16px;
   min-width: 240px;
 }
