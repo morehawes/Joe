@@ -352,13 +352,13 @@ body.wp-admin div#joe-admin-container #joe-about {
   top: 0;
   right: 20px;
   width: 180px;
-  max-height: 555px;
   overflow-y: scroll;
   padding: 15px;
   border: 1px solid #ccc;
   background: #f7f7f7;
 }
 body.wp-admin div#joe-admin-container #joe-about h1 {
+  margin: 0 0 10px 0;
   line-height: initial;
 }
 body.wp-admin div#joe-admin-container #joe-about ul {
@@ -370,37 +370,51 @@ body.wp-admin div#joe-admin-container #joe-about ul li.joe-multi a {
 }
 body.wp-admin div#joe-admin-container #joe-about p {
   margin-top: 0;
-  line-height: 1.5em;
+  font-size: 14px;
+  line-height: 18px;
 }
-body.wp-admin div#joe-admin-container #joe-about p.joe-first {
-  margin: 20px 0 40px 0;
-  font-weight: bold;
-  font-size: 1.8em;
-  line-height: 1.1em;
+body.wp-admin div#joe-admin-container #joe-about p.joe-lead {
+  font-size: 16px;
+  line-height: 20px;
 }
 body.wp-admin div#joe-admin-container #joe-about a.button {
   margin-bottom: 5px;
 }
 body.wp-admin div#joe-admin-container #joe-about .joe-footer {
+  padding-top: 15px;
+  margin-top: 15px;
   margin-bottom: 0;
-  background: red;
+  border-top: 1px solid #f1f1f1;
 }
 body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe {
-  background: blue;
+  position: relative;
 }
 body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe img {
-  width: 100px;
-  height: 100px;
-  margin-right: 12px;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
   border-radius: 50%;
   border: 1px solid #999;
 }
 body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe p {
-  color: green;
+  font-size: 14px;
+  line-height: 16px;
+}
+body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe p.joe-lead {
+  margin: 0;
+  position: absolute;
+  top: 18px;
+  left: 90px;
+  max-width: 80px;
+  font-size: 24px;
+  line-height: 25px;
+}
+body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe ul {
+  margin-top: 10px;
 }
 body.wp-admin div#joe-admin-container #joe-about .joe-footer .joe-joe small {
   display: block;
-  clear: both;
+  float: right;
 }
 body.wp-admin div#joe-settings-nav {
   margin-top: 10px;

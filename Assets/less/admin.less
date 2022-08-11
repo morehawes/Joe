@@ -263,12 +263,13 @@ body.wp-admin {
 			top: 0;
 			right: 20px;
 			width: 180px;
-			max-height: 555px;
+// 			max-height: 555px;
 			overflow-y: scroll;
 			padding: 15px;
 			border: 1px solid #ccc;
 			background: #f7f7f7;
 			h1 {
+				margin: 0 0 10px 0;
 				line-height: initial;
 			}
 			ul {
@@ -282,36 +283,49 @@ body.wp-admin {
 			}
 			p {
 				margin-top: 0;
-				line-height: 1.5em;
-				&.joe-first {
-					margin: 20px 0 40px 0;
-					font-weight: bold;
-					font-size: 1.8em;
-					line-height: 1.1em;				
+				font-size: 14px;
+				line-height: 18px;
+				&.joe-lead {
+					font-size: 16px;
+					line-height: 20px; 
 				}
 			}
 			a.button {
 				margin-bottom: 5px;
 			}
-			.joe-footer {		
+			.joe-footer {	
+				padding-top: 15px;
+				margin-top: 15px;
 				margin-bottom: 0;		
-				background: red;
+				border-top: 1px solid @joe-grey;
 				.joe-joe {
-					background: blue;
+					position: relative;
 					img {
-						width: 100px;
-						height: 100px;
-						margin-right: 12px;
-		// 				float: left;
+						width: 80px;
+						height: 80px;
+						margin-bottom: 10px;
 						border-radius: 50%;
 						border: 1px solid #999;
 					}
 					p {
-						color: green;
+						font-size: 14px;
+ 						line-height: 16px;
+						&.joe-lead {
+							margin: 0;
+							position: absolute;
+							top: 18px;
+							left: 90px;
+							max-width: 80px;					
+							font-size: 24px;
+							line-height: 25px;
+						}
+					}
+					ul {
+						margin-top: 10px;			
 					}
 					small {
 						display: block;
-						clear: both;
+						float: right;
 					}
 				}
 			}
