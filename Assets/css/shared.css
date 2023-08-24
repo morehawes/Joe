@@ -4,7 +4,7 @@
  * ====================================
  */
 .joe-self-clear:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }
@@ -32,7 +32,7 @@ a.joe-tooltip {
   margin-right: 0.5%;
   text-decoration: none !important;
   cursor: help !important;
-  background: #F9F9F9;
+  background: #f9f9f9;
   color: #444 !important;
   border: 1px solid #ddd;
   border-radius: 50%;
@@ -62,7 +62,7 @@ div.joe-accordion-container {
 }
 div.joe-accordion-container .joe-accordion-group {
   width: 100%;
-  margin: 0 ;
+  margin: 0;
   margin-bottom: 10px;
 }
 div.joe-accordion-container .joe-accordion-group.joe-first {

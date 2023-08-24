@@ -13,6 +13,8 @@
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-terser": "^2.0.0",
-    "terser": "^5.15.0"
+    "terser": "^5.15.0",
+    "font-awesome": "^4.7.0",
+    "ionicons-npm": "^2.0.1"
   }
 }
