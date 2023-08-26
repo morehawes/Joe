@@ -19,3 +19,7 @@ export function visibleIcon(isVisble) {
 export function expandedIcon(isExpanded) {
   return isExpanded ? 'fa-angle-double-up' : 'fa-angle-double-down'
 }
+
+export function editIcon(isEditing) {
+  return isEditing ? 'ion-checkmark' : 'ion-edit'
+}
