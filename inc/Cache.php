@@ -64,6 +64,10 @@ class Joe_Cache {
 		
  		return false;
 	}
+
+	static function do_hash($string) {	
+		return md5($string);
+	}
 	
 // 	static function flush() {
 // 		global $wpdb;
