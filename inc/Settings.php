@@ -5,6 +5,7 @@ class Joe_Settings {
 	private $default_slug = 'options-general.php';
 	private $submenu_slug;
 	private $submit_button_text = 'Update';
+	private $slug;
 	
 	protected $current_settings = [];
 	
