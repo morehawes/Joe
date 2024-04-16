@@ -78,7 +78,7 @@ class Joe_Helper {
 		$out .= '				<ul>' . "\n";		
 	
 		//WP.org Directory Link
-		if($directory_url = parse_url(Joe_Config::get_item('directory_url'))) {
+		if(Joe_Config::get_item('directory_url') && $directory_url = parse_url(Joe_Config::get_item('directory_url'))) {
 			if(isset($directory_url['host']) && ! empty($directory_url['host'])) {
 				$out .= '					<li><a href="' . Joe_Config::get_item('directory_url') . '">' . $directory_url['host'] . '</a></li>' . "\n";						
 			}
