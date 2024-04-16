@@ -50,7 +50,7 @@ class Joe_Config {
 		return static::$data;
 	}
 
-	public static function set_item($key = null, $value) {
+	public static function set_item($key = null, $value = null) {
 		if(array_key_exists($key, static::$data)) {
 			static::$data[$key] = $value;
 		}
